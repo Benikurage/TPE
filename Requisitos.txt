@@ -1,0 +1,15 @@
+Tematica: jueguitos
+
+Acceso Público: relación 1 a N
+Acceso Privado: username, password, logout. ABM.
+
+Requisitos:
+>Snarty
+>MVC
+>URLs semánticas
+>Archivo SQL para BBDD
+>Subido a repositorio git
+
+
+
+ 
