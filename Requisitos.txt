@@ -1,15 +1,14 @@
 Tematica: jueguitos
+Repasar: Bases de datos. MVC. Smarty.
 
 Acceso Público: relación 1 a N
 Acceso Privado: username, password, logout. ABM.
 
 Requisitos:
->Snarty
 >MVC
 >URLs semánticas
 >Archivo SQL para BBDD
+>Smarty
 >Subido a repositorio git
 
-
-
- 
+>Seguridad se explica el 27/9 
