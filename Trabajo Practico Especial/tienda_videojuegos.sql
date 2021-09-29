@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-09-2021 a las 03:49:54
+-- Tiempo de generación: 30-09-2021 a las 00:40:23
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -42,10 +42,43 @@ CREATE TABLE `genero` (
 CREATE TABLE `producto` (
   `id_producto` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `descripcion` varchar(300) NOT NULL,
-  `id_genero` varchar(300) NOT NULL
+  `descripcion` varchar(400) NOT NULL,
+  `precio` decimal(10,0) NOT NULL,
+  `id_genero` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `genero`
+--
+ALTER TABLE `genero`
+  ADD PRIMARY KEY (`id_genero`);
+
+--
+-- Indices de la tabla `producto`
+--
+ALTER TABLE `producto`
+  ADD PRIMARY KEY (`id_producto`),
+  ADD KEY `id_genero` (`id_genero`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `genero`
+--
+ALTER TABLE `genero`
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `producto`
+--
+ALTER TABLE `producto`
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
