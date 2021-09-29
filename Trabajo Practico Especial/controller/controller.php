@@ -1,4 +1,4 @@
-//Leer tabla
+#Leer tabla
 <!-- function getPagos(){
     $db = new PDO('mysql:host=localhost;'
     .'dbname=db_deudas;charset=utf8'
