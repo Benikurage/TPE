@@ -1,4 +1,6 @@
 <?php
+require_once "controller/controller.php";
+
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -11,23 +13,25 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
+$Controller = new Controller();
+
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
-        showHome(); 
+        $Controller->Home(); 
         break;
     case 'createTask': 
-        createTask(); 
+        $Controller->create(); 
         break;
     case 'deleteTask': 
-        deleteTask($params[1]); 
+        $Controller->delete($params[1]); 
         break;
     case 'updateTask': 
-        updateTask($params[1]); 
+        $Controller->update($params[1]); 
         break;
     case 'viewTask': 
-        viewTask($params[1]); 
+        $Controller->view($params[1]); 
         break;
     default: 
         echo('404 Page not found'); 
