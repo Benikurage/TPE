@@ -6,7 +6,7 @@ function __construct(){
      $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charset=utf8', 'root', '');
 }
 
-function getTasks(){
+function getproducts(){
     $sentencia = $this->db->prepare( "select * from tareas");
     $sentencia->execute();
     $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
@@ -19,17 +19,17 @@ function insert($nombre, $descripcion, $precio, $id_genero){
 }
 
 function deletedb($id){
-    $sentencia = $this->db->prepare("DELETE FROM tareas WHERE id_producto=?");
+    $sentencia = $this->db->prepare("DELETE FROM productos WHERE id_producto=?");
     $sentencia->execute(array($id));
 }
 
 function updatedb($id){
-    $sentencia = $this->db->prepare("UPDATE tareas SET finalizada=1 WHERE id_producto=?");
+    $sentencia = $this->db->prepare("UPDATE productos SET id_genero=1 WHERE id_producto=?");
     $sentencia->execute(array($id));
 }
 
-function getTask($id){
-    $sentencia = $this->db->prepare( "select * from tareas WHERE id_producto=?");
+function getproduct($id){
+    $sentencia = $this->db->prepare( "select * from productos WHERE id_producto=?");
     $sentencia->execute(array($id));
     $producto = $sentencia->fetch(PDO::FETCH_OBJ);
     return $producto;

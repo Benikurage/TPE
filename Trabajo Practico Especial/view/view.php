@@ -12,19 +12,19 @@ class View {
         $this->smarty = new Smarty();
     }
 
-    function showTasks($tasks){
-        $this->smarty->assign('titulo', 'Lista de tareas');        
-        $this->smarty->assign('tasks', $tasks);
+    function showproducts($productos){
+        $this->smarty->assign('titulo', 'Lista de productos');        
+        $this->smarty->assign('productos', $productos);
 
         $this->smarty->display('template/list.tpl');
     }
 
-    function showTask($task){
-        $this->smarty->assign('task', $task);
+    function showproduct($producto){
+        $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/detail.tpl');
      }
 
-    function showHomeLocation(){
+    function HomeLocation(){
         header("Location: ".BASE_URL."home");
     }
     

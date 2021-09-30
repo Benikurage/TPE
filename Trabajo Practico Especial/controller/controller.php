@@ -25,8 +25,8 @@ class Controller{
     }
 
     function Home(){
-        $tasks = $this->model->getTasks();
-        $this->view->showTasks($tasks);
+        $productos = $this->model->getproducts();
+        $this->view->showproducts($productos);
     }
 
     function create(){
@@ -37,21 +37,21 @@ class Controller{
         }
 
         $this->model->insert($_POST['title'], $_POST['description'], $_POST['priority'], $done);
-        $this->view->showHomeLocation();
+        $this->view->HomeLocation();
     }
 
     function delete($id){
         $this->model->deletedb($id);
-        $this->view->showHomeLocation();
+        $this->view->HomeLocation();
     }
 
     function update($id){
         $this->model->updatedb($id);
-        $this->view->showHomeLocation();
+        $this->view->HomeLocation();
     }
     
     function view($id){
-        $task = $this->model->getTask($id);
-        $this->view->showTask($task);
+        $producto = $this->model->getproduct($id);
+        $this->view->showproduct($producto);
     }
 }

@@ -5,10 +5,10 @@
     <div class="row mt-4">
         <div class="col-md-4">
             <h2>Crear Tarea</h2>
-            <form class="form-alta" action="createTask" method="post">
+            <form class="form-alta" action="create" method="post">
                 <input placeholder="nombre" type="text" name="title" id="title" required>
                 <textarea placeholder="descripcion" type="text" name="description" id="description"> </textarea>
-                <input placeholder="prioridad" type="number" name="priority" id="priority">
+                <input placeholder="precio" type="number" name="priority" id="priority">
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         </div>
