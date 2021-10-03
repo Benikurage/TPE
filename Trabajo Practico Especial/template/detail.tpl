@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='template/header.tpl'}
 
 <div class="container">
     <h1 class="mb-4">{$producto->id_producto}</h1>
@@ -10,4 +10,4 @@
     <a href="home" > Volver </a>
 </div>
 
-{include file='templates/footer.tpl'}
+{include file='template/footer.tpl'}

@@ -1,4 +1,4 @@
-{include file='templates/header.tpl'}
+{include file='template/header.tpl'}
 
 <div class="container">
 
@@ -37,4 +37,4 @@
 
 </div>
 
-{include file='templates/footer.tpl'}
+{include file='template/footer.tpl'}

@@ -1,10 +1,6 @@
-//imprimir tabla
-<!-- foreach($pagos as $pago){
-    echo "$pago->deudor(cuota nro: $pago->cuota)";
-} -->
 <?php 
 require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
-
+require_once './controller/controller.php';
 class View {
     private $smarty;
 

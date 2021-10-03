@@ -7,14 +7,14 @@ function __construct(){
 }
 
 function getproducts(){
-    $sentencia = $this->db->prepare( "select * from tareas");
+    $sentencia = $this->db->prepare( "select * from producto");
     $sentencia->execute();
     $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
     return $productos;
 } 
 
 function insert($nombre, $descripcion, $precio, $id_genero){
-    $sentencia = $this->db->prepare("INSERT INTO tareas(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
+    $sentencia = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
     $sentencia->execute(array($nombre,$descripcion,$precio, $id_genero ));
 }
 
