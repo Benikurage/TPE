@@ -1,0 +1,9 @@
+>.gitignore de templates_c
+>Agregar opcion modificar en acceso privado
+>Listado de categorias
+>Listado de items por categoria
+>Relacionar las 2 tablas SQL
+>Crear dos tablas, una publica una privada
+>Login
+
+>Estetica
