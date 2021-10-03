@@ -19,17 +19,17 @@ function insert($nombre, $descripcion, $precio, $id_genero){
 }
 
 function deletedb($id){
-    $sentencia = $this->db->prepare("DELETE FROM productos WHERE id_producto=?");
+    $sentencia = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
     $sentencia->execute(array($id));
 }
 
 function updatedb($id){
-    $sentencia = $this->db->prepare("UPDATE productos SET id_genero=1 WHERE id_producto=?");
+    $sentencia = $this->db->prepare("UPDATE producto SET id_genero=1 WHERE id_producto=?");
     $sentencia->execute(array($id));
 }
 
 function getproduct($id){
-    $sentencia = $this->db->prepare( "select * from productos WHERE id_producto=?");
+    $sentencia = $this->db->prepare( "select * from producto WHERE id_producto=?");
     $sentencia->execute(array($id));
     $producto = $sentencia->fetch(PDO::FETCH_OBJ);
     return $producto;

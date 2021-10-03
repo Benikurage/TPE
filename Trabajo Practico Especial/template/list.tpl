@@ -21,10 +21,10 @@
                         list-group-item
                         {if $producto->nombre} nombre {/if}
                         ">
-                            <a href="viewTask/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}
-                            <a class="btn btn-danger" href="deleteTask/{$producto->id_producto}">Borrar</a>
+                            <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}
+                            <a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a>
                             {if !$producto->precio}
-                                <a class="btn btn-success" href="updateTask/{$producto->id_producto}">Done</a>
+                                <a class="btn btn-success" href="update/{$producto->id_producto}">Done</a>
                             {else}
                                 <!-- <a class="btn btn-success" href="updateTask/{$task->id_tarea}">Restore</a> -->
                             {/if}

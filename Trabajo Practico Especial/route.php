@@ -21,21 +21,21 @@ switch ($params[0]) {
     case 'home': 
         $Controller->Home(); 
         break;
-    case 'createTask': 
+    case 'create': 
         $Controller->create(); 
         break;
-    case 'deleteTask': 
+    case 'delete': 
         $Controller->delete($params[1]); 
         break;
-    case 'updateTask': 
+    case 'update': 
         $Controller->update($params[1]); 
         break;
-    case 'viewTask': 
+    case 'view': 
         $Controller->view($params[1]); 
         break;
     default: 
         echo('404 Page not found'); 
-        break;
+    break;
 }
 
 
