@@ -12,3 +12,10 @@ Requisitos:
 >Subido a repositorio git
 
 >Seguridad se explica el 27/9 
+
+>Vista: Hacer templates para el front end, robar de la lista de javi
+>>Acceso público: lista items, detalle, categoría, listado de items por categoría
+>>Acceso privado: ABM
+>Modelo: Base de datos
+>Controlador: Funcion para extraer de base de datos
+>Router: Hacer funciones y sistema de routeo

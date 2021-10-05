@@ -23,9 +23,8 @@ class Controller{
         }else{
             $done = 1;
         }
-
-        $this->model->insert($_POST['title'], $_POST['description'], $_POST['priority'], $done);
-        $this->view->HomeLocation();
+       $this->model->insert($_POST['title'], $_POST['description'], $_POST['priority'], $done);
+       $this->view->HomeLocation();
     }
 
     function delete($id){
@@ -33,11 +32,28 @@ class Controller{
         $this->view->HomeLocation();
     }
 
-    function update($id){
-        $this->model->updatedb($id);
-        $this->view->HomeLocation();
-    }
+    // function update($id){
+    //     if (isset($_POST['title'])) {
+    //         echo  var_dump($_POST['title']);
+    //     } else {
+    //         echo "error";
+    //     }
+    //     // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    //     //     $this->model->updatedb($id, $_POST['title']);
+    //     //     $this->view->HomeLocation();
+    //     // }else{
+    //     //     echo "error";
+    //     // }
+
+    // }
     
+    function update($id){
+        if(isset($_POST['title'])){
+            $this->model->updatedb($id, $_POST['title'], $_POST['description'], $_POST['priority']);
+        }
+    }
+
     function view($id){
         $producto = $this->model->getproduct($id);
         $this->view->showproduct($producto);

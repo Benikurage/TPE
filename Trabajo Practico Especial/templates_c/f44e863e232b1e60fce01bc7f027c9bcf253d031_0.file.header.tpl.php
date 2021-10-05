@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-03 22:45:54
+/* Smarty version 3.1.39, created on 2021-10-04 01:12:44
   from 'C:\xampp\htdocs\TPE\Trabajo Practico Especial\template\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_615a1682b961e5_22181527',
+  'unifunc' => 'content_615a38eccacc50_07087798',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f44e863e232b1e60fce01bc7f027c9bcf253d031' => 
     array (
       0 => 'C:\\xampp\\htdocs\\TPE\\Trabajo Practico Especial\\template\\header.tpl',
-      1 => 1633292240,
+      1 => 1633302304,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_615a1682b961e5_22181527 (Smarty_Internal_Template $_smarty_tpl) {
+function content_615a38eccacc50_07087798 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +32,7 @@ function content_615a1682b961e5_22181527 (Smarty_Internal_Template $_smarty_tpl)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Tareas 2021</title>
+    <title>Tienda de videojuegos</title>
 </head>
 <body><?php }
 }

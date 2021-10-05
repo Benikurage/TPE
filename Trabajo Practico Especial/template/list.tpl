@@ -24,11 +24,11 @@
                             <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}
                             <a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a>
                             <a class="btn btn-success" href="update/{$producto->id_producto}">Edit</a>
-                            {* {if !$producto->precio} *}
-                                {* <a class="btn btn-success" href="update/{$producto->id_producto}">Done</a> *}
-                            {* {else} *}
-                                 {* <a class="btn btn-success" href="update/{$producto->id_producto}">Restore</a>  *}
-                            {* {/if} *}
+                            {* {if !$producto->precio}
+                                <a class="btn btn-success" href="update/{$producto->id_producto}">Done</a>
+                            {else}
+                                 <a class="btn btn-success" href="update/{$producto->id_producto}">Restore</a>
+                            {/if} *}
                             
                     </li>
                 {/foreach}

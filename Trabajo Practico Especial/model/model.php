@@ -23,9 +23,9 @@ function deletedb($id){
     $sentencia->execute(array($id));
 }
 
-function updatedb($id){
-    $sentencia = $this->db->prepare("UPDATE producto SET id_genero=1 WHERE id_producto=?");
-    $sentencia->execute(array($id));
+function updatedb($id, $name, $descripcion, $precio){
+    $sentencia = $this->db->prepare("UPDATE producto SET nombre=$name, descripcion=$descripcion, precio=$precio WHERE id_producto=?");
+    $sentencia->execute(array($id, $name, $descripcion, $precio));
 }
 
 function getproduct($id){
