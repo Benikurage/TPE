@@ -1,7 +1,10 @@
->Agregar opcion modificar en acceso privado (Consultar con docente)
+>Agregar opcion modificar en acceso privado (Consultar con docente) 
+NO INCORPORAR DIRECTAMENTE EL DATO. HACERLO A TRAVÉS DE PDO.
+
 >Listado de categorias
 >Listado de items por categoria
->Relacionar las 2 tablas SQL
+>Relacionar las 2 tablas SQL. Inner join
+
 >Crear dos tablas HTML, una publica una privada
 >Login
 
