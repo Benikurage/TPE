@@ -28,7 +28,7 @@ switch ($params[0]) {
         $Controller->delete($params[1]); 
         break;
     case 'update': 
-        $Controller->update($params[1]); 
+        $Controller->update(); 
         break;
     case 'view': 
         $Controller->view($params[1]); 

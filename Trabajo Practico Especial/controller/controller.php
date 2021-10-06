@@ -31,26 +31,10 @@ class Controller{
         $this->model->deletedb($id);
         $this->view->HomeLocation();
     }
-
-    // function update($id){
-    //     if (isset($_POST['title'])) {
-    //         echo  var_dump($_POST['title']);
-    //     } else {
-    //         echo "error";
-    //     }
-    //     // if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-    //     //     $this->model->updatedb($id, $_POST['title']);
-    //     //     $this->view->HomeLocation();
-    //     // }else{
-    //     //     echo "error";
-    //     // }
-
-    // }
     
-    function update($id){
+    function update(){
         if(isset($_POST['title'])){
-            $this->model->updatedb($id, $_POST['title'], $_POST['description'], $_POST['priority']);
+            $this->model->updatedb($_POST['title'], $_POST['description'], $_POST['priority']);
         }
     }
 

@@ -24,7 +24,8 @@ function deletedb($id){
 }
 
 function updatedb($id, $name, $descripcion, $precio){
-    $sentencia = $this->db->prepare("UPDATE producto SET nombre=$name, descripcion=$descripcion, precio=$precio WHERE id_producto=?");
+    //pasar por PDO
+    $sentencia = $this->db->prepare("UPDATE producto SET WHERE id_producto=?");
     $sentencia->execute(array($id, $name, $descripcion, $precio));
 }
 

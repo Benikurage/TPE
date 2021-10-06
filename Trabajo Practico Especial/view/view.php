@@ -11,8 +11,8 @@ class View {
     function showproducts($productos){
         $this->smarty->assign('titulo', 'Lista de productos');        
         $this->smarty->assign('productos', $productos);
-
-        $this->smarty->display('template/list.tpl');
+        //hacer un if para que el display del tipo de lista dependa de si la sesión está o no iniciada
+        $this->smarty->display('template/listPrivate.tpl');
     }
 
     function showproduct($producto){
