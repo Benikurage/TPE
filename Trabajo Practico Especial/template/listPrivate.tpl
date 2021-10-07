@@ -5,7 +5,7 @@
     <div class="row mt-4">
         <div class="col-md-4">
             <h2>Crear Tarea</h2>
-            <form class="form-alta" action="create"  method="post">
+            <form class="form-alta" action="create"  method="POST">
                 <input placeholder="nombre" type="text" name="title" id="title" required>
                 <textarea placeholder="descripcion" type="text" name="description" id="description"> </textarea>
                 <input placeholder="precio" type="number" name="priority" id="priority">
@@ -23,7 +23,7 @@
                         ">
                             <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}
                             <a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a>
-                            <a class="btn btn-success" href="update/{$producto->id_producto}">Edit</a>
+                            <a class="btn btn-success" href="mostrareditar/{$producto->id_producto}">Edit</a>
                             {* {if !$producto->precio}
                                 <a class="btn btn-success" href="update/{$producto->id_producto}">Done</a>
                             {else}

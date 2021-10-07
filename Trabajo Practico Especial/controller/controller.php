@@ -33,13 +33,17 @@ class Controller{
     }
     
     function update(){
-        if(isset($_POST['title'])){
-            $this->model->updatedb($_POST['title'], $_POST['description'], $_POST['priority']);
-        }
+        $this->model->updatedb($_POST['idProducto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
+        $this->view->HomeLocation();
     }
 
     function view($id){
         $producto = $this->model->getproduct($id);
         $this->view->showproduct($producto);
     }
+    function mostrareditar($id){
+        $producto = $this->model->getproduct($id);
+        $this->view->mostrareditar($id, $producto);
+    }
+    
 }

@@ -33,6 +33,9 @@ switch ($params[0]) {
     case 'view': 
         $Controller->view($params[1]); 
         break;
+    case 'mostrareditar': 
+        $Controller->mostrareditar($params[1]); 
+        break;
     default: 
         echo('404 Page not found'); 
     break;

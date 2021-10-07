@@ -23,10 +23,10 @@ function deletedb($id){
     $sentencia->execute(array($id));
 }
 
-function updatedb($id, $name, $descripcion, $precio){
+function updatedb($id,$nombre,$descripcion,$precio){
     //pasar por PDO
-    $sentencia = $this->db->prepare("UPDATE producto SET WHERE id_producto=?");
-    $sentencia->execute(array($id, $name, $descripcion, $precio));
+    $sentencia = $this->db->prepare("UPDATE producto SET nombre='$nombre' descripcion='$descripcion' precio='$precio' WHERE id_producto=?");
+    $sentencia->execute(array($id));
 }
 
 function getproduct($id){
@@ -35,4 +35,7 @@ function getproduct($id){
     $producto = $sentencia->fetch(PDO::FETCH_OBJ);
     return $producto;
 }
+
+
+
 }
