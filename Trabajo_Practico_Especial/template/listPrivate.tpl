@@ -4,11 +4,11 @@
 
     <div class="row mt-4">
         <div class="col-md-4">
-            <h2>Crear Tarea</h2>
+            <h2>Crear Producto</h2>
             <form class="form-alta" action="create"  method="POST">
-                <input placeholder="nombre" type="text" name="title" id="title" required>
-                <textarea placeholder="descripcion" type="text" name="description" id="description"> </textarea>
-                <input placeholder="precio" type="number" name="priority" id="priority">
+                <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
+                <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
+                <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         </div>

@@ -23,7 +23,7 @@ class Controller{
         }else{
             $done = 1;
         }
-       $this->model->insert($_POST['title'], $_POST['description'], $_POST['priority'], $done);
+       $this->model->insert($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $done);
        $this->view->HomeLocation();
     }
 
