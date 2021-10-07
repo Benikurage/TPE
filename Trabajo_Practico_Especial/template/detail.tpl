@@ -1,13 +1,26 @@
 {include file='template/header.tpl'}
 
 <div class="container">
-    <h1 class="mb-4">{$producto->id_producto}</h1>
-    <h2>nombre: {$producto->nombre}</h2>
-    <h2>Descripcion: {$producto->descripcion}</h2>
-    <h2>precio: {$producto->precio}</h2>
-    <h2>genero: {$producto->id_genero}</h2>
+    <h1>Detalles del producto</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>nombre</th>
+                <th>Descripcion</th>
+                <th>precio</th>
+            </tr>
+        </thead>
+        <tbody>       
+            <tr>
+                <td>{$producto->nombre}</td>
+                <td>{$producto->descripcion}</td>
+                <td>{$producto->precio}</td>
+            </tr>
+        </tbody>
+    
+    </table>
 
-    <a href="home" > Volver </a>
+    <a href="home" class="btn btn-dark"> Regresar al inicio </a>
 </div>
 
 {include file='template/footer.tpl'}
