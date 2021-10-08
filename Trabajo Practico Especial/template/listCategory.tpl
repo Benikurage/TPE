@@ -1,0 +1,1 @@
+select item.*,genero.nombre from item inner join genero on item.id_genero = genero.id_genero where item.id_genero = 1

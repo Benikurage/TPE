@@ -19,11 +19,13 @@ class View {
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/detail.tpl');
     }
+            
+    //idem linea 14
     function mostrareditar($producto){
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/mostraridetarproducto.tpl');
     }
-
+    //crear funcion de logueo con todo loque requiera
     function HomeLocation(){
         header("Location: ".BASE_URL."home");
     }
