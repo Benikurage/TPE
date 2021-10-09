@@ -1,9 +1,9 @@
 <?php
 
-require_once ".view\loginView.php";
-require_once ".model\userModel.php";
+require_once "./view/loginView.php";
+require_once "./model/userModel.php";
 
-class UserController{
+class LoginController{
     private $model;
     private $view;
 

@@ -8,7 +8,7 @@ class View {
         $this->smarty = new Smarty();
     }
 
-    function showproducts($productos){
+    function showProducts($productos){
         $this->smarty->assign('titulo', 'Lista de productos');        
         $this->smarty->assign('productos', $productos);
         //hacer un if para que el display del tipo de lista dependa de si la sesión está o no iniciada
@@ -19,28 +19,28 @@ class View {
     //   $this->smarty->assign('producto', $producto);
     //    $this->smarty->display('template/detail.tpl');
     //}
-    function mostrardetalles($producto){
+    function mostrarDetalles($producto){
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/detail.tpl');
     }
             
     //idem linea 14
-    function mostrareditar($producto){
+    function mostrarEditar($producto){
         $this->smarty->assign('producto', $producto);
-        $this->smarty->display('template/mostraridetarproducto.tpl');
+        $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
 
-    function mostrargenero(){
+    function mostrarGenero(){
         $this->smarty->assign('titulo', 'Lista de genero');
         $this->smarty->display('template/genero.tpl');
     }
 
-    function mostrarinicio(){
+    function mostrarInicio(){
         $this->smarty->assign('titulo', 'Lista de genero');
         $this->smarty->display('template/inicio.tpl');
     }
     //crear funcion de logueo con todo loque requiera
-    function HomeLocation(){
+    function homeLocation(){
         header("Location: ".BASE_URL."home");
     }
     

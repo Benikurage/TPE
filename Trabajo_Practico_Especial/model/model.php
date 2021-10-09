@@ -6,7 +6,7 @@ private $db;
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charset=utf8', 'root', '');
     }
 
-    function getproducts(){
+    function getProducts(){
         $sentencia = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
         //SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) 
         $sentencia->execute();
@@ -28,20 +28,20 @@ private $db;
         $sentencia = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
         $sentencia->execute(array($id));
     }
-
+    
     function updatedb($id,$nombre,$descripcion,$precio){
-
+        
         $sentencia = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio' WHERE id_producto=?");
         $sentencia->execute(array($id));
     }
-
-    function getproduct($id){
+    
+    function getProduct($id){
         $sentencia = $this->db->prepare( "SELECT * FROM producto WHERE id_producto=?");
         $sentencia->execute(array($id));
         $producto = $sentencia->fetch(PDO::FETCH_OBJ);
         return $producto;
     }
-
+    
 
 
 }

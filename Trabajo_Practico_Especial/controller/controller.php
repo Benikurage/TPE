@@ -1,20 +1,23 @@
 <?php 
+
 require_once "./model/model.php";
 require_once "./view/view.php";
-//dividir controladores para cada tipo de lista
+require_once "./Helpers/AuthHelper.php";
+
 class Controller{
 
     private $model;
     private $view;
+    private $helper;
 
     function __construct(){
         $this->model = new Model();
         $this->view = new View();
     }
 
-    function Home(){
+    function home(){
         $productos = $this->model->getproducts();
-        $this->view->showproducts($productos);
+        $this->view->showProducts($productos);
     }
 
     function create(){
@@ -24,40 +27,43 @@ class Controller{
             $done = 1;
         }
        $this->model->insert($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $done);
-       $this->view->HomeLocation();
+       $this->view->homeLocation();
     }
 
     function delete($id){
+        $this->helper->checkLoggedIn();
         $this->model->deletedb($id);
-        $this->view->HomeLocation();
+        $this->view->homeLocation();
     }
     
     function update(){
+        $this->helper->checkLoggedIn();
         $this->model->updatedb($_POST['idProducto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
-        $this->view->HomeLocation();
+        $this->view->homeLocation();
     }
 
     //function view($id){
     //    $producto = $this->model->getproduct($id);
     //    $this->view->showproduct($producto);
     //}
-    function mostrareditar($id){
+    function mostrarEditar($id){
+        $this->helper->checkLoggedIn();
         $producto = $this->model->getproduct($id);
-        $this->view->mostrareditar($id, $producto);
+        $this->view->mostrarEditar($id, $producto);
     }
-    function dettalles($id){
+    function detalles($id){
         $producto = $this->model->getproduct($id);
-        $this->view->mostrardetalles($producto);
+        $this->view->mostrarDetalles($producto);
     }
 
     function genero(){
         //$producto = $this->model->getproduct($id);
-        $this->view->mostrargenero();
+        $this->view->mostrarGenero();
     }
 
     function inicio(){
         //$producto = $this->model->getproduct($id);
-        $this->view->mostrarinicio();
+        $this->view->mostrarInicio();
     }
     
 }
