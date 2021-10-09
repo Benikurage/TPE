@@ -1,24 +1,15 @@
-{include file='template/header.tpl'}
-//agregar opción de log in y seguridad para que solo se pueda entrar logueado
-<div class="container">
-
-    <div class="row mt-4">
+  <div class="row mt-4">
         <div class="col-md-8">
             <h1>{$titulo}</h1>
-
             <ul class="list-group">
                 {foreach from=$productos item=$producto}
                     <li class="
                         list-group-item
                         {if $producto->nombre} nombre {/if}
                         ">
-                            <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}                          
+                            <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30} | {$producto->precio}                         
                     </li>
                 {/foreach}
             </ul>
         </div>
     </div>
-
-</div>
-
-{include file='template/footer.tpl'}

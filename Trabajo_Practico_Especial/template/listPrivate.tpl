@@ -1,5 +1,5 @@
 {include file='template/header.tpl'}
-
+//agregar opcion de log out
 <div class="container">
 
     <div class="row mt-4">

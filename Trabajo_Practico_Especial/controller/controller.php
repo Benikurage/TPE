@@ -1,7 +1,7 @@
 <?php 
 require_once "./model/model.php";
 require_once "./view/view.php";
-
+//dividir controladores para cada tipo de lista
 class Controller{
 
     private $model;
