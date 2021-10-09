@@ -1,7 +1,7 @@
 <?php
 
-require_once "./view/loginView.php";
-require_once "./model/userModel.php";
+require_once "./view/LoginView.php";
+require_once "./model/UserModel.php";
 
 class LoginController{
     private $model;
@@ -11,6 +11,18 @@ class LoginController{
         $this->model= new UserModel();
         $this->view = new LoginView();
     }
+    
+    function newUser(){
+        if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['password'])){
+            $nombre = $_POST['nombre'];
+            $email = $_POST['email'];
+            $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $this->model->createUser($nombre, $email, $password);
+            echo "Usuario creado <a href='./inicio'>Volver al home</a>";
+        }
+        
+    }
+
     function login(){
         $this->view->showLogin();
     }
@@ -19,12 +31,12 @@ class LoginController{
         session_destroy();
         $this->view->showLogin("Te deslogueaste");
     }
+
     function verifyLogin(){
         if(!empty($_POST['email']) && !empty($_POST['password'])){
             $email = $_POST['email'];
             $password= $_POST['password'];
             $user = $this->model->getUser($email);
-
         }
         
         if($user && password_verify($password, $user->password)){
@@ -35,7 +47,10 @@ class LoginController{
 
             $this->view->showHome();
         }else{
-            $this->view->showLogin("Acceso denegado");
+            $this->view->showLogin();
         }
+    }
+    function registro(){
+        $this->view->mostrarRegistro();
     }
 }

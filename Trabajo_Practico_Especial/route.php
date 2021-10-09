@@ -1,6 +1,7 @@
 <?php
-require_once "controller/controller.php";
+require_once "controller/ListController.php";
 require_once "controller/loginController.php";
+require_once "Helpers/AuthHelper.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -14,38 +15,58 @@ if (!empty($_GET['action'])) {
 
 $params = explode('/', $action);
 
-$Controller = new Controller();
-$loginCOntroller = new LoginController();
+$listController = new ListController();
+$loginController = new loginController();
+$helper = new AuthHelper();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
-        $loginCOntroller->login(); 
-        break;
-    case 'create': 
-    $Controller->create(); 
-    break;
-    case 'delete': 
-        $Controller->delete($params[1]); 
-        break;
-    case 'update': 
-        $Controller->update(); 
-        break;
-    //case 'view': 
-        //    $Controller->view($params[1]); 
-        //    break;
-    case 'mostrareditar': 
-        $Controller->mostrarEditar($params[1]); 
-        break;
-    case 'detail': 
-        $Controller->detalles($params[1]); 
-        break;
-    case 'genero': 
-        $Controller->genero(); 
+        $listController->inicio(); 
         break;
     case 'inicio': 
-        $Controller->inicio(); 
+        $listController->inicio(); 
         break;
+    case 'registro':
+        $loginController->registro();
+        break;
+    case 'login': 
+        $loginController->login(); 
+        break;
+    case 'logout': 
+        $loginController->logout(); 
+        break;
+    case 'lista':
+        $listController->list();
+        break;
+    case 'register':
+        $loginController->newUser();
+        break;
+    case 'create': 
+        $listController->create(); 
+        break;
+    case 'delete': 
+        $listController->delete($params[1]); 
+        break;
+    case 'update': 
+        $listController->update(); 
+        break;
+    //case 'view': 
+        //    $listController->view($params[1]); 
+        //    break;
+    case 'verify':
+        $helper->checkLoggedIn();
+        break;
+    case 'mostrareditar': 
+        $listController->mostrarEditar($params[1]); 
+        break;
+    case 'detail': 
+        $listController->detalles($params[1]); 
+        break;
+    case 'genero': 
+        $listController->genero(); 
+        break;
+    
     default: 
         echo('404 Page not found'); 
     break;

@@ -1,22 +1,22 @@
 <?php 
 
-require_once "./model/model.php";
-require_once "./view/view.php";
+require_once "./model/ListModel.php";
+require_once "./view/ListView.php";
 require_once "./Helpers/AuthHelper.php";
 
-class Controller{
+class ListController{
 
     private $model;
     private $view;
     private $helper;
 
     function __construct(){
-        $this->model = new Model();
-        $this->view = new View();
+        $this->model = new ListModel();
+        $this->view = new ListView();
     }
 
-    function home(){
-        $productos = $this->model->getproducts();
+    function list(){
+        $productos = $this->model->getProducts();
         $this->view->showProducts($productos);
     }
 
@@ -46,6 +46,7 @@ class Controller{
     //    $producto = $this->model->getproduct($id);
     //    $this->view->showproduct($producto);
     //}
+
     function mostrarEditar($id){
         $this->helper->checkLoggedIn();
         $producto = $this->model->getproduct($id);

@@ -1,5 +1,5 @@
 <?php
-class Model{
+class ListModel{
 
 private $db;
     function __construct(){
@@ -16,7 +16,7 @@ private $db;
 
     function insert($nombre, $descripcion, $precio, $id_genero){
         $sentencia = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
-        $sentencia->execute(array($nombre,$descripcion,$precio, $id_genero ));
+        $sentencia->execute(array($nombre,$descripcion,$precio, $id_genero));
     }
 
     //function insertgenero($id_genero,$nombre, $descripcion){
@@ -41,7 +41,4 @@ private $db;
         $producto = $sentencia->fetch(PDO::FETCH_OBJ);
         return $producto;
     }
-    
-
-
 }

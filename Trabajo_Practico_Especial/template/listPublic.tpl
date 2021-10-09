@@ -1,7 +1,5 @@
 {include file='template/header.tpl'}
-//agregar opción de log in y seguridad para que solo se pueda entrar logueado
 <div class="container">
-
     <div class="row mt-4">
         <div class="col-md-8">
             <h1>{$titulo}</h1>
@@ -18,7 +16,6 @@
             </ul>
         </div>
     </div>
-
 </div>
 
 {include file='template/footer.tpl'}

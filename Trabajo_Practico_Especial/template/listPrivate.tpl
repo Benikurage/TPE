@@ -5,12 +5,12 @@
         <div class="col-md-8">
             
             <h1>{$titulo}</h1>
-            <table class ="table " >
-                <thead>
+            <table class ="table">
+                {* <thead>
                     <tr>
                        <th>nombre</td>                   
                     </tr>
-                </thead>
+                </thead> *}
                 <tbody>
                     <tr class="list-group">
                         {foreach from=$productos item=$producto}
@@ -24,8 +24,6 @@
                                         <a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a>  
                                     </td>                      
                             </td>
-                                                     
-                           
                         {/foreach}
                     </tr>
 
@@ -34,14 +32,15 @@
         </div>
         <div>
             <h2>Crear Producto</h2>
-            <form class ="form-groupaction"action="create"  method="POST">
+            <form class ="form-groupaction" action="create" method="POST">
                 <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
                 <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
                 <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
-            <a class="btn btn-dark" href="genero">genero</a>
-            <a class="btn btn-dark" href="inicio">inicio</a>
+            <a class="btn btn-dark" href="inicio">Inicio</a>
+            <a class="btn btn-dark" href="logout">Logout</a>
+            <a class="btn btn-dark" href="genero">Listdo de juegos por género</a>
         </div>
     </div>
 
