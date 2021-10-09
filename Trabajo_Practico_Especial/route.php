@@ -1,5 +1,6 @@
 <?php
 require_once "controller/controller.php";
+require_once "controller/loginController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -14,12 +15,12 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action);
 
 $Controller = new Controller();
-
+$loginCOntroller = new LoginController();
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
-        $Controller->Home(); 
+        $loginCOntroller->login(); 
         break;
     case 'create': 
     $Controller->create(); 
@@ -34,10 +35,10 @@ switch ($params[0]) {
         //    $Controller->view($params[1]); 
         //    break;
     case 'mostrareditar': 
-        $Controller->mostrareditar($params[1]); 
+        $Controller->mostrarEditar($params[1]); 
         break;
     case 'detail': 
-        $Controller->dettalles($params[1]); 
+        $Controller->detalles($params[1]); 
         break;
     case 'genero': 
         $Controller->genero(); 
