@@ -7,7 +7,7 @@ private $db;
     }
 
     function getproducts(){
-        $sentencia = $this->db->prepare("SELECT  * FROM producto ");
+        $sentencia = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
         //SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) 
         $sentencia->execute();
         $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
