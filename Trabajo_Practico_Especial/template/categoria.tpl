@@ -1,5 +1,3 @@
-{include file='template/header.tpl'}
-//agregar opcion de log out
 <div class="container">
 
     <div class="row mt-4">
@@ -24,27 +22,12 @@
                                         <a class="btn btn-success" href="mostrareditar/{$producto->id_producto}">Edit</a>
                                         <a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a>  
                                     </td>                      
-                            </td>
-                                                     
-                           
+                            </td> 
                         {/foreach}
                     </tr>
 
                 </tbody>
            </table>
         </div>
-        <div>
-            <h2>Crear Producto</h2>
-            <form class ="form-groupaction"action="create"  method="POST">
-                <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
-                <input placeholder="precio" type="number" name="precio" id="precio">
-                <input type="submit" class="btn btn-primary" value="Guardar">
-            </form>
-            <a class="btn btn-dark" href="categoria">genero</a>
-        </div>
     </div>
-
 </div>
-
-{include file='template/footer.tpl'}

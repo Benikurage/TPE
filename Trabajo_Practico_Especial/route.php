@@ -30,11 +30,17 @@ switch ($params[0]) {
     case 'update': 
         $Controller->update(); 
         break;
-    case 'view': 
-        $Controller->view($params[1]); 
-        break;
+    //case 'view': 
+    //    $Controller->view($params[1]); 
+    //    break;
     case 'mostrareditar': 
         $Controller->mostrareditar($params[1]); 
+        break;
+    case 'detail': 
+        $Controller->dettalles($params[1]); 
+        break;
+    case 'categoria': 
+        $Controller->genero($params[1]); 
         break;
     default: 
         echo('404 Page not found'); 

@@ -37,13 +37,22 @@ class Controller{
         $this->view->HomeLocation();
     }
 
-    function view($id){
-        $producto = $this->model->getproduct($id);
-        $this->view->showproduct($producto);
-    }
+    //function view($id){
+    //    $producto = $this->model->getproduct($id);
+    //    $this->view->showproduct($producto);
+    //}
     function mostrareditar($id){
         $producto = $this->model->getproduct($id);
         $this->view->mostrareditar($id, $producto);
+    }
+    function dettalles($id){
+        $producto = $this->model->getproduct($id);
+        $this->view->mostrardetalles($producto);
+    }
+
+    function genero($id){
+        $producto = $this->model->getproduct($id);
+        $this->view->mostrargenero($producto);
     }
     
 }

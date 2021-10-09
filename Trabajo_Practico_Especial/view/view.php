@@ -15,7 +15,11 @@ class View {
         $this->smarty->display('template/listPrivate.tpl');
     }
 
-    function showproduct($producto){
+    //function showproduct($producto){
+    //   $this->smarty->assign('producto', $producto);
+    //    $this->smarty->display('template/detail.tpl');
+    //}
+    function mostrardetalles($producto){
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/detail.tpl');
     }
@@ -24,6 +28,11 @@ class View {
     function mostrareditar($producto){
         $this->smarty->assign('producto', $producto);
         $this->smarty->display('template/mostraridetarproducto.tpl');
+    }
+
+    function mostrargenero($producto){
+        $this->smarty->assign('producto', $producto);
+        $this->smarty->display('template/categoria.tpl');
     }
     //crear funcion de logueo con todo loque requiera
     function HomeLocation(){
