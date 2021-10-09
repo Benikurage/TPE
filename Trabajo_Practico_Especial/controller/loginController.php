@@ -27,7 +27,6 @@ class UserController{
 
         }
         
-        
         if($user && password_verify($password, $user->password)){
             
             session_start();
