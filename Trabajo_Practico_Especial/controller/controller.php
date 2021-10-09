@@ -50,9 +50,14 @@ class Controller{
         $this->view->mostrardetalles($producto);
     }
 
-    function genero($id){
-        $producto = $this->model->getproduct($id);
-        $this->view->mostrargenero($producto);
+    function genero(){
+        //$producto = $this->model->getproduct($id);
+        $this->view->mostrargenero();
+    }
+
+    function inicio(){
+        //$producto = $this->model->getproduct($id);
+        $this->view->mostrarinicio();
     }
     
 }

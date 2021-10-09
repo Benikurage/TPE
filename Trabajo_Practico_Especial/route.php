@@ -22,8 +22,8 @@ switch ($params[0]) {
         $Controller->Home(); 
         break;
     case 'create': 
-        $Controller->create(); 
-        break;
+    $Controller->create(); 
+    break;
     case 'delete': 
         $Controller->delete($params[1]); 
         break;
@@ -31,16 +31,19 @@ switch ($params[0]) {
         $Controller->update(); 
         break;
     //case 'view': 
-    //    $Controller->view($params[1]); 
-    //    break;
+        //    $Controller->view($params[1]); 
+        //    break;
     case 'mostrareditar': 
         $Controller->mostrareditar($params[1]); 
         break;
     case 'detail': 
         $Controller->dettalles($params[1]); 
         break;
-    case 'categoria': 
-        $Controller->genero($params[1]); 
+    case 'genero': 
+        $Controller->genero(); 
+        break;
+    case 'inicio': 
+        $Controller->inicio(); 
         break;
     default: 
         echo('404 Page not found'); 

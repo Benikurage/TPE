@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.39, created on 2021-10-09 21:24:23
+/* Smarty version 3.1.39, created on 2021-10-09 22:23:46
   from 'C:\xampp\htdocs\proyectos\web2\TPE\Trabajo_Practico_Especial\template\listPrivate.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.39',
-  'unifunc' => 'content_6161ec676e27f7_80378742',
+  'unifunc' => 'content_6161fa5255d1b7_79159664',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '32424e59b1cbe1535054b40b72aec4bc9b89bfe8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\proyectos\\web2\\TPE\\Trabajo_Practico_Especial\\template\\listPrivate.tpl',
-      1 => 1633807457,
+      1 => 1633811021,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:template/footer.tpl' => 1,
   ),
 ),false)) {
-function content_6161ec676e27f7_80378742 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6161fa5255d1b7_79159664 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_subTemplateRender('file:template/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 //agregar opcion de log out
@@ -79,7 +79,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
-            <a class="btn btn-dark" href="categoria">genero</a>
+            <a class="btn btn-dark" href="genero">genero</a>
+            <a class="btn btn-dark" href="inicio">inicio</a>
         </div>
     </div>
 

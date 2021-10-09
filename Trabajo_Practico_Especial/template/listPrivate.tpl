@@ -41,7 +41,8 @@
                 <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
-            <a class="btn btn-dark" href="categoria">genero</a>
+            <a class="btn btn-dark" href="genero">genero</a>
+            <a class="btn btn-dark" href="inicio">inicio</a>
         </div>
     </div>
 

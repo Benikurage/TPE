@@ -30,9 +30,14 @@ class View {
         $this->smarty->display('template/mostraridetarproducto.tpl');
     }
 
-    function mostrargenero($producto){
-        $this->smarty->assign('producto', $producto);
-        $this->smarty->display('template/categoria.tpl');
+    function mostrargenero(){
+        $this->smarty->assign('titulo', 'Lista de genero');
+        $this->smarty->display('template/genero.tpl');
+    }
+
+    function mostrarinicio(){
+        $this->smarty->assign('titulo', 'Lista de genero');
+        $this->smarty->display('template/inicio.tpl');
     }
     //crear funcion de logueo con todo loque requiera
     function HomeLocation(){
