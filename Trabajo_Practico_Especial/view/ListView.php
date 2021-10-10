@@ -11,7 +11,7 @@ class ListView {
     function showProducts($productos){
         $this->smarty->assign('titulo', 'Lista de productos');        
         $this->smarty->assign('productos', $productos);
-        //hacer un if para que el display del tipo de lista dependa de si la sesión está o no iniciada
+
         session_start();
         if(isset($_SESSION['ID_USER']) && $_SESSION['ID_USER']==true){
            $this->smarty->display('template/listPrivate.tpl');
@@ -19,7 +19,10 @@ class ListView {
             $this->smarty->display('template/listPublic.tpl');
         }
     }
-
+    function mostrarCategorias(){
+        
+    
+    }
     // function showProduct($producto){
     //   $this->smarty->assign('producto', $producto);
     //    $this->smarty->display('template/detail.tpl');

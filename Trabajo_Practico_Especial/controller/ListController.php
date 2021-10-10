@@ -20,6 +20,12 @@ class ListController{
         $this->view->showProducts($productos);
     }
 
+    //crear funcion para mostrar listado de generos
+    // function listCategory(){
+    //     $categories = $this->model->getGenres();
+    //     $this->view->showProducts($categories);
+    // }
+
     function create(){
         if(!isset($_POST['done'])){
             $done = 0;
