@@ -1,5 +1,4 @@
+Los llamados en SQL para los listados funcionan.
+Hay que limpiar las tablas SQL, crear géneros, agregar la opción de asignar géneros en los formularios de creación de objetos y hacer todas las funciones necesarias alrededor de eso
 >Listado de categorias
 >Listado de items por categoria
->Estetica
-
->Crear cuenta
