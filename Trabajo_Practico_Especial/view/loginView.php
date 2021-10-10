@@ -6,18 +6,18 @@ class LoginView{
     function __construct(){
         $this->smarty= new Smarty();
     }
-
     function showLogin(){
-        //$this->smarty->assign('titulo', 'Log In');
-        //$this->smarty->assign('error', $error);
         $this->smarty->display('template/login.tpl');
+    }
+    function showLogout($error=""){
+        $this->smarty->assign('error', $error);
+        $this->smarty->display('template/inicio.tpl');
     }
     function showHome(){
         header("Location: ".BASE_URL."home");
     }
     
     function mostrarRegistro(){
-        $this->smarty->assign('titulo', 'Inicio');
         $this->smarty->display('template/registro.tpl');
     }
 }

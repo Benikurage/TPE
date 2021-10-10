@@ -12,8 +12,9 @@ class ListView {
         $this->smarty->assign('titulo', 'Lista de productos');        
         $this->smarty->assign('productos', $productos);
         //hacer un if para que el display del tipo de lista dependa de si la sesión está o no iniciada
-        if(isset($_SESSION['logged']) && $_SESSION['logged']==true){
-            $this->smarty->display('template/listPrivate.tpl');
+        session_start();
+        if(isset($_SESSION['ID_USER']) && $_SESSION['ID_USER']==true){
+           $this->smarty->display('template/listPrivate.tpl');
         } else{
             $this->smarty->display('template/listPublic.tpl');
         }
@@ -39,7 +40,8 @@ class ListView {
         $this->smarty->display('template/genero.tpl');
     }
 
-    function mostrarInicio(){
+    function mostrarInicio($error=""){
+        $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');
         $this->smarty->display('template/inicio.tpl');
     }

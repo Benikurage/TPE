@@ -55,7 +55,7 @@ switch ($params[0]) {
         //    $listController->view($params[1]); 
         //    break;
     case 'verify':
-        $helper->checkLoggedIn();
+        $loginController->verifyLogin();
         break;
     case 'mostrareditar': 
         $listController->mostrarEditar($params[1]); 
@@ -66,7 +66,6 @@ switch ($params[0]) {
     case 'genero': 
         $listController->genero(); 
         break;
-    
     default: 
         echo('404 Page not found'); 
     break;

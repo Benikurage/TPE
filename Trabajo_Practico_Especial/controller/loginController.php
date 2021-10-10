@@ -18,9 +18,8 @@ class LoginController{
             $email = $_POST['email'];
             $password= password_hash($_POST['password'], PASSWORD_BCRYPT);
             $this->model->createUser($nombre, $email, $password);
-            echo "Usuario creado <a href='./inicio'>Volver al home</a>";
+            $this->view->showLogout("Usuario creado!");
         }
-        
     }
 
     function login(){
@@ -29,7 +28,7 @@ class LoginController{
     function logout(){
         session_start();
         session_destroy();
-        $this->view->showLogin("Te deslogueaste");
+        $this->view->showLogout("Te deslogueaste");
     }
 
     function verifyLogin(){
@@ -42,7 +41,7 @@ class LoginController{
         if($user && password_verify($password, $user->password)){
             
             session_start();
-            $_SESSION['ID_USER']=$user->id;
+            $_SESSION['ID_USER']=$user->id_usuario;
             $_SESSION['EMAIL']=$user->email;
 
             $this->view->showHome();
