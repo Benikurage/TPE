@@ -30,6 +30,9 @@ switch ($params[0]) {
     case 'registro':
         $loginController->registro();
         break;
+    case 'register':
+        $loginController->newUser();
+        break;
     case 'login': 
         $loginController->login(); 
         break;
@@ -38,9 +41,6 @@ switch ($params[0]) {
         break;
     case 'lista':
         $listController->list();
-        break;
-    case 'register':
-        $loginController->newUser();
         break;
     case 'create': 
         $listController->create(); 

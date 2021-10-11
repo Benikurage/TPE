@@ -49,7 +49,6 @@ class ListView {
         $this->smarty->display('template/inicio.tpl');
     }
 
-    //crear funcion de logueo con todo loque requiera
     function homeLocation(){
         header("Location: ".BASE_URL."home");
     }

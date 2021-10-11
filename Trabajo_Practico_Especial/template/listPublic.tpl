@@ -10,7 +10,7 @@
                         list-group-item
                         {if $producto->nombre} nombre {/if}
                         ">
-                            <a href="view/{$producto->id_producto}">{$producto->nombre}</a> | {$producto->descripcion|truncate:30}                          
+                            {$producto->nombre} | {$producto->descripcion|truncate:30}                          
                     </li>
                 {/foreach}
             </ul>
