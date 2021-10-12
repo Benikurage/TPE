@@ -21,9 +21,9 @@ class ListController{
     }
 
     //crear funcion para mostrar listado de generos
-    function listCategory($id){
-        $categories = $this->model->getGenres($id);
-        $this->view->mostrarGenero($id , $categories);
+    function listCategory(){
+        $genero = $this->model->getGenres();
+        $this->view->mostrarGenero($genero);
     }
 
     function create(){
@@ -58,10 +58,12 @@ class ListController{
         $producto = $this->model->getproduct($id);
         $this->view->mostrarEditar($id, $producto);
     }
+
     function detalles($id){
-        $producto = $this->model->getproduct($id);
+        $producto = $this->model->getProduct($id);
         $this->view->mostrarDetalles($producto);
     }
+    
 
     //function genero(){
     //    //$producto = $this->model->getproduct($id);

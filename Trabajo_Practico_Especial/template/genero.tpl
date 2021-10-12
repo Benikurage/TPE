@@ -9,9 +9,9 @@
                 <table class ="table " >
                     <thead>
                         <tr>
-                            <th>{$categories->nombre} | {$categories->descripcion}</td>
-                            <th>{$categories->nombre} | {$categories->descripcion}</td>  
-                            <th>{$categories->nombre} | {$categories->descripcion}</td>                     
+                            <th>{$genero->nombre} | {$genero->descripcion}</td>
+                            <th>{$genero->nombre} | {$genero->descripcion}</td>  
+                            <th>{$genero->nombre} | {$genero->descripcion}</td>                     
                         </tr>
                     </thead>
 

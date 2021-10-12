@@ -18,10 +18,10 @@
                                 list-group-item
                                 {if $producto->nombre} nombre {/if}
                                 ">
-                                    <td><a href="view/{$producto->id_producto}">{$producto->nombre}</a> 
-                                        <a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a>
-                                        <a class="btn btn-success" href="mostrareditar/{$producto->id_producto}">Edit</a>
-                                        <a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a>  
+                                    <td><a href="view/{$producto->id_genero}">{$producto->nombre}</a> 
+                                        <a class="btn btn-danger" href="delete/{$producto->id_genero}">Borrar</a>
+                                        <a class="btn btn-success" href="mostrareditar/{$producto->id_genero}">Edit</a>
+                                        <a class="btn btn-dark" href="detail/{$producto->id_genero}">Detalles</a>  
                                     </td>                      
                             </td>
                         {/foreach}
