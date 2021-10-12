@@ -26,7 +26,6 @@
                             </td>
                         {/foreach}
                     </tr>
-
                 </tbody>
            </table>
         </div>
@@ -40,7 +39,7 @@
             </form>
             <a class="btn btn-dark" href="inicio">Inicio</a>
             <a class="btn btn-dark" href="logout">Logout</a>
-            <a class="btn btn-dark" href="genero">Listdo de juegos por género</a>
+            <a class="btn btn-dark" href="listCategory">Listdo de juegos por género</a>
         </div>
     </div>
 

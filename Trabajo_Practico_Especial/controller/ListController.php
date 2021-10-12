@@ -21,10 +21,18 @@ class ListController{
     }
 
     //crear funcion para mostrar listado de generos
-    // function listCategory(){
-    //     $categories = $this->model->getGenres();
-    //     $this->view->showProducts($categories);
-    // }
+    function listCategory(){
+        $categories = $this->model->getGenres();
+        $this->view->mostrarCategorias($categories);
+    //   // $this->view->showProducts($categories);
+    //   $productos = $this->model->getProducts();
+    //   $this->view->showProducts($productos);
+    }
+
+    function listGamesByGenre($id){
+        $categories = $this->model->getGamesByGenre($id);
+        $this->view->mostrarJuegosPorCategoria($categories);
+    }
 
     function create(){
         if(!isset($_POST['done'])){
@@ -63,10 +71,10 @@ class ListController{
         $this->view->mostrarDetalles($producto);
     }
 
-    function genero(){
-        //$producto = $this->model->getproduct($id);
-        $this->view->mostrarGenero();
-    }
+    // function genero(){
+    //     //$producto = $this->model->getproduct($id);
+    //     $this->view->mostrarGenero();
+    // }
 
     function inicio(){
         //$producto = $this->model->getproduct($id);

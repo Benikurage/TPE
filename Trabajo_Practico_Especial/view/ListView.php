@@ -19,10 +19,25 @@ class ListView {
             $this->smarty->display('template/listPublic.tpl');
         }
     }
-    function mostrarCategorias(){
-        
-    
+
+    function mostrarCategorias($productos){
+        //$this->smarty->assign('titulo', 'Lista de productos');        
+        $this->smarty->assign('titulo', 'Lista de géneros');        
+        $this->smarty->assign('productos', $productos);
+        $this->smarty->display('template/listaDeGeneros.tpl');
+
+        //$this->smarty->display('template/listaDeGeneros.tpl');
     }
+    function mostrarJuegosPorCategoria($productos){
+        $this->smarty->assign('titulo', 'Lista de juegos de este género');        
+        $this->smarty->assign('productos', $productos);
+        $this->smarty->display('template/listaDeProductosPorGenero.tpl');
+    }
+    // function mostrarGenero(){
+    //     $this->smarty->assign('titulo', 'Lista de genero');
+    //     $this->smarty->display('template/listaDeGeneros.tpl');
+    // }
+    
     // function showProduct($producto){
     //   $this->smarty->assign('producto', $producto);
     //    $this->smarty->display('template/detail.tpl');
@@ -38,11 +53,6 @@ class ListView {
         $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
 
-    function mostrarGenero(){
-        $this->smarty->assign('titulo', 'Lista de genero');
-        $this->smarty->display('template/genero.tpl');
-    }
-
     function mostrarInicio($error=""){
         $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');
@@ -52,5 +62,4 @@ class ListView {
     function homeLocation(){
         header("Location: ".BASE_URL."home");
     }
-    
 }

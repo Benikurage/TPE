@@ -63,8 +63,11 @@ switch ($params[0]) {
     case 'detail': 
         $listController->detalles($params[1]); 
         break;
-    case 'genero': 
-        $listController->genero(); 
+    case 'listCategory':
+        $listController->listCategory();
+        break;
+    case 'listaPorGenero':
+        $listController->listGamesByGenre($params[1]);
         break;
     default: 
         echo('404 Page not found'); 
