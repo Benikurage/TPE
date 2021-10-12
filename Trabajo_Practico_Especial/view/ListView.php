@@ -53,6 +53,14 @@ class ListView {
         $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
 
+<<<<<<< HEAD
+=======
+    function mostrarGenero($genero){
+        $this->smarty->assign('genero', $genero);
+        $this->smarty->display('template/genero.tpl');
+    }
+
+>>>>>>> 81c4d612e1c6257ab1882f4f1301c802ac7ffc94
     function mostrarInicio($error=""){
         $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');

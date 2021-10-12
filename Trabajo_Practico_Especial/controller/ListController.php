@@ -22,6 +22,7 @@ class ListController{
 
     //crear funcion para mostrar listado de generos
     function listCategory(){
+<<<<<<< HEAD
         $categories = $this->model->getGenres();
         $this->view->mostrarCategorias($categories);
     //   // $this->view->showProducts($categories);
@@ -32,6 +33,10 @@ class ListController{
     function listGamesByGenre($id){
         $categories = $this->model->getGamesByGenre($id);
         $this->view->mostrarJuegosPorCategoria($categories);
+=======
+        $genero = $this->model->getGenres();
+        $this->view->mostrarGenero($genero);
+>>>>>>> 81c4d612e1c6257ab1882f4f1301c802ac7ffc94
     }
 
     function create(){
@@ -66,15 +71,24 @@ class ListController{
         $producto = $this->model->getproduct($id);
         $this->view->mostrarEditar($id, $producto);
     }
+
     function detalles($id){
-        $producto = $this->model->getproduct($id);
+        $producto = $this->model->getProduct($id);
         $this->view->mostrarDetalles($producto);
     }
+    
 
+<<<<<<< HEAD
     // function genero(){
     //     //$producto = $this->model->getproduct($id);
     //     $this->view->mostrarGenero();
     // }
+=======
+    //function genero(){
+    //    //$producto = $this->model->getproduct($id);
+    //    $this->view->mostrarGenero();
+    //}
+>>>>>>> 81c4d612e1c6257ab1882f4f1301c802ac7ffc94
 
     function inicio(){
         //$producto = $this->model->getproduct($id);
