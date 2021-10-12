@@ -21,9 +21,9 @@ class ListModel{
         return $productos;
     }
 
-    function getGenres(){
+    function getGenres($id){
         $sentencia = $this->db->prepare("SELECT * FROM genero");
-        $sentencia->execute();
+        $sentencia->execute(array($id));
         $generos = $sentencia->fetch(PDO::FETCH_OBJ);
         return $generos;
     }
@@ -49,10 +49,10 @@ class ListModel{
         $sentencia->execute(array($nombre,$descripcion,$precio, $id_genero));
     }
 
-    //function insertgenero($id_genero,$nombre, $descripcion){
-    //    $sentencia = $this->db->prepare("INSERT INTO genero(id_genero, nombre, descripcion,) VALUES(?, ?, ?)");
-    //    $sentencia->execute(array($id_genero,$nombre,$descripcion,));
-    //}
+    function insertgenero($id_genero,$nombre, $descripcion){
+        $sentencia = $this->db->prepare("INSERT INTO genero(id_genero, nombre, descripcion,) VALUES(?, ?, ?)");
+        $sentencia->execute(array($id_genero,$nombre,$descripcion,));
+    }
 
     function deletedb($id){
         $sentencia = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
@@ -65,11 +65,11 @@ class ListModel{
         $sentencia->execute(array($id));
     }
     
-    // function getGenre($id){
-    //     $sentencia = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
-    //     $sentencia->execute(array($id));
-    //     $producto = $sentencia->fetch(PDO::FETCH_OBJ);
-    //     return $producto;
-    // }
+    function getGenre($id){
+        $sentencia = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
+        $sentencia->execute(array($id));
+        $producto = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $producto;
+    }
 
 }

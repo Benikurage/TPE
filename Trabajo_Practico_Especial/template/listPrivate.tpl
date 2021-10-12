@@ -40,7 +40,7 @@
             </form>
             <a class="btn btn-dark" href="inicio">Inicio</a>
             <a class="btn btn-dark" href="logout">Logout</a>
-            <a class="btn btn-dark" href="genero">Listdo de juegos por género</a>
+            <a class="btn btn-dark" href="genero">Listado de juegos por género</a>
         </div>
     </div>
 

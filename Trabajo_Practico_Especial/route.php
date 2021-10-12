@@ -64,7 +64,7 @@ switch ($params[0]) {
         $listController->detalles($params[1]); 
         break;
     case 'genero': 
-        $listController->genero(); 
+        $listController->listCategory($params[1]); 
         break;
     default: 
         echo('404 Page not found'); 

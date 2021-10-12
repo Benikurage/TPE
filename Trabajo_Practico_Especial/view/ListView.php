@@ -38,8 +38,8 @@ class ListView {
         $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
 
-    function mostrarGenero(){
-        $this->smarty->assign('titulo', 'Lista de genero');
+    function mostrarGenero($categories){
+        $this->smarty->assign('categories', $categories);
         $this->smarty->display('template/genero.tpl');
     }
 

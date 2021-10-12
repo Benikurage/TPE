@@ -10,7 +10,7 @@
                         list-group-item
                         {if $producto->nombre} nombre {/if}
                         ">
-                            {$producto->nombre} | {$producto->descripcion|truncate:30}                          
+                            {$producto->nombre} | {$producto->descripcion|truncate:100} | {$producto->precio}                        
                     </li>
                 {/foreach}
             </ul>

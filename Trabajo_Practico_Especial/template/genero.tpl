@@ -5,13 +5,16 @@
         <div class="row mt-4">
             <div class="col-md-8">
                 
-                <h1>{$titulo}</h1>
+                <h1>Lista de genero</h1>
                 <table class ="table " >
                     <thead>
                         <tr>
-                            <th>nombre</td>                   
+                            <th>{$categories->nombre} | {$categories->descripcion}</td>
+                            <th>{$categories->nombre} | {$categories->descripcion}</td>  
+                            <th>{$categories->nombre} | {$categories->descripcion}</td>                     
                         </tr>
                     </thead>
+
                 </table>
             </div>
         </div>

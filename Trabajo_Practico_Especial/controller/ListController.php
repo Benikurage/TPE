@@ -21,10 +21,10 @@ class ListController{
     }
 
     //crear funcion para mostrar listado de generos
-    // function listCategory(){
-    //     $categories = $this->model->getGenres();
-    //     $this->view->showProducts($categories);
-    // }
+    function listCategory($id){
+        $categories = $this->model->getGenres($id);
+        $this->view->mostrarGenero($id , $categories);
+    }
 
     function create(){
         if(!isset($_POST['done'])){
@@ -63,10 +63,10 @@ class ListController{
         $this->view->mostrarDetalles($producto);
     }
 
-    function genero(){
-        //$producto = $this->model->getproduct($id);
-        $this->view->mostrarGenero();
-    }
+    //function genero(){
+    //    //$producto = $this->model->getproduct($id);
+    //    $this->view->mostrarGenero();
+    //}
 
     function inicio(){
         //$producto = $this->model->getproduct($id);
