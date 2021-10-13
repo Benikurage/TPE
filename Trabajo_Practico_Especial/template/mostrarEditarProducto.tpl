@@ -9,7 +9,7 @@
                 <input type="hidden" name="idProducto" value="{$producto}">
                 <input type="hidden" name="id_genero" value="{$producto}">
                 <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
+                <input placeholder="descripcion" type="text" name="descripcion" id="descripcion">
                 <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="editar">
             </form>

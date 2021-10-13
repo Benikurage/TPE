@@ -10,7 +10,7 @@
                         list-group-item
                         {if $producto->nombre} nombre {/if}
                         ">
-                            {$producto->nombre} | {$producto->descripcion|truncate:30}                          
+                            {$producto->nombre} | {$producto->descripcion|truncate:30} | {$producto->nombre} | {*genero*}                          
                     </li>
                 {/foreach}
             </ul>
@@ -19,5 +19,4 @@
     <a class="btn btn-dark" href="inicio">Inicio</a>
     <a class="btn btn-dark" href="listCategory">Géneros</a>
 </div>
-
 {include file='template/footer.tpl'}

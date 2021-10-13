@@ -13,6 +13,7 @@ class ListController{
     function __construct(){
         $this->model = new ListModel();
         $this->view = new ListView();
+        $this->helper = new AuthHelper();
     }
 
     function list(){
@@ -20,13 +21,9 @@ class ListController{
         $this->view->showProducts($productos);
     }
 
-    //crear funcion para mostrar listado de generos
     function listCategory(){
         $categories = $this->model->getGenres();
         $this->view->mostrarCategorias($categories);
-    //   // $this->view->showProducts($categories);
-    //   $productos = $this->model->getProducts();
-    //   $this->view->showProducts($productos);
     }
 
     function listGamesByGenre($id){
@@ -47,7 +44,6 @@ class ListController{
     function delete($id){
         $this->helper->checkLoggedIn();
         $this->model->deletedb($id);
-        $this->view->homeLocation();
     }
     
     function update(){
@@ -62,7 +58,7 @@ class ListController{
     //}
 
     function mostrarEditar($id){
-        $this->helper->checkLoggedIn();
+        //$this->helper->checkLoggedIn();
         $producto = $this->model->getproduct($id);
         $this->view->mostrarEditar($id, $producto);
     }
