@@ -5,10 +5,15 @@
 
 .form-alta {
     max-width: 600px;
-    display: flex;
-    flex-direction: column;
-}
+    text-align: center;
 
+    /* display: flex;
+    flex-direction: column;*/
+} 
+.mayusc{
+    text-transform: capitalize; 
+
+}
 input, textarea {
     margin-bottom: 15px;
 }

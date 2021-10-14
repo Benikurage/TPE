@@ -12,6 +12,41 @@ class LoginController{
         $this->view = new LoginView();
     }
     
+    function verifyLogin(){
+        if(empty($user)){
+            $user=null;
+        }
+        if(!empty($_POST['email']) && !empty($_POST['password'])){
+            $email = $_POST['email'];
+            $password= $_POST['password'];
+            $user = $this->model->getUser($email);
+        }
+        
+        if($user && password_verify($password, $user->password)){
+            session_start();
+            $_SESSION['ID_USER']=$user->id_usuario;
+            $_SESSION['EMAIL']=$user->email;
+            
+            $this->view->showHome();
+        }else{
+            $this->view->showLogin();
+        }
+    }
+    
+    function login(){
+        $this->view->showLogin();
+    }
+    
+    function logout(){
+        session_start();
+        session_destroy();
+        $this->view->showLogout("Te deslogueaste");
+    }
+    
+    function registro(){
+        $this->view->mostrarRegistro();
+    }
+
     function newUser(){
         if(!empty($_POST['nombre']) && !empty($_POST['email']) && !empty($_POST['password'])){
             $nombre = $_POST['nombre'];
@@ -21,35 +56,5 @@ class LoginController{
             $this->view->showLogout("Usuario creado!");
         }
     }
-
-    function login(){
-        $this->view->showLogin();
-    }
-    function logout(){
-        session_start();
-        session_destroy();
-        $this->view->showLogout("Te deslogueaste");
-    }
-
-    function verifyLogin(){
-        if(!empty($_POST['email']) && !empty($_POST['password'])){
-            $email = $_POST['email'];
-            $password= $_POST['password'];
-            $user = $this->model->getUser($email);
-        }
-        
-        if($user && password_verify($password, $user->password)){
-            
-            session_start();
-            $_SESSION['ID_USER']=$user->id_usuario;
-            $_SESSION['EMAIL']=$user->email;
-
-            $this->view->showHome();
-        }else{
-            $this->view->showLogin();
-        }
-    }
-    function registro(){
-        $this->view->mostrarRegistro();
-    }
+    
 }

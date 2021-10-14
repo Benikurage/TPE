@@ -7,74 +7,108 @@ class ListModel{
     }
     
     function getProduct($id){
-        $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_producto=?");
-        $sentencia->execute(array($id));
-        $producto = $sentencia->fetch(PDO::FETCH_OBJ);
+        $query = $this->db->prepare("SELECT * FROM producto WHERE id_producto=?");
+        $query->execute(array($id));
+        $producto = $query->fetch(PDO::FETCH_OBJ);
         return $producto;
     }
 
     function getProducts(){
         //SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) 
-        $sentencia = $this->db->prepare("SELECT  * FROM producto");
-        $sentencia->execute();
-        $productos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        //$query = $this->db->prepare("SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) WHERE genero.id_genero = 3);
+        //$query = $this->db->prepare("SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
+        $query = $this->db->prepare("SELECT  * FROM producto");
+        $query->execute();
+        $productos = $query->fetchAll(PDO::FETCH_OBJ);
         return $productos;
+    }
+    
+    function getGenre($id){
+        $query = $this->db->prepare("SELECT * FROM genero WHERE id_genero=?");
+        $query->execute(array($id));
+        $genero = $query->fetch(PDO::FETCH_OBJ);
+        return $genero;
     }
 
     function getGenres(){
-        $sentencia = $this->db->prepare("SELECT * FROM genero");
-        $sentencia->execute();
-        $generos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        $query = $this->db->prepare("SELECT * FROM genero");
+        $query->execute();
+        $generos = $query->fetchAll(PDO::FETCH_OBJ);
         return $generos;
     }
+
+    function getInner(){
+        $query = $this->db->prepare("SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
+        $query->execute();
+        $inner = $query->fetchAll(PDO::FETCH_OBJ);
+        return $inner;
+    }
+
     function getGamesByGenre($id){
         $query = $this->db->prepare( "SELECT * FROM producto WHERE id_genero=?");
         $query->execute(array($id));
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function insert($nombre, $descripcion, $precio, $id_genero){
+        $query = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
+        $query->execute(array($nombre,$descripcion,$precio, $id_genero));
+    }
+    
+    // function insert($nombre, $descripcion, $precio){
+    //     $query = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio) VALUES(?, ?, ?)");
+    //     $query->execute(array($nombre,$descripcion,$precio));
+    // }
+   
+    function deletedb($id){
+        $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
+        $query->execute(array($id));
+    }
+        
+    function updatedb($id,$nombre,$descripcion,$precio){
+        $query = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio' WHERE id_producto=?");
+        $query->execute(array($id));
+    }
+
+    //Creo que no se debería agregar la posición y hay un problema en las tablas
+    function insertgenero($posicion, $genre){
+        $query = $this->db->prepare("INSERT INTO `genero` (`id_genero`, `genre`) VALUES (?, ?);");
+        $query->execute(array($posicion, $genre));
+    }
+
+    function deletegr($id){
+        $sentencia = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
+        $sentencia->execute(array($id));
+    }
+
+    function updategr($id, $genre){
+        $sentencia = $this->db->prepare("UPDATE `genero` SET `genre` = '$genre' WHERE `genero`.`id_genero` = ?");
+        $sentencia->execute(array($id));
+    }
+     
     // function getGamesByGenre($id){
-    //     // $sentencia = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
-    //     //$sentencia = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
+    //     // $query = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
+    //     //$query = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
     //     $query = $this->db->prepare("SELECT producto.*,genero.nombre from producto inner join genero on producto.id_genero = producto.id_genero where genero.id_genero = ?");
     //     $query->execute();
     //     return $query->fetchAll(PDO::FETCH_OBJ);
     // }
+    
+    //SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) WHERE genero.id_genero = ?;
 
     // function getGamesWithGenre(){
-    //     // $sentencia = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
-    //     //$sentencia = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
+    //     // $query = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
+    //     //$query = $this->db->prepare("SELECT  * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
     //     $query = $this->db->prepare("SELECT producto.*, genero.nombre as genero FROM producto JOIN genero ON producto.id_genero = genero.id_genero");
     //     $query->execute();
     //     return $query->fetchAll(PDO::FETCH_OBJ);
     // }
-
-
-    function insert($nombre, $descripcion, $precio, $id_genero){
-        $sentencia = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
-        $sentencia->execute(array($nombre,$descripcion,$precio, $id_genero));
-    }
-
-    //function insertgenero($id_genero,$nombre, $descripcion){
-    //    $sentencia = $this->db->prepare("INSERT INTO genero(id_genero, nombre, descripcion,) VALUES(?, ?, ?)");
-    //    $sentencia->execute(array($id_genero,$nombre,$descripcion,));
-    //}
-
-    function deletedb($id){
-        $sentencia = $this->db->prepare("DELETE FROM producto WHERE id_producto=?");
-        $sentencia->execute(array($id));
-    }
-    
-    function updatedb($id,$nombre,$descripcion,$precio){
-        
-        $sentencia = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio' WHERE id_producto=?");
-        $sentencia->execute(array($id));
-    }
     
     // function getGenre($id){
-    //     $sentencia = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
-    //     $sentencia->execute(array($id));
-    //     $producto = $sentencia->fetch(PDO::FETCH_OBJ);
+    //     $query = $this->db->prepare( "SELECT * FROM genero WHERE id_genero=?");
+    //     $query->execute(array($id));
+    //     $producto = $query->fetch(PDO::FETCH_OBJ);
     //     return $producto;
     // }
-
+    
 }

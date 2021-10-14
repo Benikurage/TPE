@@ -51,9 +51,6 @@ switch ($params[0]) {
     case 'update': 
         $listController->update(); 
         break;
-    //case 'view': 
-        //    $listController->view($params[1]); 
-        //    break;
     case 'verify':
         $loginController->verifyLogin();
         break;
@@ -69,10 +66,24 @@ switch ($params[0]) {
     case 'listaPorGenero':
         $listController->listGamesByGenre($params[1]);
         break;
+    // case 'genero':
+    //     $listController->genero();
+    //     break;
+    case 'CreateGenre':
+        $listController->CreateGenre();
+        break;
+    case 'deleteGenre': 
+        $listController->deleteGenre($params[1]); 
+        break;
+    case 'updateGenre': 
+        $listController->updateGenre(); 
+        break;
+    case 'mostrarEditarGenre': 
+        $listController->mostrarEditarGenre($params[1]); 
+        break;    
     default: 
         echo('404 Page not found'); 
     break;
 }
-
 
 ?>
