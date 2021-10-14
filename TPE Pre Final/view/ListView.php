@@ -12,8 +12,9 @@ class ListView {
         $this->smarty->assign('titulo', 'Lista de productos');  
         $this->smarty->assign('productos', $productos);   
         $this->smarty->assign('generos', $generos);   
-
-        session_start();
+        if(!isset($_SESSION['ID_USER'])){
+            session_start();
+        }
         if(isset($_SESSION['ID_USER']) && $_SESSION['ID_USER']==true){
             $this->smarty->display('template/listPrivate.tpl');
         }else{

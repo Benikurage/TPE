@@ -61,8 +61,8 @@ class ListModel{
     // }
    
     function deletedb($id){
-        $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
-        $query->execute(array($id));
+            $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
+            $query->execute(array($id));
     }
         
     function updatedb($id,$nombre,$descripcion,$precio){
@@ -70,20 +70,23 @@ class ListModel{
         $query->execute(array($id));
     }
 
-    //Creo que no se debería agregar la posición y hay un problema en las tablas
     function insertgenero($posicion, $genre){
         $query = $this->db->prepare("INSERT INTO `genero` (`id_genero`, `genre`) VALUES (?, ?);");
         $query->execute(array($posicion, $genre));
     }
 
     function deletegr($id){
-        $sentencia = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
-        $sentencia->execute(array($id));
+        try {
+            $query = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
+            $query->execute(array($id));
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     function updategr($id, $genre){
-        $sentencia = $this->db->prepare("UPDATE `genero` SET `genre` = '$genre' WHERE `genero`.`id_genero` = ?");
-        $sentencia->execute(array($id));
+        $query = $this->db->prepare("UPDATE `genero` SET `genre` = '$genre' WHERE `genero`.`id_genero` = ?");
+        $query->execute(array($id));
     }
      
     // function getGamesByGenre($id){

@@ -6,7 +6,7 @@
             <form class="form-alta" action="update" method="POST">
                 <input type="hidden" name="id_producto" value="{$producto}">
                 <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
+                <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"></textarea>
                 <input placeholder="precio" type="number" name="precio" id="precio">
                 <input type="submit" class="btn btn-primary" value="editar">
             </form>

@@ -17,7 +17,6 @@ class ListController{
     }
 
     function list(){
-        // $productos = $this->model->getProducts();
         $inner = $this->model->getInner();
         $generos = $this->model->getGenres();
         $this->view->showProducts($inner, $generos);
@@ -59,7 +58,6 @@ class ListController{
     function delete($id){
         $this->helper->checkLoggedIn();
         $this->model->deletedb($id);
-        $this->list();
     }
     
     function mostrarEditar($id){
@@ -80,8 +78,12 @@ class ListController{
  
     function deleteGenre($id){
         $this->helper->checkLoggedIn();
-        $this->model->deletegr($id);
-        $this->listCategory();
+        try {
+            $this->model->deletegr($id);
+            $this->listCategory();
+        } catch (\Throwable $error) {
+            $this->listCategory($error);
+        }
     }
      
     function updateGenre(){

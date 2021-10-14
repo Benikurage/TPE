@@ -38,11 +38,11 @@
         {* {if isset($logged)} *}
             <h2>Crear Producto</h2>
             <form class ="form-groupaction" action="create" method="POST">
-                <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
-                <input placeholder="descripcion" type="text" name="descripcion" id="descripcion" required>
-                <input placeholder="precio" type="number" name="precio" id="precio" required>
+                <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
+                <input placeholder="Descripción" type="text" name="descripcion" id="descripcion" required>
+                <input placeholder="Precio" type="number" name="precio" id="precio" required>
                 <select name="genero" id="genero" required>
-                <option value="">~Elija el género~</option>
+                <option value="">Elija el género</option>
                 {foreach from=$generos item=$genero}
                     <option class="mayusc" value="{$genero->id_genero}">{$genero->genre}</option>
                 {/foreach}
