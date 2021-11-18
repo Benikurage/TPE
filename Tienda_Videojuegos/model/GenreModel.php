@@ -9,15 +9,15 @@ class GenreModel{
     function getGenre($id){
         $query = $this->db->prepare("SELECT * FROM genero WHERE id_genero=?");
         $query->execute(array($id));
-        $genero = $query->fetch(PDO::FETCH_OBJ);
-        return $genero;
+        $genre = $query->fetch(PDO::FETCH_OBJ);
+        return $genre;
     }
     
     function getGenres(){
         $query = $this->db->prepare("SELECT * FROM genero");
         $query->execute();
-        $generos = $query->fetchAll(PDO::FETCH_OBJ);
-        return $generos;
+        $genres = $query->fetchAll(PDO::FETCH_OBJ);
+        return $genres;
     }
 
     function getGamesByGenre($id){
@@ -26,12 +26,12 @@ class GenreModel{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function insertgenero($posicion, $genre){
+    function insertGenre($posicion, $genre){
         $query = $this->db->prepare("INSERT INTO `genero` (`id_genero`, `genre`) VALUES (?, ?);");
         $query->execute(array($posicion, $genre));
     }
 
-    function deletegr($id){
+    function deleteGenre($id){
         try {
             $query = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
             $query->execute(array($id));
@@ -40,7 +40,7 @@ class GenreModel{
         }
     }
 
-    function updategr($id, $genre){
+    function updateGenre($id, $genre){
         $query = $this->db->prepare("UPDATE `genero` SET `genre` = '$genre' WHERE `genero`.`id_genero` = ?");
         $query->execute(array($id));
     }

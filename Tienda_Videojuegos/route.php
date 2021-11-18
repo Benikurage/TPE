@@ -22,10 +22,10 @@ $helper = new AuthHelper();
 // determina que camino seguir según la acción
 switch ($params[0]) {
     case 'home': 
-        $listController->inicio(); 
+        $listController->home(); 
         break;
     case 'inicio': 
-        $listController->inicio(); 
+        $listController->home(); 
         break;
     case 'registro':
         $loginController->signUpForm();
@@ -43,32 +43,29 @@ switch ($params[0]) {
         $listController->list();
         break;
     case 'create': 
-        $listController->create(); 
+        $listController->createProduct(); 
         break;
     case 'delete': 
-        $listController->delete($params[1]); 
+        $listController->deleteProduct($params[1]); 
         break;
     case 'update': 
-        $listController->update(); 
+        $listController->updateProduct(); 
         break;
     case 'verify':
         $loginController->verifyLogin();
         break;
     case 'mostrareditar': 
-        $listController->mostrarEditar($params[1]); 
+        $listController->showEditProduct($params[1]); 
         break;
     case 'detail': 
-        $listController->detalles($params[1]); 
+        $listController->details($params[1]); 
         break;
     case 'listCategory':
-        $listController->listCategory();
+        $listController->showGenres();
         break;
     case 'listaPorGenero':
         $listController->getProductsByGenre($params[1]);
         break;
-    // case 'genero':
-    //     $listController->genero();
-    //     break;
     case 'createGenre':
         $listController->createGenre();
         break;
@@ -79,7 +76,7 @@ switch ($params[0]) {
         $listController->updateGenre(); 
         break;
     case 'mostrarEditarGenre': 
-        $listController->mostrarEditarGenre($params[1]); 
+        $listController->showEditGenre($params[1]); 
         break;    
     default: 
         echo('404 Page not found'); 

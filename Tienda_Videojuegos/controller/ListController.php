@@ -29,81 +29,83 @@ class ListController{
 
     function list(){
         $sessionCheck = $this->sessionCheck();
-        $inner = $this->model->getGenresFromProducts();
-        $generos = $this->genreModel->getGenres();
-        $this->view->showProducts($inner, $sessionCheck, $generos);
+        $products = $this->model->getGenresFromProducts();
+        $genres = $this->genreModel->getGenres();
+        $this->view->showProducts($products, $sessionCheck, $genres);
     }
 
-    function listCategory($error=""){
+    function showGenres($error=""){
         $sessionCheck = $this->sessionCheck();
-        $categories = $this->genreModel->getGenres();
-        $this->view->mostrarCategorias($categories, $sessionCheck, $error);
+        $genres = $this->genreModel->getGenres();
+        $this->view->showGenres($genres, $sessionCheck, $error);
     }
     
     function getProductsByGenre($id){
-        $genero = $this->genreModel->getGenre($id);
-        $categories = $this->model->getProductsByGenre($id);
-        $this->view->mostrarJuegosPorCategoria($categories, $genero);
+        $genre = $this->genreModel->getGenre($id);
+        $products = $this->model->getProductsByGenre($id);
+        $this->view->showProductsByGenre($products, $genre);
     }
 
-    function create(){
-       $this->model->insert($_POST['nombre'], $_POST['descripcion'], $_POST['precio'],$_POST['genero']);
+    function createProduct(){
+       $this->model->insertProduct($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
        $this->list();
     }
     
-    function update(){
+    function updateProduct(){
         $this->helper->checkLoggedIn();
-        $this->model->updatedb($_POST['id_producto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio']);
+        $this->model->updateProduct($_POST['id_producto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
         $this->list();
     }
 
-    function delete($id){
+    function deleteProduct($id){
         $this->helper->checkLoggedIn();
-        $this->model->deletedb($id);
+        $this->model->deleteProduct($id);
+        $this->list();
     }
     
-    function mostrarEditar($id){
+    function showEditProduct($id){
         $this->helper->checkLoggedIn();
-        $producto = $this->model->getproduct($id);
-        $this->view->mostrarEditar($id, $producto);
+        $product = $this->model->getProduct($id);
+        $genres = $this->genreModel->getGenres();
+        $this->view->showEditProduct($id, $genres);
     }
        
-    function detalles($id){
-        $producto = $this->model->getproduct($id);
-        $this->view->mostrarDetalles($producto);
+    function details($id){
+        $product = $this->model->getProduct($id);
+        $this->view->showDetails($product);
     }
 
     function createGenre(){
-        $this->genreModel->insertgenero($_POST['id_genero'], $_POST['genre']);
-        $this->listCategory();
+        $this->genreModel->insertGenre($_POST['id_genero'], $_POST['genre']);
+        $this->showGenres();
     }
  
     function deleteGenre($id){
         $this->helper->checkLoggedIn();        
         if($this->model->getProductsByGenre($id)==true){
             $error = 'No se puede eliminar un género que tiene un juego asignado!';
-            $this->listCategory($error);
+            $this->showGenres($error);
         }else{
-            $this->genreModel->deletegr($id);
-            $this->listCategory();
+            $this->genreModel->deleteGenre($id);
+            $this->showGenres();
         }
     }
      
     function updateGenre(){
         $this->helper->checkLoggedIn();
         $this->genreModel->updategr($_POST['id_genero'], $_POST['genre']);
-        $this->listCategory();
+        $this->showGenres();
     }
     
-    function mostrarEditarGenre($id){
+    function showEditGenre($id){
         $this->helper->checkLoggedIn();
-        $genero = $this->genreModel->getGenre($id);
-        $this->view->mostrarEditargr($id, $genero);
+        $genre = $this->genreModel->getGenre($id);
+        $this->view->showEditGenre($id, $genre);
     }
     
-    function inicio(){
+    function home(){
         $sessionCheck = $this->sessionCheck();
-        $this->view->mostrarInicio($sessionCheck);
+        $this->view->showHome($sessionCheck);
     }
         
 }

@@ -9,6 +9,14 @@
                 <input placeholder="Descripción" type="text" name="descripcion" id="descripcion">
                 <input placeholder="Precio" type="number" name="precio" id="precio">
                 <br>
+                <select name="genero" id="genero" required>
+                    <option value="">Elija el género</option>
+                        {foreach from=$generos item=$genero}
+                            <option class="mayusc" value="{$genero->id_genero}">{$genero->genre}</option>
+                        {/foreach}
+                </select>
+                <br>
+                <br>
                 <input type="submit" class="btn btn-primary" value="Editar">
             </form>
         </div>

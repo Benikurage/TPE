@@ -34,18 +34,18 @@ class ProductModel{
         return $products;
     }
 
-    function insert($nombre, $descripcion, $precio, $id_genero){
+    function insertProduct($nombre, $descripcion, $precio, $id_genero){
         $query = $this->db->prepare("INSERT INTO producto(nombre, descripcion, precio, id_genero) VALUES(?, ?, ?, ?)");
         $query->execute(array($nombre,$descripcion,$precio, $id_genero));
     }
    
-    function deletedb($id){
+    function deleteProduct($id){
         $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
         $query->execute(array($id));
     }
         
-    function updatedb($id,$nombre,$descripcion,$precio){
-        $query = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio' WHERE id_producto=?");
+    function updateProduct($id, $nombre, $descripcion, $precio, $genero){
+        $query = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio', `genero`='$genero' WHERE id_producto=?");
         $query->execute(array($id));
     }
  
