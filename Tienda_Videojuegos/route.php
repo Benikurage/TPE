@@ -28,7 +28,7 @@ switch ($params[0]) {
         $listController->inicio(); 
         break;
     case 'registro':
-        $loginController->registro();
+        $loginController->signUpForm();
         break;
     case 'register':
         $loginController->newUser();

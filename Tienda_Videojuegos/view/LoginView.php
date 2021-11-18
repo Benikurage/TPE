@@ -20,15 +20,15 @@ class LoginView{
         $this->smarty->display('template/inicio.tpl');
     }
     
-    function showHome(){
-        header("Location: ".BASE_URL."home");
-    }
+    // function showHome(){
+    //     header("Location: ".BASE_URL."home");
+    // }
     
-    function mostrarRegistro(){
+    function showSignUpForm(){
         $this->smarty->display('template/registro.tpl');
     }
 
-    function mostrarHome($sessionCheck, $error=""){
+    function showHome($sessionCheck, $error=""){
         $this->smarty->assign('sessionCheck', $sessionCheck);
         $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');

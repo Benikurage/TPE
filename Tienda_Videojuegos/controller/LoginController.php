@@ -34,7 +34,7 @@ class LoginController{
 
         if($user && password_verify($password, $user->password)){
             $sessionCheck = $this->startSession($user); 
-            $this->view->mostrarHome($sessionCheck, "Te logueaste!");
+            $this->view->showHome($sessionCheck, "Te logueaste!");
         }else{
             $this->view->showLogin();
         }
@@ -53,7 +53,7 @@ class LoginController{
             $user = $this->model->getUser($email);
             $this->startSession($user); 
             //llamado al view
-            $this->view->mostrarHome($sessionCheck, "Usuario creado!");
+            $this->view->showHome($sessionCheck, "Usuario creado!");
         }
     }
 
@@ -68,8 +68,8 @@ class LoginController{
         $this->view->showLogout($sessionCheck, "Te deslogueaste");
     }
     
-    function registro(){
-        $this->view->mostrarRegistro();
+    function signUpForm(){
+        $this->view->showSignUpForm();
     }
 
     function deleteUser($id){
@@ -78,6 +78,8 @@ class LoginController{
         showListAdmin();
     }
     
+    //admin
+
     function checkAdmin(){
         if(isset($_SESSION['EMAIL'])){
             $email = $_SESSION['EMAIL'];
