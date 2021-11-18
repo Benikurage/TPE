@@ -8,32 +8,19 @@ class ListView {
         $this->smarty = new Smarty();
     }
 
-    function showProducts($productos, $generos=""){
+    function showProducts($productos, $sessionCheck,  $generos=""){
         $this->smarty->assign('titulo', 'Lista de productos');  
         $this->smarty->assign('productos', $productos);   
         $this->smarty->assign('generos', $generos);   
-        if(!isset($_SESSION['ID_USER'])){
-            session_start();
-        }
-        if(isset($_SESSION['ID_USER']) && $_SESSION['ID_USER']==true){
+        if($sessionCheck==true){
             $this->smarty->display('template/listPrivate.tpl');
         }else{
             $this->smarty->display('template/listPublic.tpl');
         }
-        //session_start();
-        // if(isset($_SESSION['EMAIL'])){
-        //     $this->smarty->assign('logged', $_SESSION['EMAIL']);
-        // }        
-        // $this->smarty->display('template/listPrivate.tpl');
     }
 
-    function mostrarCategorias($productos, $error=""){
-        if(!isset($_SESSION['ID_USER'])){
-            session_start();
-        }
-        if(isset($_SESSION['ID_USER'])){
-            $this->smarty->assign('logged', $_SESSION['ID_USER']);
-        }
+    function mostrarCategorias($productos, $sessionCheck,  $error=""){
+        $this->smarty->assign('sessionCheck', $sessionCheck);
         $this->smarty->assign('titulo', 'Lista de géneros');        
         $this->smarty->assign('productos', $productos);
         $this->smarty->assign('error', $error);
@@ -56,11 +43,8 @@ class ListView {
         $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
     
-    function mostrarInicio($error=""){
-        session_start();
-        if(isset($_SESSION['ID_USER'])){
-            $this->smarty->assign('logged', $_SESSION['ID_USER']);
-        }
+    function mostrarInicio($sessionCheck, $error=""){
+        $this->smarty->assign('sessionCheck', $sessionCheck);
         $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');
         $this->smarty->display('template/inicio.tpl');

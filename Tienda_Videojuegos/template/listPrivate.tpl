@@ -11,11 +11,11 @@
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Género</th>
-                            {* {if isset($logged)} *}
+                           {if isset($logged)}
                                 <th>Borrar</th>
                                 <th>Editar</th>
                                 <th>Detalles</th>
-                            {* {/if} *}
+                            {/if}
                         </tr>
                         {foreach from=$productos item=$producto}
                             <tr>

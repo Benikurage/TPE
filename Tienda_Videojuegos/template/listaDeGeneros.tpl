@@ -8,7 +8,7 @@
                     <tr class="list-group">
                         <tr>
                             <th>Género</th>
-                            {if isset($logged)}
+                            {if $sessionCheck==true}
                                 <th>ID</th>
                                 <th>Borrar</th>
                                 <th>Editar</th>
@@ -18,7 +18,7 @@
                         {foreach from=$productos item=$producto}
                             <tr>
                                 <td>{$producto->genre}</td>
-                                {if isset($logged)}
+                                {if $sessionCheck==true}
                                     <td>{$producto->id_genero}</td>
                                     <td><a class="btn btn-danger" href="deleteGenre/{$producto->id_genero}">Borrar</a></td>
                                     <td><a class="btn btn-success" href="mostrarEditarGenre/{$producto->id_genero}">Edit</a></td>
@@ -32,10 +32,10 @@
             </ul>
         </div>
     </div>
-    {if isset($logged)}
+    {if $sessionCheck==true}
     <h4 class="alert-danger">{$error}</h4>
     <h2>Crear Género</h2>
-        <form class ="form-groupaction" action="CreateGenre" method="POST">
+        <form class ="form-groupaction" action="createGenre" method="POST">
             <input placeholder="Posición" type="number" min="1" name="id_genero" id="id_genero" required>
             <input placeholder="Género" type="text" name="genre" id="genre" required>
             <input type="submit" class="btn btn-primary" value="Guardar">
@@ -43,6 +43,9 @@
     {/if}
     <a class="btn btn-dark" href="inicio">Inicio</a>
     <a class="btn btn-success" href="lista">Volver al catálogo</a>
-    <a class="btn btn-danger" href="logout">Logout</a>
+    {if $sessionCheck==true}
+        <a class="btn btn-danger" href="logout">Logout</a>
+    {/if}
+
 </div>
 {include file='template/footer.tpl'}

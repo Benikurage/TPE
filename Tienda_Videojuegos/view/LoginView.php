@@ -11,8 +11,12 @@ class LoginView{
         $this->smarty->display('template/login.tpl');
     }
 
-    function showLogout($error=""){
+    function showLogout($sessionCheck, $error=""){
+        $this->smarty->assign('sessionCheck', $sessionCheck);
+
         $this->smarty->assign('error', $error);
+        $this->smarty->assign('titulo', 'Inicio');
+
         $this->smarty->display('template/inicio.tpl');
     }
     
@@ -22,6 +26,13 @@ class LoginView{
     
     function mostrarRegistro(){
         $this->smarty->display('template/registro.tpl');
+    }
+
+    function mostrarHome($sessionCheck, $error=""){
+        $this->smarty->assign('sessionCheck', $sessionCheck);
+        $this->smarty->assign('error', $error);
+        $this->smarty->assign('titulo', 'Inicio');
+        $this->smarty->display('template/inicio.tpl');
     }
 
 }

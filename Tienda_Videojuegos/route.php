@@ -64,13 +64,13 @@ switch ($params[0]) {
         $listController->listCategory();
         break;
     case 'listaPorGenero':
-        $listController->listGamesByGenre($params[1]);
+        $listController->getProductsByGenre($params[1]);
         break;
     // case 'genero':
     //     $listController->genero();
     //     break;
-    case 'CreateGenre':
-        $listController->CreateGenre();
+    case 'createGenre':
+        $listController->createGenre();
         break;
     case 'deleteGenre': 
         $listController->deleteGenre($params[1]); 

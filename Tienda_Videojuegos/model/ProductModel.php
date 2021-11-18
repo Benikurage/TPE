@@ -9,31 +9,29 @@ class ProductModel{
     function getProduct($id){
         $query = $this->db->prepare("SELECT * FROM producto WHERE id_producto=?");
         $query->execute(array($id));
-        $producto = $query->fetch(PDO::FETCH_OBJ);
-        return $producto;
+        $product = $query->fetch(PDO::FETCH_OBJ);
+        return $product;
     }
+    
     function getProductsByGenre($id){
         $query = $this->db->prepare("SELECT * FROM producto WHERE id_genero=?");
         $query->execute(array($id));
-        $producto = $query->fetch(PDO::FETCH_OBJ);
-        return $producto;
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+        return $products;
     }
 
     function getProducts(){
         $query = $this->db->prepare("SELECT  * FROM producto");
         $query->execute();
-        $productos = $query->fetchAll(PDO::FETCH_OBJ);
-        return $productos;
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+        return $products;
     }
-    
-    //function genre is related with product
-    //consultar si el genero esta en product
-    
-    function getInner(){
+       
+    function getGenresFromProducts(){
         $query = $this->db->prepare("SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)");
         $query->execute();
-        $inner = $query->fetchAll(PDO::FETCH_OBJ);
-        return $inner;
+        $products = $query->fetchAll(PDO::FETCH_OBJ);
+        return $products;
     }
 
     function insert($nombre, $descripcion, $precio, $id_genero){
@@ -42,8 +40,8 @@ class ProductModel{
     }
    
     function deletedb($id){
-            $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
-            $query->execute(array($id));
+        $query = $this->db->prepare("DELETE FROM `producto` WHERE `producto`.`id_producto` = ?");
+        $query->execute(array($id));
     }
         
     function updatedb($id,$nombre,$descripcion,$precio){

@@ -7,9 +7,9 @@ class UserModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos; charset=utf8', 'root', '');
     }
     
-    function createUser($nombre, $email, $password){
-        $query = $this->db->prepare('INSERT INTO usuario(nombre, email, password) VALUES(?,?,?)');
-        $query->execute(array($nombre, $email, $password));
+    function createUser($nombre, $email, $password, $admin=0){
+        $query = $this->db->prepare('INSERT INTO usuario(nombre, email, password, admin) VALUES(?,?,?,?)');
+        $query->execute(array($nombre, $email, $password, $admin));
     }
 
     function getUser($email){
@@ -17,5 +17,27 @@ class UserModel{
         $query->execute([$email]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
+
+    function getUsers(){
+        $query = $this->db->prepare('SELECT * FROM usuario');
+        $query->execute();
+        $users = $query->fetchAll(PDO::FETCH_OBJ);
+        return $users;
+    }
     
+    function checkAdmin($email){
+        $query = $this->db->prepare('SELECT admin FROM usuario WHERE email = ?');
+        $query->execute([$email]);
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    function deleteUserModel($id){
+        $query = $this->db->prepare("DELETE FROM `usuario` WHERE `usuario`.`id_usuario` = ?");
+        $query->execute(array($id));
+    }
+
+    function assignAdmin($id, $admin){
+        $query = $this->db->prepare("UPDATE `usuario` SET `admin` = $admin WHERE `usuario`.`id_usuario` = ?");
+        $query->execute(array($id));
+    }
 }

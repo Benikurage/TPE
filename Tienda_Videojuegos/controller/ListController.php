@@ -19,20 +19,30 @@ class ListController{
         $this->helper = new AuthHelper();
     }
 
+    function sessionCheck(){
+        if(!isset($_SESSION['ID_USER'])){
+            session_start();
+        }
+        $sessionCheck = isset($_SESSION['ID_USER']);
+        return $sessionCheck;
+    }
+
     function list(){
-        $inner = $this->model->getInner();
+        $sessionCheck = $this->sessionCheck();
+        $inner = $this->model->getGenresFromProducts();
         $generos = $this->genreModel->getGenres();
-        $this->view->showProducts($inner, $generos);
+        $this->view->showProducts($inner, $sessionCheck, $generos);
     }
 
     function listCategory($error=""){
+        $sessionCheck = $this->sessionCheck();
         $categories = $this->genreModel->getGenres();
-        $this->view->mostrarCategorias($categories, $error);
+        $this->view->mostrarCategorias($categories, $sessionCheck, $error);
     }
     
-    function listGamesByGenre($id){
+    function getProductsByGenre($id){
         $genero = $this->genreModel->getGenre($id);
-        $categories = $this->model->getGamesByGenre($id);
+        $categories = $this->model->getProductsByGenre($id);
         $this->view->mostrarJuegosPorCategoria($categories, $genero);
     }
 
@@ -63,7 +73,7 @@ class ListController{
         $this->view->mostrarDetalles($producto);
     }
 
-    function CreateGenre(){
+    function createGenre(){
         $this->genreModel->insertgenero($_POST['id_genero'], $_POST['genre']);
         $this->listCategory();
     }
@@ -77,7 +87,6 @@ class ListController{
             $this->genreModel->deletegr($id);
             $this->listCategory();
         }
-
     }
      
     function updateGenre(){
@@ -93,7 +102,8 @@ class ListController{
     }
     
     function inicio(){
-        $this->view->mostrarInicio();
+        $sessionCheck = $this->sessionCheck();
+        $this->view->mostrarInicio($sessionCheck);
     }
         
 }
