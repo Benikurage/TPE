@@ -52,12 +52,12 @@ class LoginController{
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            //llamado al model
+            
             $this->model->createUser($nombre, $email, $password);
-            //inicio sesión
+
             $user = $this->model->getUser($email);
             $this->startSession($user); 
-            //llamado al view
+
             $this->listView->showHome("Usuario creado!");
         }
     }
@@ -78,7 +78,6 @@ class LoginController{
         $this->view->showSignUpForm();
     }
 
-    //admin   
     function checkAdmin(){
         if(!isset($_SESSION)) 
         { 
@@ -116,25 +115,18 @@ class LoginController{
         $this->showListAdmin();
     }
 
-    function giveAdmin($id){
-        $this->adminSecurity();
-        $this->model->assignAdmin($id, 1);
-        $this->showListAdmin();
-    }
-
-    function removeAdmin($id){
-        $this->adminSecurity();
-        $this->model->assignAdmin($id, 0);
-        $this->showListAdmin();
-    }
-    
     function toggleAdmin($id){
         $this->adminSecurity();
-        $admin = $this->model->checkAdminById($id);
-        var_dump($admin);
-        // $this->model->assignAdmin($id, 0);
-        // if($admin=="1"){
-        //         var_dump($admin);
-        // }
+        $user = $this->model->checkAdminById($id);
+        $admin = $user->admin;
+
+        if($admin==true){
+            $this->model->assignAdmin($id, false);
+        } else if ($admin==false){
+            $this->model->assignAdmin($id, true);
+        } else {
+            echo "error";
+        }
+        $this->showListAdmin();
     }
 }

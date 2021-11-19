@@ -10,8 +10,7 @@
                             <th>Nombre</th>
                             <th>Admin</th>
                             <th>Borrar</th>
-                            <th>Dar Admin</th>
-                            <th>Quitar Admin</th>
+                            <th>Dar o Quitar Admin</th>
                         </tr>
                             {foreach from=$usuarios item=$usuario}
                             <tr>
@@ -19,8 +18,7 @@
                                 {*if 0=no, if 1=si*}
                                 <td>{$usuario->admin}</td>
                                 <td><a class="btn btn-danger" href="deleteUser/{$usuario->id_usuario}">Borrar</a></td>
-                                <td><a class="btn btn-success" href="giveAdmin/{$usuario->id_usuario}">Dar Admin</a></td>
-                                <td><a class="btn btn-danger" href="removeAdmin/{$usuario->id_usuario}">Quitar Admin</a></td>
+                                <td><a class="btn btn-success" href="toggleAdmin/{$usuario->id_usuario}">Toggle Admin</a></td>
                             </tr>
                         {/foreach}
                     </tr>
