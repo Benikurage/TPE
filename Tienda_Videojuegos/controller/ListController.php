@@ -96,7 +96,7 @@ class ListController{
      
     function updateGenre(){
         $this->helper->checkLoggedIn();
-        $this->genreModel->updategr($_POST['id_genero'], $_POST['genre']);
+        $this->genreModel->updateGenre($_POST['id_genero'], $_POST['genre']);
         $this->showGenres();
     }
     
@@ -109,9 +109,6 @@ class ListController{
     function home(){
         $sessionCheck = $this->sessionCheck();
         $adminCheck = $this->loginController->checkAdmin();
-        // var_dump();
-        $boolAdmin = filter_var($adminCheck, FILTER_VALIDATE_BOOLEAN);
-        // var_dump($sessionCheck);
         $this->view->showHome($sessionCheck, $adminCheck);
     }
         
