@@ -26,7 +26,7 @@ class ApiComentController extends ApiController{
         $comments = $this->getBody();
         // la obtengo del body
         //inserta la tarea
-        $commentId = $this->commentsModel->insertComment($comments->username,$comments->id_equipo,$comments->commentario,$comments->puntaje,$comments->fecha);
+        $commentId = $this->commentsModel->insertComment($comments->username,$comments->commentario,$comments->id_producto,$comments->puntaje);
         //obtengo la recien creada
         $newComment = $this->commentsModel->getComment($commentId);
         echo($newComment);

@@ -4,7 +4,7 @@ class CommentsModel {
     
     private $db;
     function __construct(){
-        // $this->db = new PDO('mysql:host=localhost;'.'dbname=fichajes;charse=utf8','root','');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charse=utf8','root','');
     }
 
     public function getComments(){
@@ -20,15 +20,15 @@ class CommentsModel {
     }
 
     public function getUserComment($id){
-        $query = $this->db->prepare('SELECT * FROM comentarios  WHERE id_equipo=? ORDER BY id_comentario DESC ');
+        $query = $this->db->prepare('SELECT * FROM comentarios  WHERE id_producto=? ORDER BY id_comentario DESC ');
         $query->execute(array($id));
         $equipos = $query->fetchAll(PDO::FETCH_OBJ);
         return $equipos;
     }
 
-    public function insertComment($username,$id_equipo,$comentario,$puntaje,$fecha){
-        $query = $this->db->prepare('INSERT INTO comentarios(username,id_equipo,comentario,puntaje,fecha) VALUES(?,?,?,?,?)');
-        $query->execute([$username,$id_equipo,$comentario,$puntaje,$fecha]);
+    public function insertComment($comentario,$username,$id_producto,$puntaje){
+        $query = $this->db->prepare('INSERT INTO comentarios(comentario,username,id_producto,puntaje) VALUES(?,?,?,?)');
+        $query->execute([$comentario,$username,$id_producto,$puntaje]);
     }
 
     public function deleteComment($id){
