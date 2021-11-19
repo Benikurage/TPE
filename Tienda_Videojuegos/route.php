@@ -77,7 +77,19 @@ switch ($params[0]) {
         break;
     case 'mostrarEditarGenre': 
         $listController->showEditGenre($params[1]); 
+        break;
+    case 'giveAdmin':
+        $loginController->giveAdmin($params[1]); 
+        break;
+    case 'removeAdmin':
+        $loginController->removeAdmin($params[1]); 
+        break;
+    case 'showUserList':
+        $loginController->showListAdmin();
         break;    
+    case 'deleteUser':
+        $loginController->deleteUser($params[1]);
+        break;
     default: 
         echo('404 Page not found'); 
     break;

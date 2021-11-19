@@ -44,8 +44,9 @@ class ListView {
         $this->smarty->display('template/mostrarEditarProducto.tpl');
     }
     
-    function showHome($sessionCheck, $error=""){
+    function showHome($sessionCheck=false, $adminCheck=false, $error=""){
         $this->smarty->assign('sessionCheck', $sessionCheck);
+        $this->smarty->assign('adminCheck', $adminCheck);
         $this->smarty->assign('error', $error);
         $this->smarty->assign('titulo', 'Inicio');
         $this->smarty->display('template/inicio.tpl');

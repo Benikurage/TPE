@@ -11,28 +11,32 @@ class LoginView{
         $this->smarty->display('template/login.tpl');
     }
 
-    function showLogout($sessionCheck, $error=""){
-        $this->smarty->assign('sessionCheck', $sessionCheck);
+    // function showLogout($sessionCheck, $error=""){
+    //     $this->smarty->assign('sessionCheck', $sessionCheck);
 
-        $this->smarty->assign('error', $error);
-        $this->smarty->assign('titulo', 'Inicio');
+    //     $this->smarty->assign('error', $error);
+    //     $this->smarty->assign('titulo', 'Inicio');
 
-        $this->smarty->display('template/inicio.tpl');
-    }
-    
-    // function showHome(){
-    //     header("Location: ".BASE_URL."home");
+    //     $this->smarty->display('template/inicio.tpl');
     // }
     
     function showSignUpForm(){
         $this->smarty->display('template/registro.tpl');
     }
 
-    function showHome($sessionCheck, $error=""){
-        $this->smarty->assign('sessionCheck', $sessionCheck);
-        $this->smarty->assign('error', $error);
-        $this->smarty->assign('titulo', 'Inicio');
-        $this->smarty->display('template/inicio.tpl');
+    //es la misma funcion en listView...
+    // function showHome($error=""){
+
+    //     // $this->smarty->assign('sessionCheck', true);
+    //     $this->smarty->assign('error', $error);
+    //     $this->smarty->assign('titulo', 'Inicio');
+    //     $this->smarty->display('template/inicio.tpl');
+    // }
+
+    function showUserList($users){
+        // $this->smarty->assign('adminCheck', $adminCheck);
+        $this->smarty->assign('usuarios', $users);   
+        $this->smarty->display('template/listaUsuarios.tpl');
     }
 
 }

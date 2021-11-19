@@ -4,6 +4,7 @@ require_once "./model/GenreModel.php";
 require_once "./model/ProductModel.php";
 require_once "./view/ListView.php";
 require_once "./Helpers/AuthHelper.php";
+require_once "./controller/LoginController.php";
 
 class ListController{
 
@@ -11,12 +12,14 @@ class ListController{
     private $genreModel;
     private $view;
     private $helper;
+    private $loginController;
 
     function __construct(){
         $this->genreModel = new GenreModel();
         $this->model = new ProductModel();
         $this->view = new ListView();
         $this->helper = new AuthHelper();
+        $this->loginController = new LoginController();
     }
 
     function sessionCheck(){
@@ -105,7 +108,11 @@ class ListController{
     
     function home(){
         $sessionCheck = $this->sessionCheck();
-        $this->view->showHome($sessionCheck);
+        $adminCheck = $this->loginController->checkAdmin();
+        // var_dump();
+        $boolAdmin = filter_var($adminCheck, FILTER_VALIDATE_BOOLEAN);
+        // var_dump($sessionCheck);
+        $this->view->showHome($sessionCheck, $adminCheck);
     }
         
 }
