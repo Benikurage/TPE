@@ -14,23 +14,11 @@
             <tr class="td-equipo">
                 <td >{$producto->nombre}</td>
                 <td >{$producto->precio}</td>
+                <td >{$producto->descripcion}</td>
             </tr>
         </tbody>
     </table>
-    {if $producto->descripcion != ""}
-        <table class="descripcion">
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="td_descripcion" >{$producto->descripcion}</td>
-                </tr>	
-            </tbody>
-        </table>
-        {/if}
+    
     </section>  
     <div class="comentarios">
         <h2>Comentarios</h2>
@@ -60,8 +48,6 @@
             </section>    
         {include "vue/adminComents.tpl"} 
     <div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="scripts/comentarios.js"></script> 
 
     <a href="home" class="btn btn-dark">Inicio</a>
     <a class="btn btn-success" href="lista">Volver al catálogo</a> 

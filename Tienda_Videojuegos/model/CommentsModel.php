@@ -4,7 +4,7 @@ class CommentsModel {
     
     private $db;
     function __construct(){
-        $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charse=utf8','root','');
+        $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charset=utf8','root','');
     }
 
     public function getComments(){
