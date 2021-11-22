@@ -75,6 +75,10 @@ class ListController{
        
     function details($id){
         $product = $this->model->getProduct($id);
+        // session_start(); 
+        // $user = $_SESSION['EMAIL'];
+
+        // $this->view->showDetails($product, $user);
         $this->view->showDetails($product);
     }
 

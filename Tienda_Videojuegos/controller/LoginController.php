@@ -16,13 +16,12 @@ class LoginController{
     }
     
     function startSession($user){
-        if(!isset($_SESSION)) 
-        { 
+        if(!isset($_SESSION)){ 
             session_start(); 
-        } 
+        }
         $_SESSION['ID_USER'] = $user->id_usuario;
         $_SESSION['EMAIL'] = $user->email;
-        return $sessionCheck = true;
+        return true;
     }
 
     function verifyLogin(){

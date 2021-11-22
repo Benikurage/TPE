@@ -33,11 +33,12 @@ class ListView {
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
-    function showDetails($product){
+    function showDetails($product, $user=""){
         $this->smarty->assign('producto', $product);
+        $this->smarty->assign('usuario', $user);
         $this->smarty->display('template/detail.tpl');
     }
-    
+
     function showEditProduct($id, $genres){
         $this->smarty->assign('generos', $genres);   
         $this->smarty->assign('producto', $id);

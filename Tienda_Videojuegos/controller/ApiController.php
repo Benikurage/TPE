@@ -2,13 +2,13 @@
 
 abstract class ApiController {
     protected $view;
-    protected $usermodel;
+    protected $userModel;
     protected $commentsModel;
     private $data; 
 
     public function __construct() {
         $this->view = new APIView();
-        $this->usermodel = new UserModel();
+        $this->userModel = new UserModel();
         $this->commentsModel = new CommentsModel();
         $this->data = file_get_contents("php://input"); 
     }

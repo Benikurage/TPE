@@ -78,15 +78,15 @@ switch ($params[0]) {
     case 'mostrarEditarGenre': 
         $listController->showEditGenre($params[1]); 
         break;
-        case 'toggleAdmin':
-            $loginController->toggleAdmin($params[1]); 
-            break;
-    case 'giveAdmin':
-        $loginController->giveAdmin($params[1]); 
+    case 'toggleAdmin':
+        $loginController->toggleAdmin($params[1]); 
         break;
-    case 'removeAdmin':
-        $loginController->removeAdmin($params[1]); 
-        break;
+    // case 'giveAdmin':
+    //     $loginController->giveAdmin($params[1]); 
+    //     break;
+    // case 'removeAdmin':
+    //     $loginController->removeAdmin($params[1]); 
+    //     break;
     case 'showUserList':
         $loginController->showListAdmin();
         break;    
