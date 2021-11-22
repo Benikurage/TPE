@@ -2,6 +2,7 @@
 
 require_once "./model/GenreModel.php";
 require_once "./model/ProductModel.php";
+require_once "./model/CommentsModel.php";
 require_once "./view/ListView.php";
 require_once "./Helpers/AuthHelper.php";
 require_once "./controller/LoginController.php";
@@ -10,13 +11,15 @@ class ListController{
 
     private $model;
     private $genreModel;
+    private $commentsModel;
     private $view;
     private $helper;
     private $loginController;
 
     function __construct(){
-        $this->genreModel = new GenreModel();
         $this->model = new ProductModel();
+        $this->genreModel = new GenreModel();
+        $this->commentsModel = new CommentsModel();
         $this->view = new ListView();
         $this->helper = new AuthHelper();
         $this->loginController = new LoginController();
@@ -75,11 +78,12 @@ class ListController{
        
     function details($id){
         $product = $this->model->getProduct($id);
+        $comments = $this->commentsModel->getComments();
         // session_start(); 
         // $user = $_SESSION['EMAIL'];
 
         // $this->view->showDetails($product, $user);
-        $this->view->showDetails($product);
+        $this->view->showDetails($product, $comments);
     }
 
     function createGenre(){

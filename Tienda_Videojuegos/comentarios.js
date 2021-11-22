@@ -4,42 +4,79 @@ const url = 'api/comentarios';
 // funcion para agregar un comentario al hacer click en el boton de enviar
 let btn = document.querySelector(".enviar").addEventListener("click", addComment);
 
-async function addComment(e){
+async function addComment(e) {
     e.preventDefault();
     //hard coded data
     let comentario = "Testeo";
     let username = "Testeando";
-    let id_producto = 60;
-    let puntaje = 4;
+    let id_producto = "60";
+    let puntaje = "4";
     //object
     let innerData = {
-        "comentario": comentario,
-        "username": username,
-        "id_producto": id_producto,
-        "puntaje": puntaje
+        comentario: comentario,
+        username: username,
+        id_producto: id_producto,
+        puntaje: puntaje
     }
     //comunication with api
     try {
         let res = await fetch(url, {
-            "method": "POST",
-            "headers": {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json"
             },
-            "body": JSON.stringify(innerData)
+            body: JSON.stringify(innerData)
         });
-        if (res.status == 201) {
+        if (res.status == 200) {
+            console.log(JSON.stringify(innerData));
             console.log("success uwu");
             // mostrarDatos();
         } else {
             console.log("Failure");
+            console.log(res.status);
         }
     } catch (error) {
         console.log(error);
     }
-
 }
+// }
+// function addComment(e) {
+//     e.preventDefault();
+//     //hard coded data
+//     let comentario = "Testeo";
+//     let username = "Testeando";
+//     let id_producto = "60";
+//     let puntaje = "4";
+//     //object
+//     let innerData = {
+//     //     "comentario": comentario,
+//     //     "username": username,
+//     //     "id_producto": id_producto,
+//     //     "puntaje": puntaje
+//         comentario: "testeo",
+//         username: "nombre",
+//         id_producto: "60",
+//         puntaje: "3"
+//     }
+//     //comunication with api
 
-async function deleteComments(id){
+//     fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 'Content-type': 'application/json'
+//             },
+//             body: JSON.stringify(innerData)
+//         })
+//         .then(resp => resp.json())
+//         .then(data => {
+//             console.log(data);
+//             document.querySelector("#comentario").value = "";
+//             showComments(); //actualizar la lista de comentarios
+//         })
+//         .catch(error => console.log(error, JSON.stringify(innerData)));
+// }
+
+async function deleteComments(id) {
     try {
         let resp = await fetch(url + "/" + id, {
             "method": "DELETE",
@@ -53,7 +90,7 @@ async function deleteComments(id){
     }
 }
 
-async function showComments(){
+async function showComments() {
     tabla.innerHTML = "";
     try {
         let res = await fetch(url);
@@ -78,6 +115,8 @@ async function showComments(){
 //     // let equipo_id = document.querySelector("#id_equipo").value;
 //     // let puntaje = document.querySelector("#puntuacion").value;
 //     // let hoy = new Date();
+
+
 
 //     let newComment = {
 //         comentario: comentario,

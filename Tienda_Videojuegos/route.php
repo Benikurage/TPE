@@ -1,6 +1,6 @@
 <?php
 require_once "controller/ListController.php";
-require_once "controller/loginController.php";
+require_once "controller/LoginController.php";
 require_once "Helpers/AuthHelper.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');

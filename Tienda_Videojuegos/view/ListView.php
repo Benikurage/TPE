@@ -1,7 +1,8 @@
 <?php 
 require_once './libs/smarty-3.1.39/libs/Smarty.class.php';
 require_once './controller/ListController.php';
-class ListView {
+
+class ListView{
     private $smarty;
 
     function __construct() {
@@ -33,9 +34,18 @@ class ListView {
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
-    function showDetails($product, $user=""){
-        $this->smarty->assign('producto', $product);
-        $this->smarty->assign('usuario', $user);
+    // function getComments($comments){
+    //     $this->smarty->assign('titulo', 'Comentarios');        
+    //     $this->smarty->assign('comentarios', $comments);
+    //     $this->smarty->display('templates/detail.tpl');
+    // }
+
+    function showDetails($product, $comments, $user=""){
+        // var_dump($comments[0]->comentario);
+        $this->smarty->assign('titulo', $comments[0]->comentario);        
+        // $this->smarty->assign('producto', $product);
+        // $this->smarty->assign('comentarios', $comments);
+        // $this->smarty->assign('usuario', $user);
         $this->smarty->display('template/detail.tpl');
     }
 

@@ -1,46 +1,29 @@
 <?php
-require_once "model/CommentsModel.php";
-require_once "ApiController.php";
-require_once "view/ApiView.php";
-require_once "model/UserModel.php";
+require_once './model/CommentsModel.php';
+require_once './view/ApiView.php';
+// require_once './controller/ApiController.php';
 
-class ApiCommentController extends ApiController{
+abstract class ApiCommentController{
+    private $view;
+    private $model;
+    // protected $userModel;
+    // private $data; 
 
-    public function getComments($operacion = []) {
-        if (empty($operacion)) {
-            $users = $this->commentsModel->getComments();
-            $this->view->response($users, 200);
-        }
-        else {
-            $id = $operacion[":ID"];
-            $user = $this->commentsModel->getUserComment($id);
-            if ($user) {
-                $this->view->response($user, 200);
-            }
-            else {
-                $this->view->response("no existe el objeto de la posicion $id", 404);
-            }
-        }
+    public function __construct() {
+        $this->view = new ApiView();
+        $this->model = new CommentsModel();
+        // $this->userModel = new UserModel();
+        // $this->data = file_get_contents("php://input"); 
     }
 
-    public function addComment() {   
-        $comments = $this->getBody();
-        // la obtengo del body
-        //inserta la tarea
-        $commentId = $this->commentsModel->insertComment($comments->username,$comments->id_equipo,$comments->commentario,$comments->puntaje,$comments->fecha);
-        //obtengo la recien creada
-        $newComment = $this->commentsModel->getComment($commentId);
-        echo($newComment);
-        if (!$newComment) {
-            $this->view->response($newComment, 200);
-        } else {
-            $this->view->response("No se pudo crear el commentario", 500);
-        }
+    //get comments
+    function getComments(){
+        $comments = $this->model->getComments();
+        return $this->view->response($comments, 200);
     }
 
-    public function deleteComments($operation = null) {
-        $id = $operation[":ID"];
-        $this->commentsModel->deleteComment($id);
-        $this->view->response("Usuario $id borrado con exito", 200);
-    }
+    function getBody(){ 
+        return json_decode($this->data); 
+    }  
 }
+

@@ -9,19 +9,26 @@
                 <th>Precio</th>
             </tr>
         </thead>
-        <tbody>
+        {* <tbody>
             <tr class="td-equipo">
                 <td >{$producto->nombre}</td>
                 <td >{$producto->precio}</td>
                 <td >{$producto->descripcion}</td>
             </tr>
-        </tbody>
+        </tbody> *}
     </table>
-
-    {*if user not logged in, hide*}
-    <form class="form_comentarios" method="post" >
+    
+    {* {$titulo} *}
+    {$titulo}
+    {* {foreach from=$comentarios item=$comentario}
+        <tr>
+            <td>{$comentario->nombre}</td>
+        </tr>
+    {/foreach} *}
+    {*
+    <form class="form_comentarios" method="POST" >
         <input type="text" id="comentario" class="input_coment" placeholder="Comentario">   
-        {* <input type="hidden" id="nombre" value="{$usuario->nombre}"> *}
+        <input type="hidden" id="nombre" value="{$usuario->nombre}">
         <input type="hidden" id="nombre" value="{$usuario}">
         <input type="hidden" id="id_equipo" value="{$producto->id_producto}">
         <select name="puntaje" id="puntaje" required>
@@ -32,7 +39,7 @@
             <option class="mayusc" value="4">4</option>
             <option class="mayusc" value="5">5</option>
         </select>
-        <button type="submit" class="btn_coment enviar" value="insertComment">Enviar comentario</button>
+        <button type="submit" class="btn_coment enviar" value="addComment">Enviar comentario</button>
     </form>
 
     <div class="table">
@@ -42,8 +49,8 @@
                 <th>Usuario</th>
                 <th>Comentario</th>
                 <th>Puntaje</th>
-                {* {if isset($admin)} *}
-                    <th>Borrar</th>
+                {if isset($admin)}
+                    <th>Borrar</th> *}
                 {* {/if} *}
                 {* {foreach from=$comentarios item=$comentario}
                     <tr>
@@ -55,8 +62,8 @@
                         {/if}
                     </tr>
                 {/foreach} *}
-            </tbody>
-        </table>
+            {* </tbody>
+        </table> *}
 
     {* <div class="comentarios">
         <h2>Comentarios</h2>
