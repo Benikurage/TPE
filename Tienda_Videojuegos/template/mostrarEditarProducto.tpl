@@ -24,6 +24,4 @@
     </div>
     <a class="btn btn-success" href="lista">Volver al catálogo</a>
 </div>
-{include file='template/footer.tpl'}
-
-	
+{include file='template/footer.tpl'}	

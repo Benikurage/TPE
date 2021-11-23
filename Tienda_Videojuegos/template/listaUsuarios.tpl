@@ -15,7 +15,6 @@
                             {foreach from=$usuarios item=$usuario}
                             <tr>
                                 <td>{$usuario->nombre}</td>
-                                {*if 0=no, if 1=si*}
                                 <td>{$usuario->admin}</td>
                                 <td><a class="btn btn-danger" href="deleteUser/{$usuario->id_usuario}">Borrar</a></td>
                                 <td><a class="btn btn-success" href="toggleAdmin/{$usuario->id_usuario}">Toggle Admin</a></td>
