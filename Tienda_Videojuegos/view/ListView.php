@@ -35,6 +35,10 @@ class ListView{
     }
 
     function showDetails($product, $comments, $user=""){
+        $sessionCheck=true;
+        $adminCheck=true;
+        $this->smarty->assign('sessionCheck', $sessionCheck);
+        $this->smarty->assign('adminCheck', $adminCheck);
         $this->smarty->assign('producto', $product);
         $this->smarty->assign('comentarios', $comments);
         $this->smarty->assign('usuario', $user);

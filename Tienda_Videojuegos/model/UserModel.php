@@ -12,11 +12,6 @@ class UserModel{
         $query->execute(array($nombre, $email, $password, $admin));
     }
 
-    
-    
-    //admin
-    //giveAdmin
-    
     function getUser($email){
         $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
         $query->execute([$email]);
@@ -36,7 +31,6 @@ class UserModel{
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
-
     function deleteUser($id){
         $query = $this->db->prepare("DELETE FROM `usuario` WHERE `usuario`.`id_usuario` = ?");
         $query->execute(array($id));
@@ -46,4 +40,5 @@ class UserModel{
         $query = $this->db->prepare("UPDATE `usuario` SET `admin` = '$admin' WHERE `usuario`.`id_usuario` = ?");
         $query->execute(array($id));
     }
+    
 }
