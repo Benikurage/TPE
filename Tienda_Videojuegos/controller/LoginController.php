@@ -95,6 +95,15 @@ class LoginController{
         }
     }
 
+    function getUsernameByMail($email){
+        if(!isset($_SESSION['ID_USER'])){
+            session_start();
+        }
+        $email = $_SESSION['EMAIL'];
+        $user = $this->model->getUser($email);
+        return $user->nombre;
+    }
+
     function adminSecurity(){
         $admin = $this->checkAdmin();
         if($admin==false){

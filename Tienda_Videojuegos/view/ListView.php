@@ -9,21 +9,21 @@ class ListView{
         $this->smarty = new Smarty();
     }
 
-    //fix this shit: Solo una lista.
     function showProducts($products, $sessionCheck,  $genres=""){
-        $this->smarty->assign('titulo', 'Lista de productos');  
+        $this->smarty->assign('titulo', 'Lista de productos'); 
+        $this->smarty->assign('sessionCheck', $sessionCheck);   
         $this->smarty->assign('productos', $products);   
         $this->smarty->assign('generos', $genres);   
-        if($sessionCheck==true){
-            $this->smarty->display('template/listPrivate.tpl');
-        }else{
-            $this->smarty->display('template/listPublic.tpl');
-        }
+        $this->smarty->display('template/listPrivate.tpl');
+        // if($sessionCheck==true){
+        // }else{
+        //     $this->smarty->display('template/listPublic.tpl');
+        // }
     }
 
-    function showGenres($products, $sessionCheck,  $error=""){
-        $this->smarty->assign('sessionCheck', $sessionCheck);
+    function showGenres($products, $sessionCheck=false,  $error=""){
         $this->smarty->assign('titulo', 'Lista de géneros');        
+        $this->smarty->assign('sessionCheck', $sessionCheck);
         $this->smarty->assign('productos', $products);
         $this->smarty->assign('error', $error);
         $this->smarty->display('template/listaDeGeneros.tpl');
@@ -35,15 +35,12 @@ class ListView{
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
-    //fix this shit: No usar valores hardcodeados.
-    function showDetails($product, $comments, $user=""){
-        $sessionCheck=true;
-        $adminCheck=true;
-        $this->smarty->assign('sessionCheck', $sessionCheck);
-        $this->smarty->assign('adminCheck', $adminCheck);
+    function showDetails($product, $comments, $user="", $sessionCheck=false, $adminCheck=false){
         $this->smarty->assign('producto', $product);
         $this->smarty->assign('comentarios', $comments);
         $this->smarty->assign('usuario', $user);
+        $this->smarty->assign('sessionCheck', $sessionCheck);
+        $this->smarty->assign('adminCheck', $adminCheck);
         $this->smarty->display('template/detail.tpl');
     }
 

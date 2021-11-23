@@ -11,7 +11,7 @@
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Género</th>
-                           {if isset($logged)}
+                            {if $sessionCheck==true}    
                                 <th>Borrar</th>
                                 <th>Editar</th>
                                 <th>Detalles</th>
@@ -23,11 +23,12 @@
                                 <td>{$producto->descripcion|truncate:30}</td>
                                 <td>${$producto->precio}</td>
                                 <td>{$producto->genre}</td>
-                                {* {if isset($logged)} *}
+                                {if $sessionCheck==true}    
+
                                     <td><a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a></td>
                                     <td><a class="btn btn-success" href="mostrareditar/{$producto->id_producto}">Edit</a></td>
                                     <td><a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a></td>
-                                {* {/if} *}
+                                {/if}
                             </tr>
                         {/foreach}
                     </tr>
@@ -35,7 +36,7 @@
            </table>
         </div>
         <div>
-        {* {if isset($logged)} *}
+        {if $sessionCheck==true}
             <h2>Crear Producto</h2>
             <form class ="form-groupaction" action="create" method="POST">
                 <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
@@ -50,7 +51,7 @@
 
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
-        {* {/if} *}
+        {/if}
             <a class="btn btn-dark" href="inicio">Inicio</a>
             <a class="btn btn-dark" href="listCategory">Listdo de géneros</a>
             <a class="btn btn-danger" href="logout">Logout</a>

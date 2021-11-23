@@ -1,26 +1,19 @@
 <?php
 require_once './model/CommentsModel.php';
 require_once './view/ApiView.php';
-require_once './Helpers/AuthHelper.php';
-// require_once './controller/ApiController.php';
 
 class ApiCommentController{
     private $view;
     private $model;
     private $data;
-    private $helper;
-    // protected $userModel;
 
     public function __construct() {
         $this->view = new ApiView();
         $this->model = new CommentsModel();
-        $this->helper = new AuthHelper();
         $this->data = file_get_contents("php://input");
-        // $this->userModel = new UserModel();
     }
 
     function getComments(){
-        // $this->helper->checkLoggedIn();
         $comments = $this->model->getComments();
         return $this->view->response($comments, 200);
     }
@@ -31,7 +24,6 @@ class ApiCommentController{
     }
     
     function deleteComment($params = []){
-        // $this->helper->checkLoggedIn();
         $comment_id = $params[':ID'];
         $comment = $this->model->getComment($comment_id);
         if ($comment) {
@@ -60,6 +52,7 @@ class ApiCommentController{
     
     function getData(){ 
         return json_decode($this->data); 
-    }  
+    }
+      
 }
 

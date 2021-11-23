@@ -3,13 +3,8 @@
 
     <div class="row mt-4">
         <div class="col-md-8">  
-            <h1>Listado de Genero</h1>
+            <h1>Listado de Géneros</h1>
             <table class ="table">
-                {* <thead>
-                    <tr>
-                       <th>nombre</td>                   
-                    </tr>
-                </thead> *}
                 <tbody>
                     <tr class="list-group">
                         {foreach from=$generos item=$genero}
@@ -28,12 +23,14 @@
            </table>
         </div>
         <div>
+        {if $adminCheck==true}
             <h2>Crear Genero</h2>
             <form class ="form-groupaction" action="CreateGenre" method="POST">
                 <input placeholder="nombre" type="text" name="nombre" id="nombre" required>
                 <textarea placeholder="descripcion" type="text" name="descripcion" id="descripcion"> </textarea>
                 <input type="submit" class="btn btn-primary" value="Guardar Genero">
             </form>
+        {/if}
             <a class="btn btn-dark" href="inicio">Inicio</a>
             <a class="btn btn-success" href="lista">Ver Catálogo</a>
         </div>

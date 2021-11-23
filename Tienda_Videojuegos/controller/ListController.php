@@ -20,9 +20,9 @@ class ListController{
         $this->model = new ProductModel();
         $this->genreModel = new GenreModel();
         $this->commentsModel = new CommentsModel();
+        $this->loginController = new LoginController();
         $this->view = new ListView();
         $this->helper = new AuthHelper();
-        $this->loginController = new LoginController();
     }
 
     function sessionCheck(){
@@ -71,25 +71,30 @@ class ListController{
     
     function showEditProduct($id){
         $this->helper->checkLoggedIn();
-        $product = $this->model->getProduct($id);
         $genres = $this->genreModel->getGenres();
         $this->view->showEditProduct($id, $genres);
     }
        
+    function getLoggedUser(){
+        if(!isset($_SESSION['ID_USER'])){
+            session_start();
+        }
+        $email = $_SESSION['EMAIL'];
+        $user = $this->loginController->getUsernameByMail($email);
+        return $user;
+    }
+
     function details($id){
         $product = $this->model->getProduct($id);
         $comments = $this->commentsModel->getComments();
-        session_start(); 
-        $user = $_SESSION['EMAIL'];
-
-        $this->view->showDetails($product, $comments, $user);
+        $user = $this->getLoggedUser();
+        $sessionCheck = $this->sessionCheck();
+        $adminCheck = $this->loginController->checkAdmin();
+        $this->view->showDetails($product, $comments, $user, $sessionCheck, $adminCheck);
     }
 
     function createComment(){
-        // $product = $this->model->getProduct($id);
-
         $this->commentsModel->insertComment($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
-        // $this->view->homeLocation();        
     }
 
     function createGenre(){
