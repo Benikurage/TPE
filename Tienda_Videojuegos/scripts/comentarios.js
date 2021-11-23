@@ -9,39 +9,24 @@ let tabla = document.querySelector("#resumen");
 
 async function createComment(e) {
     e.preventDefault();
-
-    //data
-    let comentario = document.querySelector("#comentario").value;
-    let username = document.querySelector("#username").value;
-    let id_producto = document.querySelector("#id_producto").value;
-    let puntaje = document.querySelector("#puntaje").value;
-
-    //object
-    let innerData = {
-        comentario: comentario,
-        username: username,
-        id_producto: id_producto,
-        puntaje: puntaje
-    }
-
-    // comunication with api
-    if (comentario!="") {
+    let data = getData();
+    if (data.comentario!="") {
         try {
             let res = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(innerData)
+                body: JSON.stringify(data)
             });
             if (res.ok) {
-                console.log(JSON.stringify(innerData));
+                console.log(JSON.stringify(data));
                 console.log("Success");
                 showComments();
             } else {
+                console.log(JSON.stringify(data));
                 console.log("Failure");
                 console.log(res.status);
-                console.log(JSON.stringify(innerData));
             }
         } catch (error) {
             console.log(error);
@@ -49,6 +34,22 @@ async function createComment(e) {
     } else {
         console.log("No se puede agregar un comentario vacio");
     }
+}
+
+function getData() {
+    let comentario = document.querySelector("#comentario").value;
+    let username = document.querySelector("#username").value;
+    let id_producto = document.querySelector("#id_producto").value;
+    let puntaje = document.querySelector("#puntaje").value;
+
+    let data = {
+        comentario: comentario,
+        username: username,
+        id_producto: id_producto,
+        puntaje: puntaje
+    }
+
+    return data;
 }
 
 async function showComments() {
@@ -69,10 +70,10 @@ function filterIdProduct(comments){
     let filteredComments = [];
 
     for (let i = 0; i < comments.length; i++) {
-        if(id_producto==comments[i].id_producto){
+        if(id_producto==comments[i].id_producto)
             filteredComments.push(comments[i]);
-        }
     }
+
     return filteredComments;
 }
 
