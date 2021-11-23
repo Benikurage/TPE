@@ -6,7 +6,7 @@
         <th>Comentario</th>
         <th>Puntaje</th>
         <th>Borrar</th>
-        <tr v-for="comentario in comentarios">
+        <tr v-for="comentario in comentarios" class="comentario.id_comentario">
             <td>{{comentario.username}}</td>
             <td>{{comentario.comentario}}</td>
             <td>{{comentario.puntaje}}</td>
@@ -21,7 +21,7 @@
         <th>Usuario</th>
         <th>Comentario</th>
         <th>Puntaje</th>
-        <tr v-for="comentario in comentarios">
+        <tr v-for="comentario in comentarios" :class="comentario.id_comentario">
             <td>{{comentario.username}}</td>
             <td>{{comentario.comentario}}</td>
             <td>{{comentario.puntaje}}</td>

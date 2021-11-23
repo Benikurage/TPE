@@ -34,7 +34,9 @@
             <button type="submit" class="btn_coment enviar" value="addComment">Enviar comentario</button>
         </form>
     {/if}
-
+    {if $sessionCheck==false}
+        <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
+    {/if}
     <div id="app">
         {include "./vue/adminComments.tpl"} 
     </div>

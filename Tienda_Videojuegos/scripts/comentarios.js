@@ -4,6 +4,7 @@ const url = 'api/comentarios';
 
 // funcion para agregar un comentario al hacer click en el boton de enviar
 let btn = document.querySelector(".enviar").addEventListener("click", createComment);
+console.log(id_producto);
 let tabla = document.querySelector("#resumen");
 
 async function createComment(e) {
@@ -55,26 +56,24 @@ async function showComments() {
         let res = await fetch(url);
     if (res.ok) {
         let comments = await res.json();
-        app.comentarios = comments;
+        let filteredComments = filterIdProduct(comments);
+        app.comentarios = filteredComments;
     }
     } catch (error) {
         console.log(error);
     }
-
 }
 
-async function deleteComment(id){
-    try {
-        let res = await fetch(`${url}/${id}`, {
-            "method": "DELETE",
-        });
-        if (res.ok) {
-            showComments();
-            console.log("Comentario eliminado");
+function filterIdProduct(comments){
+    let id_producto = document.querySelector("#id_producto").value;
+    let filteredComments = [];
+
+    for (let i = 0; i < comments.length; i++) {
+        if(id_producto==comments[i].id_producto){
+            filteredComments.push(comments[i]);
         }
-    } catch (error) {
-        console.log("error" + error);
     }
+    return filteredComments;
 }
 
 let app = new Vue({
@@ -89,5 +88,19 @@ let app = new Vue({
         },
     }
 });
+
+async function deleteComment(id){
+    try {
+        let res = await fetch(`${url}/${id}`, {
+            "method": "DELETE",
+        });
+        if (res.ok) {
+            showComments();
+            console.log("Comentario eliminado");
+        }
+    } catch (error) {
+        console.log("error" + error);
+    }
+}
 
 showComments();
