@@ -10,7 +10,7 @@
             <td>{{comentario.username}}</td>
             <td>{{comentario.comentario}}</td>
             <td>{{comentario.puntaje}}</td>
-            <td><button class="btn btn-danger delete" v-bind:id="comentario.id_comentario" @click="eliminarCommets">Borrar</button></td>
+            <td><button class="btn btn-danger delete" v-bind:id="comentario.id_comentario" @click="deleteComments">Borrar</button></td>
         </tr>
     </table>
 {/literal}

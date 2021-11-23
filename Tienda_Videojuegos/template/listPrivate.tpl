@@ -11,11 +11,11 @@
                             <th>Descripción</th>
                             <th>Precio</th>
                             <th>Género</th>
-                            {if $sessionCheck==true}    
+                            {if $adminCheck==true}    
                                 <th>Borrar</th>
                                 <th>Editar</th>
-                                <th>Detalles</th>
                             {/if}
+                            <th>Detalles</th>
                         </tr>
                         {foreach from=$productos item=$producto}
                             <tr>
@@ -23,12 +23,11 @@
                                 <td>{$producto->descripcion|truncate:30}</td>
                                 <td>${$producto->precio}</td>
                                 <td>{$producto->genre}</td>
-                                {if $sessionCheck==true}    
-
+                                {if $adminCheck==true}    
                                     <td><a class="btn btn-danger" href="delete/{$producto->id_producto}">Borrar</a></td>
                                     <td><a class="btn btn-success" href="mostrareditar/{$producto->id_producto}">Edit</a></td>
-                                    <td><a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a></td>
                                 {/if}
+                                <td><a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a></td>
                             </tr>
                         {/foreach}
                     </tr>
@@ -36,7 +35,7 @@
            </table>
         </div>
         <div>
-        {if $sessionCheck==true}
+        {if $adminCheck==true}
             <h2>Crear Producto</h2>
             <form class ="form-groupaction" action="create" method="POST">
                 <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>

@@ -34,10 +34,10 @@ class ListController{
     }
 
     function list(){
-        $sessionCheck = $this->sessionCheck();
         $products = $this->model->getGenresFromProducts();
+        $adminCheck = $this->loginController->checkAdmin();
         $genres = $this->genreModel->getGenres();
-        $this->view->showProducts($products, $sessionCheck, $genres);
+        $this->view->showProducts($products, $adminCheck, $genres);
     }
 
     function showGenres($error=""){

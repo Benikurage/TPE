@@ -9,9 +9,9 @@ class ListView{
         $this->smarty = new Smarty();
     }
 
-    function showProducts($products, $sessionCheck,  $genres=""){
+    function showProducts($products, $adminCheck,  $genres=""){
         $this->smarty->assign('titulo', 'Lista de productos'); 
-        $this->smarty->assign('sessionCheck', $sessionCheck);   
+        $this->smarty->assign('adminCheck', $adminCheck);   
         $this->smarty->assign('productos', $products);   
         $this->smarty->assign('generos', $genres);   
         $this->smarty->display('template/listPrivate.tpl');
