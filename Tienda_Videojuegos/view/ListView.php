@@ -34,18 +34,10 @@ class ListView{
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
-    // function getComments($comments){
-    //     $this->smarty->assign('titulo', 'Comentarios');        
-    //     $this->smarty->assign('comentarios', $comments);
-    //     $this->smarty->display('templates/detail.tpl');
-    // }
-
     function showDetails($product, $comments, $user=""){
-        // var_dump($comments[0]->comentario);
-        $this->smarty->assign('titulo', $comments[0]->comentario);        
-        // $this->smarty->assign('producto', $product);
-        // $this->smarty->assign('comentarios', $comments);
-        // $this->smarty->assign('usuario', $user);
+        $this->smarty->assign('producto', $product);
+        $this->smarty->assign('comentarios', $comments);
+        $this->smarty->assign('usuario', $user);
         $this->smarty->display('template/detail.tpl');
     }
 

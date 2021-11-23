@@ -9,61 +9,63 @@
                 <th>Precio</th>
             </tr>
         </thead>
-        {* <tbody>
+        <tbody>
             <tr class="td-equipo">
                 <td >{$producto->nombre}</td>
                 <td >{$producto->precio}</td>
                 <td >{$producto->descripcion}</td>
             </tr>
-        </tbody> *}
+        </tbody>
     </table>
     
-    {* {$titulo} *}
-    {$titulo}
-    {* {foreach from=$comentarios item=$comentario}
-        <tr>
-            <td>{$comentario->nombre}</td>
-        </tr>
-    {/foreach} *}
-    {*
-    <form class="form_comentarios" method="POST" >
+    <form class="form-alta" method="POST">
         <input type="text" id="comentario" class="input_coment" placeholder="Comentario">   
-        <input type="hidden" id="nombre" value="{$usuario->nombre}">
-        <input type="hidden" id="nombre" value="{$usuario}">
-        <input type="hidden" id="id_equipo" value="{$producto->id_producto}">
+        <input type="text" id="username" value="{$usuario}" hidden>
+        <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
         <select name="puntaje" id="puntaje" required>
-            <option value="">Puntaje</option>
+            <option>Puntaje</option>
             <option class="mayusc" value="1">1</option>
             <option class="mayusc" value="2">2</option>
             <option class="mayusc" value="3">3</option>
             <option class="mayusc" value="4">4</option>
             <option class="mayusc" value="5">5</option>
         </select>
+
         <button type="submit" class="btn_coment enviar" value="addComment">Enviar comentario</button>
+        {* <input type="submit" class="btn_coment enviar" value="Enviar comentario"> *}
     </form>
 
-    <div class="table">
+    <div>
         <h2>Opiniones:</h2>
-        <table>
+        <table class="table" id="tabla">
             <tbody>
                 <th>Usuario</th>
                 <th>Comentario</th>
                 <th>Puntaje</th>
-                {if isset($admin)}
-                    <th>Borrar</th> *}
+                <th>ID</th>
+                {* {if isset($admin)} *}
+                    {* <th>Borrar</th> *}
                 {* {/if} *}
                 {* {foreach from=$comentarios item=$comentario}
                     <tr>
-                        <td>{$comentario->nombre}</td>
-                        <td>{$comentario->descripcion|truncate:30}</td>
+                        <td>{$comentario->username}</td>
+                        <td>{$comentario->comentario}</td>
                         <td>{$comentario->puntaje}</td>
-                        {if isset($admin)}
+                        <td>{$comentario->id_comentario}</td>
+                        <button type="submit" class="btn_coment enviar" value="deleteComment">Borrar</button> *}
+
+                        {* <td><a class="btn btn-danger" href="deleteComment/{$comentario->id_comentario}">Borrar</a></td> *}
+                        {* <td><a class="btn btn-dark" href="listaPorGenero/{$comentario->id_comentario}">Juegos de este género</a></td> *}
+
+                        {* <td>{$comentario->descripcion|truncate:30}</td>
+                        <td>{$comentario->puntaje}</td> *}
+                        {* {if isset($admin)}
                             <td><a class="btn btn-danger" href="delete/{$comentario->id_comentario}">Borrar</a></td>
-                        {/if}
-                    </tr>
+                        {/if} *}
+                    {* </tr>
                 {/foreach} *}
-            {* </tbody>
-        </table> *}
+            </tbody>
+        </table>
 
     {* <div class="comentarios">
         <h2>Comentarios</h2>

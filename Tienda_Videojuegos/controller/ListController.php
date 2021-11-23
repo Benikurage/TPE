@@ -79,11 +79,17 @@ class ListController{
     function details($id){
         $product = $this->model->getProduct($id);
         $comments = $this->commentsModel->getComments();
-        // session_start(); 
-        // $user = $_SESSION['EMAIL'];
+        session_start(); 
+        $user = $_SESSION['EMAIL'];
 
-        // $this->view->showDetails($product, $user);
-        $this->view->showDetails($product, $comments);
+        $this->view->showDetails($product, $comments, $user);
+    }
+
+    function createComment(){
+        // $product = $this->model->getProduct($id);
+
+        $this->commentsModel->insertComment($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
+        // $this->view->homeLocation();        
     }
 
     function createGenre(){
@@ -119,5 +125,5 @@ class ListController{
         $adminCheck = $this->loginController->checkAdmin();
         $this->view->showHome($sessionCheck, $adminCheck);
     }
-        
+   
 }

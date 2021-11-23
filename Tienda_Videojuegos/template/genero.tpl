@@ -2,8 +2,7 @@
 <div class="container">
 
     <div class="row mt-4">
-        <div class="col-md-8">
-            
+        <div class="col-md-8">  
             <h1>Listado de Genero</h1>
             <table class ="table">
                 {* <thead>
