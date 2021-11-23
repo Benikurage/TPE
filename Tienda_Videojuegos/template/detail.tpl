@@ -36,7 +36,7 @@
     {/if}
 
     <div id="app">
-        {include "./vue/adminComents.tpl"} 
+        {include "./vue/adminComments.tpl"} 
     </div>
     <div>
         <a href="home" class="btn btn-dark">Inicio</a>

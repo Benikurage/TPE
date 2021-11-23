@@ -9,6 +9,7 @@ class ListView{
         $this->smarty = new Smarty();
     }
 
+    //fix this shit: Solo una lista.
     function showProducts($products, $sessionCheck,  $genres=""){
         $this->smarty->assign('titulo', 'Lista de productos');  
         $this->smarty->assign('productos', $products);   
@@ -34,6 +35,7 @@ class ListView{
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
+    //fix this shit: No usar valores hardcodeados.
     function showDetails($product, $comments, $user=""){
         $sessionCheck=true;
         $adminCheck=true;
