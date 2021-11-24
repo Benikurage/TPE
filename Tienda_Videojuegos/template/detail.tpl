@@ -12,8 +12,8 @@
         <tbody>
             <tr class="td-equipo">
                 <td>{$producto->nombre}</td>
-                <td>{$producto->precio}</td>
                 <td>{$producto->descripcion}</td>
+                <td>${$producto->precio}</td>
             </tr>
         </tbody>
     </table>
