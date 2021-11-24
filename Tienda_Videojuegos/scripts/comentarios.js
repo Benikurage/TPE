@@ -1,8 +1,6 @@
 "use strict";
-// const url = 'http://localhost/TPE/TPE/tienda_videojuegos/api/comentarios/';
 const url = 'api/comentarios';
 
-// funcion para agregar un comentario al hacer click en el boton de enviar
 let btn = document.querySelector(".enviar").addEventListener("click", createComment);
 console.log(id_producto);
 let tabla = document.querySelector("#resumen");
@@ -10,7 +8,7 @@ let tabla = document.querySelector("#resumen");
 async function createComment(e) {
     e.preventDefault();
     let data = getData();
-    if (data.comentario!="") {
+    if (data.comentario != "") {
         try {
             let res = await fetch(url, {
                 method: "POST",
@@ -55,22 +53,22 @@ function getData() {
 async function showComments() {
     try {
         let res = await fetch(url);
-    if (res.ok) {
-        let comments = await res.json();
-        let filteredComments = filterIdProduct(comments);
-        app.comentarios = filteredComments;
-    }
+        if (res.ok) {
+            let comments = await res.json();
+            let filteredComments = filterIdProduct(comments);
+            app.comentarios = filteredComments;
+        }
     } catch (error) {
         console.log(error);
     }
 }
 
-function filterIdProduct(comments){
+function filterIdProduct(comments) {
     let id_producto = document.querySelector("#id_producto").value;
     let filteredComments = [];
 
     for (let i = 0; i < comments.length; i++) {
-        if(id_producto==comments[i].id_producto)
+        if (id_producto == comments[i].id_producto)
             filteredComments.push(comments[i]);
     }
 
@@ -90,7 +88,7 @@ let app = new Vue({
     }
 });
 
-async function deleteComment(id){
+async function deleteComment(id) {
     try {
         let res = await fetch(`${url}/${id}`, {
             "method": "DELETE",
