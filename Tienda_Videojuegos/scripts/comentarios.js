@@ -1,9 +1,11 @@
 "use strict";
 const url = 'api/comentarios';
 
-let btn = document.querySelector(".enviar").addEventListener("click", createComment);
-console.log(id_producto);
-let tabla = document.querySelector("#resumen");
+
+function listen() {
+    let btn = document.querySelector(".enviar").addEventListener("click", createComment);
+    let tabla = document.querySelector("#resumen");
+}
 
 async function createComment(e) {
     e.preventDefault();
@@ -103,3 +105,4 @@ async function deleteComment(id) {
 }
 
 showComments();
+listen();

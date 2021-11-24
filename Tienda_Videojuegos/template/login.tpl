@@ -2,8 +2,8 @@
 <div class='container'>
     <div class="inicio">
         <h2>Log In</h2>
-        <div class="form-alta">
-            <form class="form-alta" action="verify" method="POST">
+        <div>
+            <form action="verify" method="POST">
                 <input placeholder="email" type="email" name="email" id="email">
                 <input placeholder="password" type="password" name="password" id="password">
                 <input type="submit" class="btn btn-primary" value="Login">

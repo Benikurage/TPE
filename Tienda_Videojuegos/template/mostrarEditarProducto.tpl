@@ -11,17 +11,16 @@
                 <br>
                 <select name="genero" id="genero" required>
                     <option value="">Elija el género</option>
-                        {foreach from=$generos item=$genero}
-                            <option class="mayusc" value="{$genero->id_genero}">{$genero->genre}</option>
-                        {/foreach}
+                    {foreach from=$generos item=$genero}
+                        <option class="mayusc" value="{$genero->id_genero}">{$genero->genre}</option>
+                    {/foreach}
                 </select>
                 <br>
                 <br>
                 <input type="submit" class="btn btn-primary" value="Editar">
             </form>
         </div>
-
     </div>
     <a class="btn btn-success" href="lista">Volver al catálogo</a>
 </div>
-{include file='template/footer.tpl'}	
+{include file='template/footer.tpl'}

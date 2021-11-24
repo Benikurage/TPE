@@ -15,10 +15,6 @@ class ListView{
         $this->smarty->assign('productos', $products);   
         $this->smarty->assign('generos', $genres);   
         $this->smarty->display('template/listPrivate.tpl');
-        // if($sessionCheck==true){
-        // }else{
-        //     $this->smarty->display('template/listPublic.tpl');
-        // }
     }
 
     function showGenres($products, $sessionCheck=false,  $error=""){

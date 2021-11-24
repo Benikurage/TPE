@@ -32,13 +32,4 @@ class CommentsModel {
         return $this->db->lastInsertId();
     }
 
-    // public function getUserComment($id){
-    //     $query = $this->db->prepare('SELECT * FROM comentarios  WHERE id_producto=? ORDER BY id_comentario DESC ');
-    //     $query->execute(array($id));
-    //     $equipos = $query->fetchAll(PDO::FETCH_OBJ);
-    //     return $equipos;
-    // }
-
-
-
 }

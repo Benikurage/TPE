@@ -26,7 +26,7 @@ class ListController{
     }
 
     function sessionCheck(){
-        if(!isset($_SESSION['ID_USER'])){
+        if(!isset($_SESSION['_SESSION'])){
             session_start();
         }
         $sessionCheck = isset($_SESSION['ID_USER']);
@@ -41,9 +41,10 @@ class ListController{
     }
 
     function showGenres($error=""){
-        $sessionCheck = $this->sessionCheck();
+        // $sessionCheck = $this->sessionCheck();
+        $adminCheck = $this->loginController->checkAdmin();
         $genres = $this->genreModel->getGenres();
-        $this->view->showGenres($genres, $sessionCheck, $error);
+        $this->view->showGenres($genres, $adminCheck, $error);
     }
     
     function getProductsByGenre($id){
@@ -76,19 +77,18 @@ class ListController{
     }
        
     function getLoggedUser(){
-        if(!isset($_SESSION['ID_USER'])){
-            session_start();
+        if(isset($_SESSION['EMAIL'])){
+            $email = $_SESSION['EMAIL'];
+            $user = $this->loginController->getUsernameByMail($email);
+            return $user;
         }
-        $email = $_SESSION['EMAIL'];
-        $user = $this->loginController->getUsernameByMail($email);
-        return $user;
     }
 
     function details($id){
         $product = $this->model->getProduct($id);
         $comments = $this->commentsModel->getComments();
-        $user = $this->getLoggedUser();
         $sessionCheck = $this->sessionCheck();
+        $user = $this->getLoggedUser();
         $adminCheck = $this->loginController->checkAdmin();
         $this->view->showDetails($product, $comments, $user, $sessionCheck, $adminCheck);
     }

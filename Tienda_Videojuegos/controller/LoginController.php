@@ -99,7 +99,9 @@ class LoginController{
         if(!isset($_SESSION['ID_USER'])){
             session_start();
         }
-        $email = $_SESSION['EMAIL'];
+        if (isset($_SESSION['EMAIL'])) {
+            $email = $_SESSION['EMAIL'];
+        }
         $user = $this->model->getUser($email);
         return $user->nombre;
     }

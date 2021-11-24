@@ -53,7 +53,9 @@
         {/if}
             <a class="btn btn-dark" href="inicio">Inicio</a>
             <a class="btn btn-dark" href="listCategory">Listdo de géneros</a>
+        {if $adminCheck==true}
             <a class="btn btn-danger" href="logout">Logout</a>
+        {/if}
         </div>
     </div>
 </div>
