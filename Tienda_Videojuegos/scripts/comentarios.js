@@ -3,7 +3,12 @@ const url = 'api/comentarios';
 
 
 function listen() {
-    let btn = document.querySelector(".enviar").addEventListener("click", createComment);
+    try {
+        let btn = document.querySelector("#enviar").addEventListener("click", createComment);
+    } catch (error) {
+        console.log(error);
+    }
+    let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
     let tabla = document.querySelector("#resumen");
 }
 
@@ -57,7 +62,7 @@ async function showComments() {
         let res = await fetch(url);
         if (res.ok) {
             let comments = await res.json();
-            let filteredComments = filterIdProduct(comments);
+            let filteredComments = filterProduct(comments);
             app.comentarios = filteredComments;
         }
     } catch (error) {
@@ -65,13 +70,19 @@ async function showComments() {
     }
 }
 
-function filterIdProduct(comments) {
+function filterProduct(comments) {
     let id_producto = document.querySelector("#id_producto").value;
+    let puntaje = document.querySelector("#puntajeFiltro").value;
     let filteredComments = [];
 
-    for (let i = 0; i < comments.length; i++) {
-        if (id_producto == comments[i].id_producto)
-            filteredComments.push(comments[i]);
+    if(puntaje == 0){
+        for (let i = 0; i < comments.length; i++) 
+            if (id_producto == comments[i].id_producto)
+                filteredComments.push(comments[i]);
+    } else {
+        for (let i = 0; i < comments.length; i++) 
+            if (id_producto == comments[i].id_producto && puntaje == comments[i].puntaje)
+                filteredComments.push(comments[i]);
     }
 
     return filteredComments;

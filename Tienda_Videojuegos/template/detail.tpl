@@ -25,13 +25,13 @@
             <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
             <select name="puntaje" id="puntaje" required>
                 <option value="1">Puntaje</option>
-                <option class="mayusc" value="1">1</option>
-                <option class="mayusc" value="2">2</option>
-                <option class="mayusc" value="3">3</option>
-                <option class="mayusc" value="4">4</option>
-                <option class="mayusc" value="5">5</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
-            <button type="submit" class="btn_coment enviar" value="addComment">Enviar comentario</button>
+            <button type="submit" class="btn_coment" id="enviar" value="addComment">Enviar comentario</button>
         </form>
     {/if}
     {if $sessionCheck==false}
@@ -39,6 +39,18 @@
     {/if}
     <div id="app">
         {include "./vue/adminComments.tpl"} 
+    </div>
+    
+    <div>
+        <select name="puntaje" id="puntajeFiltro">
+            <option value="0">Filtrar comentarios por puntuación</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button class="btn btn-primary" id="filter">Filtrar!</button>
     </div>
     <div>
         <a href="home" class="btn btn-dark">Inicio</a>
