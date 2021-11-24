@@ -1,6 +1,6 @@
 <?php
 class GenreModel{
-    
+
     private $db;
     function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=tienda_videojuegos;charset=utf8', 'root', '');
