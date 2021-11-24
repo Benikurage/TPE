@@ -24,7 +24,7 @@ class ListController{
         $this->view = new ListView();
         $this->helper = new AuthHelper();
     }
-
+    
     function sessionCheck(){
         if(!isset($_SESSION['_SESSION'])){
             session_start();
@@ -41,7 +41,6 @@ class ListController{
     }
 
     function showGenres($error=""){
-        // $sessionCheck = $this->sessionCheck();
         $adminCheck = $this->loginController->checkAdmin();
         $genres = $this->genreModel->getGenres();
         $this->view->showGenres($genres, $adminCheck, $error);
