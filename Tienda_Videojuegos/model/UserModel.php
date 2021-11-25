@@ -12,9 +12,9 @@ class UserModel{
         $query->execute(array($nombre, $email, $password, $admin));
     }
 
-    function getUser($email){
-        $query = $this->db->prepare('SELECT * FROM usuario WHERE email = ?');
-        $query->execute([$email]);
+    function getUser($id){
+        $query = $this->db->prepare('SELECT * FROM usuario WHERE id_usuario = ?');
+        $query->execute([$id]);
         return $query->fetch(PDO::FETCH_OBJ);
     }
 

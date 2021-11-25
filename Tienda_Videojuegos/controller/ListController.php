@@ -3,6 +3,7 @@
 require_once "./model/GenreModel.php";
 require_once "./model/ProductModel.php";
 require_once "./model/CommentsModel.php";
+require_once "./model/UserModel.php";
 require_once "./view/ListView.php";
 require_once "./Helpers/AuthHelper.php";
 require_once "./controller/LoginController.php";
@@ -12,6 +13,7 @@ class ListController{
     private $model;
     private $genreModel;
     private $commentsModel;
+    private $userModel;
     private $view;
     private $helper;
     private $loginController;
@@ -20,6 +22,7 @@ class ListController{
         $this->model = new ProductModel();
         $this->genreModel = new GenreModel();
         $this->commentsModel = new CommentsModel();
+        $this->userModel = new UserModel();
         $this->loginController = new LoginController();
         $this->view = new ListView();
         $this->helper = new AuthHelper();
@@ -76,9 +79,9 @@ class ListController{
     }
        
     function getLoggedUser(){
-        if(isset($_SESSION['EMAIL'])){
-            $email = $_SESSION['EMAIL'];
-            $user = $this->loginController->getUsernameByMail($email);
+        if(isset($_SESSION['ID_USER'])){
+            $id = $_SESSION['ID_USER'];
+            $user = $this->userModel->getUser($id);
             return $user;
         }
     }

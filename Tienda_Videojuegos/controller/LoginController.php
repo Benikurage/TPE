@@ -82,9 +82,9 @@ class LoginController{
         { 
             session_start(); 
         } 
-        if(isset($_SESSION['EMAIL'])){
-            $email = $_SESSION['EMAIL'];
-            $user = $this->model->getUser($email);
+        if(isset($_SESSION['ID_USER'])){
+            $userId = $_SESSION['ID_USER'];
+            $user = $this->model->getUser($userId);
             if($user->admin==true){
                 return true;
             } else {
