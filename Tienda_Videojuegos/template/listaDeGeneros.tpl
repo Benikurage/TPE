@@ -44,7 +44,7 @@
     <a class="btn btn-dark" href="inicio">Inicio</a>
     <a class="btn btn-success" href="lista">Volver al catálogo</a>
     {if $sessionCheck==true}
-    <a class="b tn btn-danger" href="logout">Logout</a>
+    <a class="btn btn-danger" href="logout">Logout</a>
     {/if}
 </div>
 {include file='template/footer.tpl'}

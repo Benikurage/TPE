@@ -19,7 +19,8 @@ textarea {
 }
 
 body {
-    background-color: #dcd8c0;
+    background-image: url("../img/videojuego.jpg");
+    width: 80%;
 }
 
 h1,
