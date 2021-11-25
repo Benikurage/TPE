@@ -41,7 +41,7 @@
                 <input placeholder="Nombre" type="text" name="nombre" id="nombre" required>
                 <input placeholder="Descripción" type="text" name="descripcion" id="descripcion" required>
                 <input placeholder="Precio" type="number" name="precio" id="precio" required>
-                <select  class="btn-primary" name="genero" id="genero" required>
+                <select name="genero" id="genero" required>
                     <option value="">Elija el género</option>
                     {foreach from=$generos item=$genero}
                         <option class="mayusc" value="{$genero->id_genero}">{$genero->genre}</option>
