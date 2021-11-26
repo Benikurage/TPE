@@ -69,6 +69,9 @@ switch ($params[0]) {
     case 'createGenre':
         $listController->createGenre();
         break;
+    case 'filter':
+        $listController->showFilteredProducts();
+        break;
     case 'deleteGenre': 
         $listController->deleteGenre($params[1]); 
         break;

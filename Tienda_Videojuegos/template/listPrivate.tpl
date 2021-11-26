@@ -51,8 +51,18 @@
                 <input type="submit" class="btn btn-primary" value="Guardar">
             </form>
         {/if}
-            <a class="btn btn-dark" href="inicio">Inicio</a>
-            <a class="btn btn-dark" href="listCategory">Listdo de géneros</a>
+
+        <form action="filter" method="POST">
+            <input type="text" name="search-field">
+            <select name="filter">
+                <option value="nombre">Juego</option>
+                <option value="descripcion">Descripcion</option>
+                <option value="precio">Precio</option>
+            </select>
+            <button class="btn btn-dark">Filtrar juegos</button>
+        </form>
+        <a class="btn btn-dark" href="inicio">Inicio</a>
+        <a class="btn btn-dark" href="listCategory">Listdo de géneros</a>
         {if $adminCheck==true}
             <a class="btn btn-danger" href="logout">Logout</a>
         {/if}

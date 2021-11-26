@@ -35,8 +35,8 @@ class ListController{
     }
 
     function list(){
-        $products = $this->model->getGenresFromProducts();
         $adminCheck = $this->loginController->checkAdmin();
+        $products = $this->model->getGenresFromProducts();
         $genres = $this->genreModel->getGenres();
         $this->view->showProducts($products, $adminCheck, $genres);
     }
@@ -207,5 +207,20 @@ class ListController{
         $sessionCheck = $this->sessionCheck();
         $adminCheck = $this->loginController->checkAdmin();
         $this->view->showHome($sessionCheck, $adminCheck, $error);
+    }
+
+    function showFilteredProducts() {
+        $adminCheck = $this->loginController->checkAdmin();
+        // $genres = $this->genreModel->getGenres();
+        if (isset($_POST['filter'], $_POST['search-field'])) {
+            $filter = $_POST['filter'];
+            $search = $_POST['search-field'];
+            $search = "%".$search."%";
+            $products = $this->model->getFilteredProducts($filter, $search);
+        } else {
+            $products = $this->model->getGenresFromProducts();
+        }
+        // var_dump($genres);
+        $this->view->showProducts($products, $adminCheck);
     }
 }
