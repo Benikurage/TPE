@@ -29,9 +29,6 @@ class ListController{
     }
     
     function sessionCheck(){
-        // if(!isset($_SESSION['_SESSION'])){
-        //     session_start();
-        // }
         $this->loginController->refreshSession();
         $sessionCheck = isset($_SESSION['ID_USER']);
         return $sessionCheck;
@@ -63,6 +60,7 @@ class ListController{
     
     function createProduct(){
         $this->helper->checkLoggedIn();
+        
         if ($this->verifyProduct()==true) 
             $this->model->insertProduct($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
             $this->list();
@@ -98,24 +96,29 @@ class ListController{
     }
        
     function getLoggedUser(){
-        // session_start();
         $this->loginController->refreshSession();
         if(isset($_SESSION['ID_USER'])){
             $id = $_SESSION['ID_USER'];
             $user = $this->userModel->getUser($id);
-            // $username = $user->nombre;
             return $user;
         }
     }
-    
+    function getLoggedUsername(){
+        $user = $this->getLoggedUser();
+        if ($user==true) {
+            $username = $user->nombre;
+            return $username ;
+        } else {
+            return null;
+        }
+    }
     function details($id){
         $product = $this->verifyProductById($id);
         if ($product==true) {
-            $comments = $this->commentsModel->getComments();
-            $sessionCheck = $this->sessionCheck();
-            $user = $this->getLoggedUser();
-            $username = $user->nombre;
             $adminCheck = $this->loginController->checkAdmin();
+            $sessionCheck = $this->sessionCheck();
+            $comments = $this->commentsModel->getComments();
+            $username = $this->getLoggedUsername();
             $this->view->showDetails($product, $comments, $username, $sessionCheck, $adminCheck);
         } else {
             $this->homeError('Ese juego no existe');
@@ -134,12 +137,17 @@ class ListController{
     }
  
     function deleteGenre($id){
-        $this->helper->checkLoggedIn();        
-        if($this->model->getProductsByGenre($id)==true){
-            $this->showGenres('No se puede eliminar un género que tiene un juego asignado!');
-        }else{
-            $this->genreModel->deleteGenre($id);
-            $this->showGenres();
+        $this->helper->checkLoggedIn();
+        $verify = $this->verifyGenreById($id);
+        if ($verify == true) {
+            if($this->model->getProductsByGenre($id)==true){
+                $this->showGenres('No se puede eliminar un género que tiene un juego asignado!');
+            }else{
+                $this->genreModel->deleteGenre($id);
+                $this->showGenres();
+            }
+        } else {
+            $this->homeError('Ese género no existe'); 
         }
     }
 
@@ -152,7 +160,8 @@ class ListController{
             $this->homeError('Ese género no existe');
         }
     }
-    
+
+
     function showEditGenre($id){
         $this->helper->checkLoggedIn();
         $verify = $this->verifyGenreById($id);
@@ -171,11 +180,11 @@ class ListController{
     }
 
     function verifyProduct(){
-        return isset($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
+        return isset($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
     }
 
     function verifyGenre(){
-        return isset($_POST['id_genero'], $_POST['genre']);
+        return isset($_POST['genre']);
     }
 
     function verifyComment(){
@@ -198,6 +207,5 @@ class ListController{
         $sessionCheck = $this->sessionCheck();
         $adminCheck = $this->loginController->checkAdmin();
         $this->view->showHome($sessionCheck, $adminCheck, $error);
-
     }
 }

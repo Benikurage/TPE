@@ -44,8 +44,8 @@ class ProductModel{
         $query->execute(array($id));
     }
         
-    function updateProduct($id, $nombre, $descripcion, $precio, $genero){
-        $query = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio', `genero`='$genero' WHERE id_producto=?");
+    function updateProduct($id, $nombre, $descripcion, $precio, $id_genero){
+        $query = $this->db->prepare("UPDATE producto SET `nombre`='$nombre',`descripcion`='$descripcion',`precio`='$precio', `id_genero`='$id_genero' WHERE id_producto=?");
         $query->execute(array($id));
     }
  

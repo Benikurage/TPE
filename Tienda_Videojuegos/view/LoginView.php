@@ -17,8 +17,9 @@ class LoginView{
         $this->smarty->display('template/registro.tpl');
     }
 
-    function showUserList($users){
+    function showUserList($users, $admin=false){
         $this->smarty->assign('usuarios', $users);   
+        $this->smarty->assign('admin', $admin);   
         $this->smarty->display('template/listaUsuarios.tpl');
     }
 

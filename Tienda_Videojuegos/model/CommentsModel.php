@@ -21,6 +21,12 @@ class CommentsModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    public function getCommentsByName($name){
+        $query = $this->db->prepare("SELECT * FROM comentarios WHERE nombre = ? ");
+        $query->execute(array($name));
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
     // function filtrarComentariosPuntaje($id_contenido, $puntaje) {
     //     $query = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.comentario, comentarios.puntuacion, usuarios.nombreUsuario
     //     FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario WHERE comentarios.id_contenido = ? AND comentarios.puntuacion = ?");

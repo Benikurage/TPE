@@ -38,8 +38,12 @@ class UserModel{
     }
 
     function deleteUser($id){
-        $query = $this->db->prepare("DELETE FROM `usuario` WHERE `id_usuario` = ?");
-        $query->execute(array($id));
+        try {
+            $query = $this->db->prepare("DELETE FROM `usuario` WHERE `id_usuario` = ?");
+            $query->execute(array($id));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     function assignAdmin($id, $admin){

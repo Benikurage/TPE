@@ -3,6 +3,7 @@
 require_once "./view/LoginView.php";
 require_once "./view/ListView.php";
 require_once "./model/UserModel.php";
+require_once "./model/CommentsModel.php";
 
 class LoginController{
     private $model;
@@ -11,6 +12,7 @@ class LoginController{
 
     function __construct(){
         $this->model = new UserModel();
+        $this->commentsModel = new CommentsModel();
         $this->view = new LoginView();
         $this->listView = new listView();
     }
@@ -118,18 +120,37 @@ class LoginController{
 
     function showListAdmin(){
         $this->adminSecurity();
+        $admin = $this->checkAdmin();
         $users = $this->model->getUsers();
-        $this->view->showUserList($users);
+        $this->view->showUserList($users, $admin);
     }
 
     function deleteUser($id){
         $this->adminSecurity();
-        $check = $this->verifyUserById($id);
-        if($check==true){
-            $this->model->deleteUser($id);
-            $this->showListAdmin();
+        $adminCheck = $this->checkAdmin();
+        $this->refreshSession();
+        $sessionCheck = isset($_SESSION['ID_USER']);
+        $idCheck = $this->verifyUserById($id);
+        if($idCheck==true){
+            if($this->checkIfUserCommented($id)==true){
+                $this->listView->showHome($sessionCheck, $adminCheck, 'No se puede eliminar un usuario que comentó.');
+            } else {
+                $this->model->deleteUser($id);
+                $this->showListAdmin();
+            }
         } else {
-            $this->listView->showHome('Ese usuario no existe.');
+            $this->listView->showHome($sessionCheck, $adminCheck, 'Ese usuario no existe.');
+        }
+    }
+
+    function checkIfUserCommented($id){
+        $user = $this->model->getUser($id);
+        $name = $user->nombre;
+        $comments = $this->commentsModel->getCommentsByName($name);
+        if (isset($comments)) {
+            return true;
+        } else {
+            return false;
         }
     }
 

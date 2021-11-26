@@ -1,4 +1,5 @@
 {include file='template/header.tpl'}
+{if $admin==true}    
 <div class="container">
     <div class="row mt-4">
         <div class="col-md-8">
@@ -28,4 +29,8 @@
     </div>
     <a class="btn btn-dark" href="inicio">Inicio</a>
 </div>
+{else}
+    <h4 class="alert-danger">Usted no tiene permiso de admin.</h4>
+    <a class="btn btn-dark" href="inicio">Inicio</a>
+{/if}
 {include file='template/footer.tpl'}
