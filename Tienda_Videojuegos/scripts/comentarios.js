@@ -8,18 +8,8 @@ function listen() {
     } catch (error) {
         console.log(error);
     }
-    try {
-        let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
-
-    } catch (error) {
-        console.log(error);
-    }
-    try {
-        let tabla = document.querySelector("#resumen");
-
-    } catch (error) {
-        console.log(error);
-    }
+    let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
+        // let tabla = document.querySelector("#resumen");
 }
 
 async function createComment(e) {
@@ -59,7 +49,7 @@ function getData() {
 
     let data = {
         comentario: comentario,
-        username: username,
+        nombre: username,
         id_producto: id_producto,
         puntaje: puntaje
     }

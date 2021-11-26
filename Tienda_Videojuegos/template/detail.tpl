@@ -21,7 +21,7 @@
     {if $sessionCheck==true}    
         <form class="form-alta" method="POST">
             <input type="text" id="comentario" class="input_coment" placeholder="Comentario">   
-            <input type="text" id="username" value="{$usuario}" hidden>
+            <input type="text" id="username" value="{$username}" hidden>
             <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
             <select name="puntaje" id="puntaje" required>
                 <option value="1">Puntaje</option>

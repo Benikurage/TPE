@@ -15,10 +15,14 @@ class LoginController{
         $this->listView = new listView();
     }
     
-    function startSession($user){
+    function refreshSession(){
         if(!isset($_SESSION)){ 
             session_start(); 
         }
+    }
+
+    function startSession($user){
+        $this->refreshSession();
         $_SESSION['ID_USER'] = $user->id_usuario;
         $_SESSION['EMAIL'] = $user->email;
         return true;
@@ -54,10 +58,11 @@ class LoginController{
             try {
                 $this->model->createUser($nombre, $email, $password);
                 $user = $this->model->getUserByMail($email);
-                $this->startSession($user); 
-                $this->listView->showHome("Usuario creado!");
+                $sessionCheck = $this->startSession($user); 
+                $adminCheck = false;
+                $this->listView->showHome($sessionCheck, $adminCheck, "Usuario creado!");
             } catch (\Throwable $th) {
-                $this->loginView->showSignUpForm("Ese nombre no está disponible!");
+                $this->view->showSignUpForm("Ese nombre no está disponible!");
             }
         }
     }
@@ -79,10 +84,8 @@ class LoginController{
     }
 
     function checkAdmin(){
-        if(!isset($_SESSION)) 
-        { 
-            session_start(); 
-        } 
+        $this->refreshSession();
+
         if(isset($_SESSION['ID_USER'])){
             $userId = $_SESSION['ID_USER'];
             $user = $this->model->getUser($userId);
@@ -96,16 +99,15 @@ class LoginController{
         }
     }
 
-    function getUsernameByMail($email){
-        if(!isset($_SESSION['ID_USER'])){
-            session_start();
-        }
-        if (isset($_SESSION['EMAIL'])) {
-            $email = $_SESSION['EMAIL'];
-        }
-        $user = $this->model->getUser($email);
-        return $user->nombre;
-    }
+    // function getUsernameByMail($email){
+    //     $this->refreshSession();
+
+    //     if (isset($_SESSION['EMAIL'])) {
+    //         $email = $_SESSION['EMAIL'];
+    //     }
+    //     $user = $this->model->getUser($email);
+    //     return $user->nombre;
+    // }
 
     function adminSecurity(){
         $admin = $this->checkAdmin();
@@ -122,22 +124,38 @@ class LoginController{
 
     function deleteUser($id){
         $this->adminSecurity();
-        $this->model->deleteUser($id);
-        $this->showListAdmin();
+        $check = $this->verifyUserById($id);
+        if($check==true){
+            $this->model->deleteUser($id);
+            $this->showListAdmin();
+        } else {
+            $this->listView->showHome('Ese usuario no existe.');
+        }
     }
 
     function toggleAdmin($id){
         $this->adminSecurity();
-        $user = $this->model->checkAdminById($id);
-        $admin = $user->admin;
-
-        if($admin==true){
-            $this->model->assignAdmin($id, false);
-        } else if ($admin==false){
-            $this->model->assignAdmin($id, true);
+        $check = $this->verifyUserById($id);
+        if ($check == true) {
+            $user = $this->model->checkAdminById($id);
+            $admin = $user->admin;
+    
+            if($admin==true){
+                $this->model->assignAdmin($id, false);
+            } else if ($admin==false){
+                $this->model->assignAdmin($id, true);
+            } else {
+                $this->listView->showHome('Error');
+            }
+            $this->showListAdmin();
         } else {
-            echo "error";
+           $this->listView->showHome('Ese usuario no existe.');
         }
-        $this->showListAdmin();
+    }
+
+    function verifyUserById($id){
+        if (isset($id))
+            $user = $this->model->getUser($id);
+            return $user;
     }
 }

@@ -31,10 +31,10 @@ class ListView{
         $this->smarty->display('template/listaDeProductosPorGenero.tpl');
     }
 
-    function showDetails($product, $comments, $user="", $sessionCheck=false, $adminCheck=false){
+    function showDetails($product, $comments, $username="", $sessionCheck=false, $adminCheck=false){
         $this->smarty->assign('producto', $product);
         $this->smarty->assign('comentarios', $comments);
-        $this->smarty->assign('usuario', $user);
+        $this->smarty->assign('username', $username);
         $this->smarty->assign('sessionCheck', $sessionCheck);
         $this->smarty->assign('adminCheck', $adminCheck);
         $this->smarty->display('template/detail.tpl');

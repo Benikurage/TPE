@@ -34,9 +34,9 @@ class CommentsModel {
         $query->execute(array($id));
     }
 
-    public function insertComment($comentario, $username, $id_producto, $puntaje){
-        $query = $this->db->prepare("INSERT INTO `comentarios` (`comentario`, `username`, `id_producto`, `puntaje`) VALUES (?, ?, ?, ?)");
-        $query->execute(array($comentario, $username, $id_producto, $puntaje));
+    public function insertComment($comentario, $nombre, $id_producto, $puntaje){
+        $query = $this->db->prepare("INSERT INTO `comentarios` (`comentario`, `nombre`, `id_producto`, `puntaje`) VALUES (?, ?, ?, ?)");
+        $query->execute(array($comentario, $nombre, $id_producto, $puntaje));
         return $this->db->lastInsertId();
     }
 

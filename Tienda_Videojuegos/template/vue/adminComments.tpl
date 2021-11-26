@@ -7,7 +7,7 @@
             <th>Puntaje</th>
             <th>Borrar</th>
             <tr v-for="comentario in comentarios">
-                <td>{{comentario.username}}</td>
+                <td>{{comentario.nombre}}</td>
                 <td>{{comentario.comentario}}</td>
                 <td>{{comentario.puntaje}}</td>
                 <td><button class="btn btn-danger delete" v-bind:id="comentario.id_comentario" @click="deleteComments">Borrar</button></td>
@@ -23,7 +23,7 @@
             <th>Comentario</th>
             <th>Puntaje</th>
             <tr v-for="comentario in comentarios">
-                <td>{{comentario.username}}</td>
+                <td>{{comentario.nombre}}</td>
                 <td>{{comentario.comentario}}</td>
                 <td>{{comentario.puntaje}}</td>
             </tr>
