@@ -54,16 +54,19 @@ class ListController{
         $products = $this->model->getProductsByGenre($id);
         $this->view->showProductsByGenre($products, $genre);
     }
-
-    function createProduct(){
-       $this->model->insertProduct($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
-       $this->list();
-    }
     
+    function createProduct(){
+        $this->helper->checkLoggedIn();
+        if ($this->verifyComment()==true) 
+            $this->model->insertProduct($_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
+            $this->list();
+    }
+
     function updateProduct(){
         $this->helper->checkLoggedIn();
-        $this->model->updateProduct($_POST['id_producto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
-        $this->list();
+        if ($this->verifyComment()==true) 
+            $this->model->updateProduct($_POST['id_producto'],$_POST['nombre'], $_POST['descripcion'], $_POST['precio'], $_POST['genero']);
+            $this->list();
     }
 
     function deleteProduct($id){
@@ -85,23 +88,29 @@ class ListController{
             return $user;
         }
     }
-
+    
     function details($id){
         $product = $this->model->getProduct($id);
-        $comments = $this->commentsModel->getComments();
-        $sessionCheck = $this->sessionCheck();
-        $user = $this->getLoggedUser();
-        $adminCheck = $this->loginController->checkAdmin();
-        $this->view->showDetails($product, $comments, $user, $sessionCheck, $adminCheck);
+        if ($product==true) {
+            $comments = $this->commentsModel->getComments();
+            $sessionCheck = $this->sessionCheck();
+            $user = $this->getLoggedUser();
+            $adminCheck = $this->loginController->checkAdmin();
+            $this->view->showDetails($product, $comments, $user, $sessionCheck, $adminCheck);
+        } else {
+            echo('Ese juego no existe.');
+        }
     }
 
     function createComment(){
-        $this->commentsModel->insertComment($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
+        if ($this->verifyComment()==true) 
+            $this->commentsModel->insertComment($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
     }
 
     function createGenre(){
-        $this->genreModel->insertGenre($_POST['id_genero'], $_POST['genre']);
-        $this->showGenres();
+        if ($this->verifyGenre()==true)
+            $this->genreModel->insertGenre($_POST['id_genero'], $_POST['genre']);
+            $this->showGenres();
     }
  
     function deleteGenre($id){
@@ -114,11 +123,12 @@ class ListController{
             $this->showGenres();
         }
     }
-     
+
     function updateGenre(){
         $this->helper->checkLoggedIn();
-        $this->genreModel->updateGenre($_POST['id_genero'], $_POST['genre']);
-        $this->showGenres();
+        if ($this->verifyGenre()==true) 
+            $this->genreModel->updateGenre($_POST['id_genero'], $_POST['genre']);
+            $this->showGenres();
     }
     
     function showEditGenre($id){
@@ -131,6 +141,18 @@ class ListController{
         $sessionCheck = $this->sessionCheck();
         $adminCheck = $this->loginController->checkAdmin();
         $this->view->showHome($sessionCheck, $adminCheck);
+    }
+
+    function verifyProduct(){
+        return isset($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
+    }
+
+    function verifyGenre(){
+        return isset($_POST['id_genero'], $_POST['genre']);
+    }
+
+    function verifyComment(){
+        return isset($_POST['comentario'], $_POST['username'], $_POST['id_producto'], $_POST['puntaje']);
     }
    
 }

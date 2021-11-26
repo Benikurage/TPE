@@ -12,7 +12,9 @@
     text-transform: capitalize;
 }
 
-
+.container{
+    padding-top: 30px;
+}
 
 input,
 textarea {
@@ -20,9 +22,10 @@ textarea {
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #dcd8c0;
     background-image: url("../img/background.jpeg");
-    width: 100%;
+    background-size: cover;
+    padding-top: 20px;
 }
 
 h1,

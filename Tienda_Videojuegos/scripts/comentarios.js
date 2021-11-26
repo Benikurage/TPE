@@ -8,8 +8,18 @@ function listen() {
     } catch (error) {
         console.log(error);
     }
-    let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
-    let tabla = document.querySelector("#resumen");
+    try {
+        let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
+
+    } catch (error) {
+        console.log(error);
+    }
+    try {
+        let tabla = document.querySelector("#resumen");
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 async function createComment(e) {
@@ -75,12 +85,12 @@ function filterProduct(comments) {
     let puntaje = document.querySelector("#puntajeFiltro").value;
     let filteredComments = [];
 
-    if(puntaje == 0){
-        for (let i = 0; i < comments.length; i++) 
+    if (puntaje == 0) {
+        for (let i = 0; i < comments.length; i++)
             if (id_producto == comments[i].id_producto)
                 filteredComments.push(comments[i]);
     } else {
-        for (let i = 0; i < comments.length; i++) 
+        for (let i = 0; i < comments.length; i++)
             if (id_producto == comments[i].id_producto && puntaje == comments[i].puntaje)
                 filteredComments.push(comments[i]);
     }

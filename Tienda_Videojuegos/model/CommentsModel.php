@@ -21,6 +21,14 @@ class CommentsModel {
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
+    // function filtrarComentariosPuntaje($id_contenido, $puntaje) {
+    //     $query = $this->db->prepare("SELECT comentarios.id_comentario, comentarios.comentario, comentarios.puntuacion, usuarios.nombreUsuario
+    //     FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario WHERE comentarios.id_contenido = ? AND comentarios.puntuacion = ?");
+    //     $query->execute(array($id_contenido, $puntaje));
+    //     $comentarios = $query->fetchAll(PDO::FETCH_OBJ);
+    //     return $comentarios;
+    // }
+    
     public function deleteComment($id){
         $query = $this->db->prepare('DELETE FROM comentarios WHERE id_comentario = ?');
         $query->execute(array($id));

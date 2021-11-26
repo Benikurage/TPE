@@ -33,7 +33,7 @@ class LoginController{
         if(!empty($_POST['email']) && !empty($_POST['password'])){
             $email = $_POST['email'];
             $password = $_POST['password'];
-            $user = $this->model->getUser($email);
+            $user = $this->model->getUserByMail($email);
         }
 
         if($user && password_verify($password, $user->password)){
@@ -41,7 +41,7 @@ class LoginController{
             $adminCheck = $this->checkAdmin();
             $this->listView->showHome($sessionCheck, $adminCheck, "Usuario Logueado!");
         }else{
-            $this->view->showLogin();
+            $this->view->showLogin("Usuario o contraseña incorrecta!");
         }
 
     }
@@ -51,13 +51,14 @@ class LoginController{
             $nombre = $_POST['nombre'];
             $email = $_POST['email'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            
-            $this->model->createUser($nombre, $email, $password);
-
-            $user = $this->model->getUser($email);
-            $this->startSession($user); 
-
-            $this->listView->showHome("Usuario creado!");
+            try {
+                $this->model->createUser($nombre, $email, $password);
+                $user = $this->model->getUserByMail($email);
+                $this->startSession($user); 
+                $this->listView->showHome("Usuario creado!");
+            } catch (\Throwable $th) {
+                $this->loginView->showSignUpForm("Ese nombre no está disponible!");
+            }
         }
     }
 

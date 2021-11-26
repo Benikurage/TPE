@@ -7,11 +7,13 @@ class LoginView{
         $this->smarty= new Smarty();
     }
 
-    function showLogin(){
+    function showLogin($error=''){
+        $this->smarty->assign('error', $error);
         $this->smarty->display('template/login.tpl');
     }
 
-    function showSignUpForm(){
+    function showSignUpForm($error=''){
+        $this->smarty->assign('error', $error);
         $this->smarty->display('template/registro.tpl');
     }
 

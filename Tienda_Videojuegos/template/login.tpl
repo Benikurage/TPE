@@ -12,4 +12,5 @@
         </div>
     </div>
 </div>
+<h4 class="alert-danger">{$error}</h4>
 {include file='template/footer.tpl'}
