@@ -10,8 +10,9 @@
 
 .mayusc {
     text-transform: capitalize;
-
 }
+
+
 
 input,
 textarea {
@@ -19,7 +20,9 @@ textarea {
 }
 
 body {
-    background-color: #dcd8c0;
+    background-color: #ffffff;
+    background-image: url("../img/background.jpeg");
+    width: 100%;
 }
 
 h1,
