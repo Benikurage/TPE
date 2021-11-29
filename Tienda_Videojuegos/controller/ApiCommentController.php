@@ -13,9 +13,19 @@ class ApiCommentController{
         $this->data = file_get_contents("php://input");
     }
 
-    function getComments(){
-        $comments = $this->model->getComments();
-        return $this->view->response($comments, 200);
+    function getComments($params = null){
+        $id_producto = $params[':ID'];
+        if (isset($params[':SCORE'])) {
+            $score = $params[':SCORE'];
+            $comments = $this->model->getCommentsByScore($id_producto, $score);
+        } else {
+            $comments = $this->model->getComments($id_producto);
+        }
+        if ($comments == true) {
+            return $this->view->response($comments, 200);
+        } else {
+            return $this->view->response([], 204);    
+        }
     }
 
     function getComment($params = []){

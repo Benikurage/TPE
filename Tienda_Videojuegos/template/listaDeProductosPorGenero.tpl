@@ -10,12 +10,15 @@
                         <th>Juego</th>
                         <th>Descripción</th>
                         <th>Precio</th>
+                        <th>Detalles</th>
                     </tr>
                     {foreach from=$productos item=$producto}
                         <tr>
                             <td>{$producto->nombre}</td>
                             <td>{$producto->descripcion|truncate:30}</td>
                             <td>${$producto->precio}</td>
+                            <td><a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a></td>
+
                         </tr>
                     {/foreach}
                 </tbody>

@@ -156,8 +156,14 @@ class LoginController{
 
     function toggleAdmin($id){
         $this->adminSecurity();
-        $check = $this->verifyUserById($id);
-        if ($check == true) {
+        $adminCheck = $this->checkAdmin();
+        
+        $this->refreshSession();
+        $sessionCheck = isset($_SESSION['ID_USER']);
+        
+        $idCheck = $this->verifyUserById($id);
+
+        if ($idCheck && $sessionCheck && $adminCheck) {
             $user = $this->model->checkAdminById($id);
             $admin = $user->admin;
     
@@ -170,7 +176,7 @@ class LoginController{
             }
             $this->showListAdmin();
         } else {
-           $this->listView->showHome('Ese usuario no existe.');
+            $this->listView->showHome($sessionCheck, $adminCheck, 'Ese usuario no existe.');
         }
     }
 

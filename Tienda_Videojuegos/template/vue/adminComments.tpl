@@ -1,3 +1,7 @@
+{literal}
+    <p class="alert-danger">{{error}}</p>
+{/literal}
+
 {if ($adminCheck == true)}
     {literal}
         <h2>Opiniones:</h2>

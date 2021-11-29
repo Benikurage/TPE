@@ -19,11 +19,11 @@
     </table>
     
     {if $sessionCheck==true}    
-        <form class="form-alta" method="POST">
-            <input type="text" id="comentario" class="input_coment" placeholder="Comentario">   
-            <input type="text" id="username" value="{$username}" hidden>
+        <form class ="form-groupaction" action="createComment" method="POST">
+            <input placeholder="Comentario" type="text" id="comentario" class="input_coment">   
+            <input type="text" id="username" value="{$username}" hidden >
             <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
-            <select name="puntaje" id="puntaje" required>
+            <select name="puntaje" id="puntaje">
                 <option value="1">Puntaje</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -41,8 +41,8 @@
         {include "./vue/adminComments.tpl"} 
     </div>
     
-    <div>
-        <select name="puntaje" id="puntajeFiltro">
+    <form method="POST">
+        <select id="score" name="score">
             <option value="0">Filtrar comentarios por puntuación</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -50,8 +50,9 @@
             <option value="4">4</option>
             <option value="5">5</option>
         </select>
-        <button class="btn btn-primary" id="filter">Filtrar!</button>
-    </div>
+        <button class="btn btn-dark" id="filter">Filtrar!</button>
+    </form>
+
     <div>
         <a href="home" class="btn btn-dark">Inicio</a>
         <a class="btn btn-success" href="lista">Volver al catálogo</a>

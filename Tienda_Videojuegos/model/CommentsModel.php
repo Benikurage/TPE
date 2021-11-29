@@ -8,12 +8,30 @@ class CommentsModel {
 
     }
 
-    public function getComments(){
-        $query = $this->db->prepare("SELECT * FROM comentarios");
-        $query->execute();
+    public function getComments($id){
+        $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto = ?");
+        $query->execute(array($id));
         $comments = $query->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
+
+    public function getCommentsByScore($id_producto, $puntaje){
+        $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto = ? AND puntaje = ?");
+        $query->execute(array($id_producto, $puntaje));
+        $comments = $query->fetchAll(PDO::FETCH_OBJ);
+        return $comments;
+    }
+
+    // function getSortedComments($id_producto, $filter, $order) {
+    //     //0) get filter & get by id
+    //     //1) get inner, ORDER BY $filtro $orden
+    //     //2) return
+    //     // FROM comentarios INNER JOIN usuarios ON comentarios.id_usuario = usuarios.id_usuario WHERE comentarios.id_contenido = ? ORDER BY $filtro $orden");
+    //     $query = $this->db->prepare("SELECT * FROM comentarios WHERE commentarios.id_producto = ?  ORDER BY $filter $order");
+    //     $query->execute(array($id_producto));
+    //     $comments = $query->fetchAll(PDO::FETCH_OBJ);
+    //     return $comments;
+    // }
 
     public function getComment($id){
         $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ? ");

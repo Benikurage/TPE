@@ -112,12 +112,13 @@ class ListController{
             return null;
         }
     }
+
     function details($id){
         $product = $this->verifyProductById($id);
         if ($product==true) {
             $adminCheck = $this->loginController->checkAdmin();
             $sessionCheck = $this->sessionCheck();
-            $comments = $this->commentsModel->getComments();
+            $comments = $this->commentsModel->getComments($id);
             $username = $this->getLoggedUsername();
             $this->view->showDetails($product, $comments, $username, $sessionCheck, $adminCheck);
         } else {
@@ -160,7 +161,6 @@ class ListController{
             $this->homeError('Ese género no existe');
         }
     }
-
 
     function showEditGenre($id){
         $this->helper->checkLoggedIn();
@@ -211,7 +211,8 @@ class ListController{
 
     function showFilteredProducts() {
         $adminCheck = $this->loginController->checkAdmin();
-        // $genres = $this->genreModel->getGenres();
+        $genres = $this->genreModel->getGenres();
+
         if (isset($_POST['filter'], $_POST['search-field'])) {
             $filter = $_POST['filter'];
             $search = $_POST['search-field'];
@@ -220,7 +221,7 @@ class ListController{
         } else {
             $products = $this->model->getGenresFromProducts();
         }
-        // var_dump($genres);
-        $this->view->showProducts($products, $adminCheck);
+        $this->view->showProducts($products, $adminCheck, $genres);
     }
+
 }

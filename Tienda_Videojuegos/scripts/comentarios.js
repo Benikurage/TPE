@@ -8,13 +8,15 @@ function listen() {
     } catch (error) {
         console.log(error);
     }
-    let btnShowComments = document.querySelector("#filter").addEventListener("click", showComments);
-        // let tabla = document.querySelector("#resumen");
+    let btnShowComments = document.querySelector("#filter").addEventListener("click", filterCommentsByScore);
+    let tabla = document.querySelector("#resumen");
 }
 
 async function createComment(e) {
     e.preventDefault();
     let data = getData();
+    let showError = document.querySelector("#error");
+
     if (data.comentario != "") {
         try {
             let res = await fetch(url, {
@@ -25,19 +27,19 @@ async function createComment(e) {
                 body: JSON.stringify(data)
             });
             if (res.ok) {
-                console.log(JSON.stringify(data));
+                // console.log(JSON.stringify(data));
                 console.log("Success");
+                app.error = "";
                 showComments();
             } else {
-                console.log(JSON.stringify(data));
+                // console.log(JSON.stringify(data));
                 console.log("Failure");
-                console.log(res.status);
             }
         } catch (error) {
             console.log(error);
         }
     } else {
-        console.log("No se puede agregar un comentario vacio");
+        app.error = "No se puede agregar un comentario vacío!";
     }
 }
 
@@ -58,40 +60,26 @@ function getData() {
 }
 
 async function showComments() {
+    let id = document.querySelector("#id_producto").value;
     try {
-        let res = await fetch(url);
-        if (res.ok) {
+        let res = await fetch(`${url}/${id}/`);
+        if (res.status == 200) {
+            console.log(res);
             let comments = await res.json();
-            let filteredComments = filterProduct(comments);
-            app.comentarios = filteredComments;
+            app.comentarios = comments;
+        } else if (res.status == 204){
+            app.comentarios = '';
         }
     } catch (error) {
         console.log(error);
     }
 }
 
-function filterProduct(comments) {
-    let id_producto = document.querySelector("#id_producto").value;
-    let puntaje = document.querySelector("#puntajeFiltro").value;
-    let filteredComments = [];
-
-    if (puntaje == 0) {
-        for (let i = 0; i < comments.length; i++)
-            if (id_producto == comments[i].id_producto)
-                filteredComments.push(comments[i]);
-    } else {
-        for (let i = 0; i < comments.length; i++)
-            if (id_producto == comments[i].id_producto && puntaje == comments[i].puntaje)
-                filteredComments.push(comments[i]);
-    }
-
-    return filteredComments;
-}
-
 let app = new Vue({
     el: "#app",
     data: {
         comentarios: [],
+        error: '',
     },
     methods: {
         deleteComments: function (id) {
@@ -106,12 +94,36 @@ async function deleteComment(id) {
         let res = await fetch(`${url}/${id}`, {
             "method": "DELETE",
         });
-        if (res.ok) {
-            showComments();
+        if (res.status == 200) {
             console.log("Comentario eliminado");
+            showComments();
         }
     } catch (error) {
         console.log("error" + error);
+    }
+}
+
+async function filterCommentsByScore(e) {
+    e.preventDefault();
+    
+    let id = document.querySelector("#id_producto").value;
+    let score = document.querySelector("#score").value;
+    
+    if (score!=0) {
+        try {
+            let res = await fetch(`${url}/${id}/${score}/`);
+            console.log(res);
+            if (res.status == 200) {
+                let comments = await res.json();
+                app.comentarios = comments;
+            } else if(res.status == 204){
+                app.comentarios = "";
+            }
+        } catch (error) {
+            console.log(error);
+        }        
+    } else {
+        showComments();
     }
 }
 
