@@ -16,7 +16,11 @@
                     {foreach from=$usuarios item=$usuario}
                         <tr>
                             <td>{$usuario->nombre}</td>
-                            <td>{$usuario->admin}</td>
+                            {if $usuario->admin == true}
+                                <td>Es Admin</td>  
+                            {else}
+                                <td>No es Admin</td>   
+                            {/if}
                             <td><a class="btn btn-danger" href="deleteUser/{$usuario->id_usuario}">Borrar</a></td>
                             <td><a class="btn btn-success" href="toggleAdmin/{$usuario->id_usuario}">Toggle Admin</a></td>
                         </tr>
