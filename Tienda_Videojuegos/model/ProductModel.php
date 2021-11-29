@@ -50,7 +50,6 @@ class ProductModel{
     }
  
     function getFilteredProducts($filter, $search){
-        // "SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero)"
         $query = $this->db->prepare("SELECT * FROM producto INNER JOIN genero ON (producto.id_genero = genero.id_genero) WHERE $filter LIKE ?");
         $query->execute(array($search));
         return $query->fetchAll(PDO::FETCH_OBJ);

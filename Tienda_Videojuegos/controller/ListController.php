@@ -95,32 +95,32 @@ class ListController{
         }
     }
        
-    function getLoggedUser(){
+    function getLoggedUserId(){
         $this->loginController->refreshSession();
         if(isset($_SESSION['ID_USER'])){
-            $id = $_SESSION['ID_USER'];
-            $user = $this->userModel->getUser($id);
-            return $user;
+            return $_SESSION['ID_USER'];
+            // $user = $this->userModel->getUser($id);
+            // return $user;
         }
     }
-    function getLoggedUsername(){
-        $user = $this->getLoggedUser();
-        if ($user==true) {
-            $username = $user->nombre;
-            return $username ;
-        } else {
-            return null;
-        }
-    }
+    // function getLoggedUsername(){
+    //     $user = $this->getLoggedUser();
+    //     if ($user==true) {
+    //         $username = $user->nombre;
+    //         return $username ;
+    //     } else {
+    //         return null;
+    //     }
+    // }
 
     function details($id){
         $product = $this->verifyProductById($id);
         if ($product==true) {
             $adminCheck = $this->loginController->checkAdmin();
             $sessionCheck = $this->sessionCheck();
-            $comments = $this->commentsModel->getComments($id);
-            $username = $this->getLoggedUsername();
-            $this->view->showDetails($product, $comments, $username, $sessionCheck, $adminCheck);
+            $comments = $this->commentsModel->getComments($id);  
+            $id_usuario = $this->getLoggedUserId();
+            $this->view->showDetails($product, $comments, $id_usuario, $sessionCheck, $adminCheck);
         } else {
             $this->homeError('Ese juego no existe');
         }
@@ -133,7 +133,7 @@ class ListController{
 
     function createGenre(){
         if ($this->verifyGenre()==true)
-            $this->genreModel->insertGenre($_POST['id_genero'], $_POST['genre']);
+            $this->genreModel->insertGenre($_POST['genre']);
             $this->showGenres();
     }
  

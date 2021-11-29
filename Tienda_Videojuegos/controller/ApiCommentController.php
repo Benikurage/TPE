@@ -48,11 +48,11 @@ class ApiCommentController{
         $body = $this->getData();
 
         $comentario = $body->comentario;
-        $nombre = $body->nombre;
+        $id_usuario = $body->id_usuario;
         $id_producto = $body->id_producto;
         $puntaje = $body->puntaje;
 
-        $comment = $this->model->insertComment($comentario, $nombre, $id_producto, $puntaje);
+        $comment = $this->model->insertComment($comentario, $id_usuario, $id_producto, $puntaje);
         if ($comment) {
             $this->view->response("Comentario id=$id_producto creado con éxito", 200);
         } else {

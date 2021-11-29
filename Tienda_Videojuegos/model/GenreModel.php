@@ -26,9 +26,16 @@ class GenreModel{
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function insertGenre($posicion, $genre){
-        $query = $this->db->prepare("INSERT INTO `genero` (`id_genero`, `genre`) VALUES (?, ?);");
-        $query->execute(array($posicion, $genre));
+    // function insertGenre($posicion, $genre){
+    //     $query = $this->db->prepare("INSERT INTO `genero` (`id_genero`, `genre`) VALUES (?, ?);");
+    //     $query->execute(array($posicion, $genre));
+    //     return $this->db->lastInsertId();
+
+    // }
+    function insertGenre($genre){
+        $query = $this->db->prepare("INSERT INTO `genero` (`genre`) VALUES (?);");
+        $query->execute(array($genre));
+        return $this->db->lastInsertId();
     }
 
     function deleteGenre($id){

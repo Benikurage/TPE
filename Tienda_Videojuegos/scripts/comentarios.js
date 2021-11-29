@@ -17,7 +17,7 @@ async function createComment(e) {
     let data = getData();
     let showError = document.querySelector("#error");
 
-    if (data.comentario != "") {
+    if (data.comentario != "" || data.puntaje == 0) {
         try {
             let res = await fetch(url, {
                 method: "POST",
@@ -39,19 +39,19 @@ async function createComment(e) {
             console.log(error);
         }
     } else {
-        app.error = "No se puede agregar un comentario vacío!";
+        app.error = "No se puede agregar un comentario vacío o sin puntuar!";
     }
 }
 
 function getData() {
     let comentario = document.querySelector("#comentario").value;
-    let username = document.querySelector("#username").value;
+    let id_usuario = document.querySelector("#id_usuario").value;
     let id_producto = document.querySelector("#id_producto").value;
     let puntaje = document.querySelector("#puntaje").value;
 
     let data = {
         comentario: comentario,
-        nombre: username,
+        id_usuario: id_usuario,
         id_producto: id_producto,
         puntaje: puntaje
     }

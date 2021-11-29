@@ -18,7 +18,6 @@
                             <td>{$producto->descripcion|truncate:30}</td>
                             <td>${$producto->precio}</td>
                             <td><a class="btn btn-dark" href="detail/{$producto->id_producto}">Detalles</a></td>
-
                         </tr>
                     {/foreach}
                 </tbody>

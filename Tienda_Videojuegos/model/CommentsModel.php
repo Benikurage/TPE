@@ -9,14 +9,14 @@ class CommentsModel {
     }
 
     public function getComments($id){
-        $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto = ?");
+        $query = $this->db->prepare("SELECT * FROM comentarios INNER JOIN usuario ON (comentarios.id_usuario = usuario.id_usuario) WHERE id_producto = ?");
         $query->execute(array($id));
         $comments = $query->fetchAll(PDO::FETCH_OBJ);
         return $comments;
     }
 
     public function getCommentsByScore($id_producto, $puntaje){
-        $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_producto = ? AND puntaje = ?");
+        $query = $this->db->prepare("SELECT * FROM comentarios INNER JOIN usuario ON (comentarios.id_usuario = usuario.id_usuario) WHERE id_producto = ? AND puntaje = ?");
         $query->execute(array($id_producto, $puntaje));
         $comments = $query->fetchAll(PDO::FETCH_OBJ);
         return $comments;
@@ -34,13 +34,13 @@ class CommentsModel {
     // }
 
     public function getComment($id){
-        $query = $this->db->prepare("SELECT * FROM comentarios WHERE id_comentario = ? ");
+        $query = $this->db->prepare("SELECT * FROM comentarios INNER JOIN usuario ON (comentarios.id_usuario = usuario.id_usuario) WHERE id_comentario = ? ");
         $query->execute(array($id));
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
     public function getCommentsByName($name){
-        $query = $this->db->prepare("SELECT * FROM comentarios WHERE nombre = ? ");
+        $query = $this->db->prepare("SELECT * FROM comentarios INNER JOIN usuario ON (comentarios.id_usuario = usuario.id_usuario) WHERE nombre = ? ");
         $query->execute(array($name));
         return $query->fetch(PDO::FETCH_OBJ);
     }
@@ -58,9 +58,9 @@ class CommentsModel {
         $query->execute(array($id));
     }
 
-    public function insertComment($comentario, $nombre, $id_producto, $puntaje){
-        $query = $this->db->prepare("INSERT INTO `comentarios` (`comentario`, `nombre`, `id_producto`, `puntaje`) VALUES (?, ?, ?, ?)");
-        $query->execute(array($comentario, $nombre, $id_producto, $puntaje));
+    public function insertComment($comentario, $id_usuario, $id_producto, $puntaje){
+        $query = $this->db->prepare("INSERT INTO `comentarios` (`comentario`, `id_usuario`, `id_producto`, `puntaje`) VALUES (?, ?, ?, ?)");
+        $query->execute(array($comentario, $id_usuario, $id_producto, $puntaje));
         return $this->db->lastInsertId();
     }
 

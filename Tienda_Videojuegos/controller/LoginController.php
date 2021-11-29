@@ -101,16 +101,6 @@ class LoginController{
         }
     }
 
-    // function getUsernameByMail($email){
-    //     $this->refreshSession();
-
-    //     if (isset($_SESSION['EMAIL'])) {
-    //         $email = $_SESSION['EMAIL'];
-    //     }
-    //     $user = $this->model->getUser($email);
-    //     return $user->nombre;
-    // }
-
     function adminSecurity(){
         $admin = $this->checkAdmin();
         if($admin==false){
@@ -131,26 +121,15 @@ class LoginController{
         $this->refreshSession();
         $sessionCheck = isset($_SESSION['ID_USER']);
         $idCheck = $this->verifyUserById($id);
-        if($idCheck==true){
-            if($this->checkIfUserCommented($id)==true){
-                $this->listView->showHome($sessionCheck, $adminCheck, 'No se puede eliminar un usuario que comentó.');
-            } else {
-                $this->model->deleteUser($id);
-                $this->showListAdmin();
-            }
+        $currentUserCheck = $this->getCurrentUserId();
+
+        if ($currentUserCheck==$id){
+            $this->listView->showHome($sessionCheck, $adminCheck, 'No podés borrar tu usuario mientras está logueado.');
+        } else if ($idCheck==true && $idCheck==$id){
+            $this->model->deleteUser($id);
+            $this->showListAdmin();
         } else {
             $this->listView->showHome($sessionCheck, $adminCheck, 'Ese usuario no existe.');
-        }
-    }
-
-    function checkIfUserCommented($id){
-        $user = $this->model->getUser($id);
-        $name = $user->nombre;
-        $comments = $this->commentsModel->getCommentsByName($name);
-        if (isset($comments)) {
-            return true;
-        } else {
-            return false;
         }
     }
 
@@ -166,15 +145,17 @@ class LoginController{
         if ($idCheck && $sessionCheck && $adminCheck) {
             $user = $this->model->checkAdminById($id);
             $admin = $user->admin;
-    
-            if($admin==true){
+            $currentUserCheck = $this->getCurrentUserId();
+
+            if($admin==true && $id==$currentUserCheck){
+                $this->listView->showHome($sessionCheck, $adminCheck, 'No podés quitarte admin a vos mismo.');
+            } else if($admin==true){
                 $this->model->assignAdmin($id, false);
+                $this->showListAdmin();
             } else if ($admin==false){
                 $this->model->assignAdmin($id, true);
-            } else {
-                $this->listView->showHome('Error');
+                $this->showListAdmin();
             }
-            $this->showListAdmin();
         } else {
             $this->listView->showHome($sessionCheck, $adminCheck, 'Ese usuario no existe.');
         }
@@ -183,6 +164,12 @@ class LoginController{
     function verifyUserById($id){
         if (isset($id))
             $user = $this->model->getUser($id);
-            return $user;
+            return $user->id_usuario;
+    }
+
+    function getCurrentUserId(){
+        if (isset($_SESSION['ID_USER'])){
+            return $_SESSION['ID_USER'];
+        }
     }
 }

@@ -21,7 +21,7 @@
     {if $sessionCheck==true}    
         <form class ="form-groupaction" action="createComment" method="POST">
             <input placeholder="Comentario" type="text" id="comentario" class="input_coment">   
-            <input type="text" id="username" value="{$username}" hidden >
+            <input type="text" id="id_usuario" value="{$id_usuario}" hidden>
             <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
             <select name="puntaje" id="puntaje">
                 <option value="1">Puntaje</option>
