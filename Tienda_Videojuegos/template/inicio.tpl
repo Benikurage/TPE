@@ -1,7 +1,7 @@
 {include file='template/header.tpl'}
 <div class="container">
     <div class="inicio">
-        <h1>Bienvenido a Tienda Gamer&trade;</h1>
+        <h1>Bienvenido a Tienda GameR&trade;</h1>
         <div class="botones-inicio">
         
             {if $sessionCheck == false}

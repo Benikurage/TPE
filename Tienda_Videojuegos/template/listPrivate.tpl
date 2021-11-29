@@ -53,7 +53,7 @@
         {/if}
 
         <form action="filter" method="POST">
-            <input type="text" name="search-field">
+            <input placeholder="Filtro" type="text" name="search-field" >
             <select name="filter">
                 <option value="nombre">Juego</option>
                 <option value="descripcion">Descripcion</option>
