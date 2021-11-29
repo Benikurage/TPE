@@ -162,9 +162,14 @@ class LoginController{
     }
 
     function verifyUserById($id){
-        if (isset($id))
+        if (isset($id)){
             $user = $this->model->getUser($id);
-            return $user->id_usuario;
+            if ($user==true){
+                return $user->id_usuario;
+            } else {
+                return null;
+            }
+        }
     }
 
     function getCurrentUserId(){

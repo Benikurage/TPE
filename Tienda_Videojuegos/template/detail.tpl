@@ -24,14 +24,14 @@
             <input type="text" id="id_usuario" value="{$id_usuario}" hidden>
             <input type="number" id="id_producto" value="{$producto->id_producto}" hidden>
             <select name="puntaje" id="puntaje">
-                <option value="1">Puntaje</option>
+                <option value="0">Puntaje</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
             </select>
-            <button type="submit" class="btn_coment" id="enviar" value="addComment">Enviar comentario</button>
+            <button type="submit" class="btn btn-dark btn_coment" id="enviar" value="addComment">Enviar comentario</button>
         </form>
     {/if}
     {if $sessionCheck==false}

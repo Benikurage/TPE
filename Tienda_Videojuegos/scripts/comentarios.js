@@ -17,7 +17,7 @@ async function createComment(e) {
     let data = getData();
     let showError = document.querySelector("#error");
 
-    if (data.comentario != "" || data.puntaje == 0) {
+    if (data.comentario != "" && data.puntaje != 0) {
         try {
             let res = await fetch(url, {
                 method: "POST",
@@ -27,12 +27,10 @@ async function createComment(e) {
                 body: JSON.stringify(data)
             });
             if (res.ok) {
-                // console.log(JSON.stringify(data));
                 console.log("Success");
                 app.error = "";
                 showComments();
             } else {
-                // console.log(JSON.stringify(data));
                 console.log("Failure");
             }
         } catch (error) {

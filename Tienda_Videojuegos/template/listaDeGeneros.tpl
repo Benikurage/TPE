@@ -16,8 +16,8 @@
                         </tr>
                             {foreach from=$productos item=$producto}
                         <tr>
+                            <td>{$producto->genre}</td>
                             {if $sessionCheck==true}
-                                <td>{$producto->id_genero}</td>
                                 <td><a class="btn btn-danger" href="deleteGenre/{$producto->id_genero}">Borrar</a></td>
                                 <td><a class="btn btn-success" href="mostrarEditarGenre/{$producto->id_genero}">Edit</a></td>
                             {/if}
